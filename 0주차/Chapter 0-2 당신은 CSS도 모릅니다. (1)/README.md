@@ -1,3 +1,5 @@
+<br>
+
 # 📝 Chapter 0-2 당신은 CSS도 모릅니다. (1)
 >
 ><br>
@@ -14,3 +16,5 @@
 > - <code>flex</code>와 <code>grid</code>를 활용하여 구도 잡아보기 ✅
 >
 > ![Mission2](https://github.com/user-attachments/assets/4bca16a1-d065-4d0a-b536-264fb6043a05)
+
+<br>
