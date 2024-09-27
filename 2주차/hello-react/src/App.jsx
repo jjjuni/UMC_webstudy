@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [person, setPerson] = useState({
+    name: "이준희",
+    age: 24,
+    nickname: "주니"
+  });
 
+  const updateCity = () => {
+    setPerson(prevPerson => ({
+      ...prevPerson,
+      city: "서울"
+    }));
+  };
+
+  const increaseAge = () => {
+    setPerson(prevPerson => ({
+      ...prevPerson,
+      age: prevPerson.age + 1
+    }));
+  };
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>이름: {person.name}</h1>
+      <h2>나이: {person.age}</h2>
+      <h3>닉네임: {person.nickname}</h3>
+      {person.city && <h4>도시: {person.city}</h4>}
+      <button onClick={updateCity}>도시 추가</button>
+      <button onClick={increaseAge}>나이 증가</button>
     </>
   )
 }
