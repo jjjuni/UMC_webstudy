@@ -1,8 +1,9 @@
 .movie-list{
-    width: 100%;
+    padding: 50px;
     display: flex;
     flex-flow: wrap;
     gap: 10px;
+    overflow-wrap: normal;
 }
 
 .poster-box{
@@ -16,9 +17,8 @@
 
 .movie-poster{
     width: 150px;
-    overflow: visible;
     transition: filter 0.3s ease, transform 0.3s ease;
-    
+    border-radius: 10px;
 }
 .movie-poster:hover{
     filter: brightness(50%);
