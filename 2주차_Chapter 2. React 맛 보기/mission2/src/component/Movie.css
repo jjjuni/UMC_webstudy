@@ -1,0 +1,26 @@
+.movie-list{
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    gap: 10px;
+}
+
+.poster-box{
+    position: relative;
+    flex-shrink: 0;
+    z-index: 0;
+}
+.poster-box:hover{
+    z-index: 1;
+}
+
+.movie-poster{
+    width: 150px;
+    overflow: visible;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    
+}
+.movie-poster:hover{
+    filter: brightness(50%);
+    transform: scale(1.3);
+}
