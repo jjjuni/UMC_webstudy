@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <AddTodo todos={todos} setTodos={setTodos}/>
+      <AddTodo setTodos={setTodos}/>
       <TodoList todos={todos} setTodos={setTodos}/>
     </>
   )
