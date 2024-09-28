@@ -8,12 +8,12 @@ function TodoList({todos, setTodos}) {
 
   const [editText, setEditText] = useState('')
 
-// 2. todo 삭제
+// todo 삭제
   const deleteTodo = (id) => {      
     setTodos((prev) => prev.filter((item) => item.id !== id));
   };
 
-// 3. todo 수정
+// todo 수정
   const updateTodo = (id, text) => {
     setTodos((prev) => 
       prev.map((item) => (item.id === id ? {...item, task: text} : item))
@@ -39,7 +39,7 @@ function TodoList({todos, setTodos}) {
           {editingId === todo.id && (
             <input className='todo-task-input' defaultValue={todo.task} onChange={(e) => setEditText(e.target.value)} />
           )}
-          
+
           <div className='todo-buttons'>
             <button className='delete-button button' onClick={() => deleteTodo(todo.id)}>삭제</button>
 
