@@ -17,7 +17,7 @@
 
 .movie-poster{
     width: 150px;
-    transition: filter 0.3s ease, transform 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;  /* transition: all 0.3s ease; */
     border-radius: 10px;
 }
 .movie-poster:hover{
