@@ -8,10 +8,10 @@ function Movies() {
 
   useEffect(() => {
     const getMovies = async () => {
-      const movies = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`, {
+      const movies = await axios.get(import.meta.env.VITE_MOVIE_API_URL + "/movie/now_playing?language=en-US&page=1", {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMzEyZWI3MDBlNDQyYmNkYTFkY2E2NWI2MGFjZTY2OSIsIm5iZiI6MTcyODEwODgxNC4yNjQ0NzUsInN1YiI6IjY3MDBkMjU1OTI1ZmRmOTI1YjdjZjY3YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbqAVTRk04Nq8Zik2t1aVSO1HCNYoObaBCPG36zjd8s`
-        }
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+        },
       })
       setMovies(movies);
     }
