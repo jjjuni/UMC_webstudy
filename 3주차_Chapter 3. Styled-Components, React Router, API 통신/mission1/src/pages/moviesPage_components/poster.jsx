@@ -3,59 +3,133 @@ import PropTypes from 'prop-types';
 
 function Poster({movie}) {
   return (
-    <StyledPoster src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
+    <MoviePoster>
+      <PosterImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
+      <MovieTitle>{movie.title}</MovieTitle>
+      <MovieDate>{movie.release_date}</MovieDate>
+    </MoviePoster>
   );
 }
 
 export default Poster;
 
-const StyledPoster = styled.img`
-  flex: 1 1 calc(14.21% - 10px);
-  max-width: calc(14.21% - 10px);
+const MoviePoster = styled.div`
+  max-width: calc(100% - 10px);
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 2px 5px 2px;
+  gap:2px;
+
+  @container poster-box (min-width: calc(150px * 2)){
+    flex: 1 1 calc(100%/2 - 4px);
+    max-width: calc(100%/2 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 3)){
+    flex: 1 1 calc(100%/3 - 4px);
+    max-width: calc(100%/3 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 4)){
+    flex: 1 1 calc(100%/4 - 4px);
+    max-width: calc(100%/4 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 5)){
+    flex: 1 1 calc(100%/5 - 4px);
+    max-width: calc(100%/5 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 6)){
+    flex: 1 1 calc(100%/6 - 4px);
+    max-width: calc(100%/6 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 7)){
+    flex: 1 1 calc(100%/7 - 4px);
+    max-width: calc(100%/7 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 8)){
+    flex: 1 1 calc(100%/8 - 4px);
+    max-width: calc(100%/8 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 9)){
+    flex: 1 1 calc(100%/9 - 4px);
+    max-width: calc(100%/9 - 4px);
+  }
+  @container poster-box (min-width: calc(150px * 10)){
+    flex: 1 1 calc(100%/10 - 4px);
+    max-width: calc(100%/10 - 4px);
+  }
+`
+
+const MovieTitle = styled.h2`
+
+  font-family: ${props => props.font || 'Pretendard-Regular'};
+
+  margin: 0 0 0 8px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 13px;
+
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+`
+
+const MovieDate = styled.p`
+
+  font-family: ${props => props.font || 'Pretendard-Regular'};
+
+  margin: 0 0 10px 8px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 10px;
+
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+  }
+`
+
+const PosterImage = styled.img`
+
+  flex: 1 1 calc(100% - 10px);
+  max-width: calc(100% - 10px);
   margin: 5px;
   border-radius: 10px;
   box-sizing: border-box;
 
   min-width: 100px;
+  height: auto;
 
   transition: all 0.3s ease;
 
-  @media (max-width: 1700px){
-    flex: 1 1 calc(16.66% - 10px);
-    max-width: calc(16.66% - 10px);
-  }
-
-  @media (max-width: 1400px){
-    flex: 1 1 calc(20% - 10px);
-    max-width: calc(20% - 10px);
-  }
-
-
-  @media (max-width: 1100px){
-    flex: 1 1 calc(25% - 10px);
-    max-width: calc(25% - 10px);
-  }
-  @media (max-width: 950px){
-    flex: 1 1 calc(33% - 10px);
-    max-width: calc(33% - 10px);
-  }
-  @media (max-width: 600px){
-    flex: 1 1 calc(50% - 10px);
-    max-width: calc(50% - 10px);
-  }
-  @media (max-width: 400px){
-    flex: 1 1 calc(100% - 10px);
-    max-width: calc(100% - 10px);
-    min-width: 200px;
-  }
-    
   &:hover{
     filter: brightness(50%);
+    cursor: pointer;
   }
+
+  
 `;
 
 Poster.propTypes = {
   movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
 
   }).isRequired
 }

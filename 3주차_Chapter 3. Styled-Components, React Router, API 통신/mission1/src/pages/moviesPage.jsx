@@ -19,19 +19,19 @@ function MoviesPage() {
       switch (location) {
         case 'now_playing':
           setTitle('상영 중인 영화');
-          setUrl('/movie/now_playing?language=en-US&page=1');
+          setUrl('/movie/now_playing?language=ko-KR&page=1');
           break;
         case 'popular':
           setTitle('인기있는 영화')
-          setUrl('/movie/popular?language=en-US&page=1');
+          setUrl('/movie/popular?language=ko-KR&page=1');
           break;
         case 'top_rated':
           setTitle('높은 평가를 받은 영화')
-          setUrl('/movie/top_rated?language=en-US&page=1');
+          setUrl('/movie/top_rated?language=ko-KR&page=1');
           break;
         case 'upcoming':
           setTitle('개봉 예정 중인 영화')
-          setUrl('/movie/upcoming?language=en-US&page=1');
+          setUrl('/movie/upcoming?language=ko-KR&page=1');
           break;
       }
 
@@ -55,6 +55,7 @@ function MoviesPage() {
         <PosterBox>
           {movies.data?.results.map((movie) => (
             <Poster key={movie.id} movie={movie}/>
+            
           ))}
         </PosterBox>
       </S.ContentBox>
@@ -64,4 +65,10 @@ function MoviesPage() {
 
 export default MoviesPage;
 
-const PosterBox = styled.div``;
+const PosterBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  
+  container-name: poster-box;
+  container-type: inline-size;
+`;
