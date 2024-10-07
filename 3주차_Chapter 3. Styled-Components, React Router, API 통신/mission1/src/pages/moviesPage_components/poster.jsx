@@ -122,8 +122,6 @@ const PosterImage = styled.img`
     filter: brightness(50%);
     cursor: pointer;
   }
-
-  
 `;
 
 Poster.propTypes = {
