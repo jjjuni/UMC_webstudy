@@ -1,16 +1,12 @@
 import * as S from "./style/page-style";
-import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
 function MovieCategoryPage() {
 
-  const subPage = location.pathname.split('/').pop();
-
   return (
-    <>
-    {subPage == 'movie-category' && 
+    <> 
       <S.ContentContainer>
         <S.ContentBox>
           <S.Title>카테고리</S.Title>
@@ -42,8 +38,6 @@ function MovieCategoryPage() {
           </MovieCategoryBox>
         </S.ContentBox>
       </S.ContentContainer>
-    }
-      <Outlet />
     </>
   );
 }

@@ -55,7 +55,6 @@ function MoviesPage() {
         <PosterBox>
           {movies.data?.results.map((movie) => (
             <Poster key={movie.id} movie={movie}/>
-            
           ))}
         </PosterBox>
       </S.ContentBox>

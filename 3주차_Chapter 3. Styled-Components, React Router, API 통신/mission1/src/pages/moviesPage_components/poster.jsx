@@ -21,6 +21,8 @@ const MoviePoster = styled.div`
   margin: 0 2px 5px 2px;
   gap:2px;
 
+  transition: all 0.4s ease;
+
   @container poster-box (min-width: calc(150px * 2)){
     flex: 1 1 calc(100%/2 - 4px);
     max-width: calc(100%/2 - 4px);
