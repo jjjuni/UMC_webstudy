@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import '/src/font.css'
 
 export const ContentContainer = styled.div`
   padding: 60px 0px 0px 240px;
@@ -33,12 +32,5 @@ export const Title = styled.h1`
   box-sizing: border-box;
   font-size: 28px;
   border-bottom: 1px solid #1b1c1d;
-
-  @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
 `
 

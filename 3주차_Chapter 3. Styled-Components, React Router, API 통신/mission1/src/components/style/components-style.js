@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import '/src/font.css';
 
 export const WATCHA = styled(Link)`
   font-size: 25px;

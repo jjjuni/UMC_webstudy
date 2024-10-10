@@ -11,6 +11,7 @@ import RootLayout from "./layout/root-layout.jsx"
 import Movieslayout from "./layout/movies-layout.jsx";
 
 import './App.css';
+import './font.css';
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
