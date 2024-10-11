@@ -10,7 +10,6 @@ import * as S from "./style/page-style";
 function MoviesPage() {
   const [title, setTitle] = useState('');
   const [movies, setMovies] = useState([]);
-  const [url, setUrl] = useState('');
 
   const location = useLocation().pathname.split('/').pop();
 
@@ -23,15 +22,15 @@ function MoviesPage() {
           url = '/movie/now_playing?language=ko-KR&page=1';
           break;
         case 'popular':
-          setTitle('인기있는 영화')
+          setTitle('인기있는 영화');
           url = '/movie/popular?language=ko-KR&page=1';
           break;
         case 'top_rated':
-          setTitle('높은 평가를 받은 영화')
+          setTitle('높은 평가를 받은 영화');
           url = '/movie/top_rated?language=ko-KR&page=1';
           break;
         case 'upcoming':
-          setTitle('개봉 예정 중인 영화')
+          setTitle('개봉 예정 중인 영화');
           url = '/movie/upcoming?language=ko-KR&page=1';
           break;
       }
@@ -44,7 +43,7 @@ function MoviesPage() {
       setMovies(movies);
     };
     getMovies();
-  }, []);
+  }, [location]);
 
   return (
     <S.ContentContainer>
