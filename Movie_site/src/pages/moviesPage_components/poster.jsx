@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function Poster({movie}) {
+
+  const navigate = useNavigate();
+
   return (
-    <MoviePoster>
+    <MoviePoster onClick={() => navigate(`/movies/${movie.id}`, {
+      replace: false,
+      state: {id: 123, name: 'dsa'}
+    })}>
       <PosterImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
       <MovieTitle>{movie.title}</MovieTitle>
       <MovieDate>{movie.release_date}</MovieDate>
@@ -114,6 +121,7 @@ const PosterImage = styled.img`
 
 Poster.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
 

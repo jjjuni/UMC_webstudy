@@ -5,7 +5,7 @@ function HomePage(){
     return (
         <S.ContentContainer>
             <S.ContentBox>
-                <S.Title font={'Tium'}>WATCHA!</S.Title>
+                <S.Title $font={'Tium'}>WATCHA!</S.Title>
             </S.ContentBox>
         </S.ContentContainer>
     )

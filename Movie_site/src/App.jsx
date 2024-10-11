@@ -5,6 +5,7 @@ import SignUpPage from "./pages/signupPage.jsx";
 import SearchPage from "./pages/searchPage.jsx";
 import MovieCategoryPage from "./pages/movieCategoryPage.jsx";
 import MoviesPage from "./pages/moviesPage.jsx";
+import Movies from "./pages/movies.jsx";
 
 import RootLayout from "./layout/root-layout.jsx"
 import Movieslayout from "./layout/movies-layout.jsx";
@@ -47,23 +48,15 @@ function App() {
               element: <MovieCategoryPage/>
             },
             {
-              path: 'now_playing',
+              path: ':category',
               element: <MoviesPage/>,
             },
-            {
-              path: 'popular',
-              element: <MoviesPage/>,
-            },
-            {
-              path: 'top_rated',
-              element: <MoviesPage/>,
-            },
-            {
-              path: 'upcoming',
-              element: <MoviesPage/>,
-            }
           ]
         }, 
+        {
+          path: 'movies/:movieId',
+          element: <Movies/>
+        },
         {
           path: '*',
           element: <NotFound/>

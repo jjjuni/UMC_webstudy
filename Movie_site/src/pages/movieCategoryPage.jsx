@@ -74,10 +74,19 @@ const MovieCategory = styled(Link)`
     flex: 1 1 100%;
     max-width: 100%;
   }
+
+  
 `;
 
 const Image = styled.img`
   width: 100%;
+
+  transition: all 0.3s ease;
+
+  &:hover{
+    filter: brightness(50%);
+    cursor: pointer;
+  }
 `;
 
 const ImageText = styled.div`

@@ -10,13 +10,13 @@ function Sidebar() {
       <SidebarContents>
         <S.StyledLink to={'/search'} fontSize={'14px'} padding={'8px 12px'}>
           <S.IconBox>
-            <BiSearch size="18"/>
+            <BiSearch size="18" color="white"/>
           </S.IconBox>
           찾기
         </S.StyledLink>
         <S.StyledLink to={'/movie-category'} fontSize={'14px'} padding={'8px 12px'}>
           <S.IconBox>
-            <BiMoviePlay size="18" />
+            <BiMoviePlay size="18" color="white"/>
           </S.IconBox>
           영화
         </S.StyledLink>
@@ -44,8 +44,6 @@ const StyledSidebar = styled.div`
     transform: translateX(-100%);
   }
 `
-
-
 
 const SidebarContents = styled.div`
   display: flex;
