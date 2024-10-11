@@ -10,7 +10,6 @@ import * as S from "./style/page-style";
 function MoviesPage() {
   const [title, setTitle] = useState('');
   const [movies, setMovies] = useState([]);
-  const [url, setUrl] = useState('');
 
   const location = useLocation().pathname.split('/').pop();
 
@@ -44,7 +43,7 @@ function MoviesPage() {
       setMovies(movies);
     };
     getMovies();
-  }, []);
+  }, [location]);
 
   return (
     <S.ContentContainer>
