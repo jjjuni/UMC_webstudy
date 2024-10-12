@@ -79,6 +79,7 @@ const MovieTitle = styled.h2`
   text-overflow: ellipsis;
 
   width: 100%;
+  min-height: 15px;
   color: #fff;
   box-sizing: border-box;
   font-size: 13px;

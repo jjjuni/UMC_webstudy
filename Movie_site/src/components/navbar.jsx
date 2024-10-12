@@ -42,7 +42,7 @@ const NavbarLeft = styled.div`
   position: absolute;
   left: 0px;
   width: 50%;
-  min-width: 275px;
+  min-width: 290px;
   background-color: #141517;
 
   transition: all 0.3s ease;

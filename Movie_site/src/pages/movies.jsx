@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import * as S from "./style/page-style";
 import styled from "styled-components";
+import Credit from "../components/credit.jsx"
 
 import { ClipLoader } from 'react-spinners';
 
@@ -8,9 +9,10 @@ import useCustomFetch from "../hooks/useCustomFetch.js";
 
 function Movies() {
   const { movieId } = useParams();
-  const { data, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`);
-  const movie = data.data;
-  console.log(movieId);
+  const { data: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`);
+  const { data: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`)
+  const movie = movieData.data;
+  const credit = creditData.data;
 
   return (
     <S.ContentContainer>
@@ -28,28 +30,38 @@ function Movies() {
         ) : isError? (
           <S.Loading>에러!</S.Loading>
         ) : (
-          <MovieDetail>
-            <Title>{movie?.title}</Title>
-            <DetailBox>
-              <Detail>
-                <Info $color={"white"}>평균 {movie?.vote_average.toFixed(1)}</Info>
-                <Info>·</Info>
-                <Info>{movie?.release_date}</Info>
-                <Info>·</Info>
-                <Info>{Math.floor(movie?.runtime/60)}시간 {(movie?.runtime%60)}분</Info>
-                
-                {movie?.genres.map((genre) => (
-                  <Detail key={genre.id}>
-                    <Info>·</Info>
-                    <Info>{genre.name}</Info>
-                  </Detail>
+          <>
+            <MovieDetail>
+              <Title>{movie?.title}</Title>
+              <DetailBox>
+                <Detail>
+                  <Info $color={"white"}>평균 {movie?.vote_average.toFixed(1)}</Info>
+                  <Info>·</Info>
+                  <Info>{movie?.release_date}</Info>
+                  <Info>·</Info>
+                  <Info>{Math.floor(movie?.runtime/60)}시간 {(movie?.runtime%60)}분</Info>
+                  
+                  {movie?.genres.map((genre) => (
+                    <Detail key={genre.id}>
+                      <Info>·</Info>
+                      <Info>{genre.name}</Info>
+                    </Detail>
+                  ))}
+                </Detail>
+              </DetailBox>
+              <Summary>{movie?.overview}</Summary>
+              <Backdrop src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}/>
+              <BackdropGradation></BackdropGradation>
+            </MovieDetail>
+            <CreditContainer>
+              <CreditTitle>감독/출연</CreditTitle>
+              <CreditBox>
+                {credit?.cast?.map((info) => (
+                  <Credit key={info.id} info={info}/>
                 ))}
-              </Detail>
-            </DetailBox>
-            <Summary>{movie?.overview}</Summary>
-            <Backdrop src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}/>
-            <BackdropGradation></BackdropGradation>
-          </MovieDetail>
+              </CreditBox>
+            </CreditContainer>
+          </>
         )}
       </S.ContentBox>
     </S.ContentContainer>
@@ -137,4 +149,22 @@ const Info = styled.p`
   color: ${props => props.$color || '#BABAC1'};
   font-family: Pretendard-Regular;
   font-size: 15px; 
+`
+
+const CreditContainer = styled.div`
+  diplay: flex;
+  flex-direction: column;
+`
+
+const CreditBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+`
+
+const CreditTitle = styled.h1`
+  color: ${props => props.$color || 'white'};
+  font-family: Pretendard-Regular;
+  font-size: 25px;
+  margin: 30px;
 `

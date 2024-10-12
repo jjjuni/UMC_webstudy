@@ -14,7 +14,7 @@ export const WATCHA = styled(Link)`
   align-content: center;
 
   text-decoration: none;
-  padding: 8px 12px 3px;
+  padding: 8px 30px 3px 12px;
 `;
 
 export const StyledLink = styled(Link)`

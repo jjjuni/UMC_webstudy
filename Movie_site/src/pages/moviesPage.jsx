@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Poster from "./moviesPage_components/poster.jsx";
+import Poster from "../components/poster.jsx";
 
 import styled from "styled-components";
 import { ClipLoader } from "react-spinners";
