@@ -14,6 +14,7 @@ function MoviesPage() {
   const { category } = useParams();
   
   useEffect(() => {
+    document.title = `왓챠`
     switch (category) {
       case "now_playing":
         setTitle("상영 중인 영화");

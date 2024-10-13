@@ -1,7 +1,13 @@
 import * as S from './style/page-style';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 function HomePage(){
+    
+    useEffect(() => {
+        document.title = `왓챠`
+    })
+
     return (
         <S.ContentContainer>
             <S.ContentBox>

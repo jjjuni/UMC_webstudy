@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import * as S from "./style/page-style";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
@@ -23,6 +23,12 @@ function Movies() {
     setCreditHeight('none');
     setMoreButtonDisplay('none');
   }
+
+  useEffect(() => {
+    if (movie) {
+      document.title = `${movie.title} | 왓챠`;
+    }
+  })
 
   return (
     <S.ContentContainer>
@@ -166,8 +172,6 @@ const Info = styled.p`
 
 const CreditContainer = styled.div`
   position: relative;
-  diplay: flex;
-  flex-direction: column;
   max-height: ${props => props.$maxHeight || '400px'};
   overflow: hidden;
 `
