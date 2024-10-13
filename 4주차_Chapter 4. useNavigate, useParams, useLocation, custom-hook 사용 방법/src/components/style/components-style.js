@@ -2,10 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const WATCHA = styled(Link)`
-  font-size: 25px;
-  color: #F82F62;
-  font-family: Tium;
-
   margin: 0px 0px 0px 20px;
 
   height: 60px;
@@ -14,8 +10,13 @@ export const WATCHA = styled(Link)`
   align-content: center;
 
   text-decoration: none;
-  padding: 8px 30px 3px 12px;
+  padding: 0px 30px 0px 12px;
 `;
+
+export const Logo = styled.img`
+  height: 30px;
+  margin: 5px 0 0 0;
+`
 
 export const StyledLink = styled(Link)`
   font-size: ${props => props.fontSize || '15px'};

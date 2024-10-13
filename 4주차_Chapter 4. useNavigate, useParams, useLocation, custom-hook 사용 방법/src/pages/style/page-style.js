@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ClipLoader } from 'react-spinners';
 
 export const ContentContainer = styled.div`
   padding: 60px 0px 0px 240px;

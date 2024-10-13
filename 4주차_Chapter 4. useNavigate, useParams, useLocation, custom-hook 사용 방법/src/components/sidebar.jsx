@@ -6,7 +6,9 @@ import { BiMoviePlay, BiSearch } from "react-icons/bi"
 function Sidebar() {
   return (
     <StyledSidebar>
-      <S.WATCHA to={'/'}>WATCHA</S.WATCHA>
+      <S.WATCHA to={'/'}>
+        <S.Logo src='/src/logo/WATCHA.svg'/>
+      </S.WATCHA>
       <SidebarContents>
         <S.StyledLink to={'/search'} fontSize={'14px'} padding={'8px 12px'}>
           <S.IconBox>
@@ -36,7 +38,7 @@ const StyledSidebar = styled.div`
   background-color: #141517;
   transition: transform 0.3s ease;
   box-sizing: border-box;
-  z-index: 3;
+  z-index: 200;
   
   border-right: 1px solid #1B1C1D;
 

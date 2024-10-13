@@ -7,7 +7,9 @@ function Navbar() {
   return (
     <StyledNavbar>
       <NavbarLeft>
-        <S.WATCHA to={'/'}>WATCHA</S.WATCHA>
+        <S.WATCHA to={'/'}>
+          <S.Logo src={'/src/logo/WATCHA.svg'}/>
+        </S.WATCHA>
         <IconBox to={'/search'}>
           <BiSearch size="17" color="white"/> 검색
         </IconBox>
@@ -17,7 +19,7 @@ function Navbar() {
       </NavbarLeft>
       <SignBox>
         <S.StyledButton to={'/login'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} hovercolor={'#2C2D2F'}>로그인</S.StyledButton>
-        <S.StyledButton to={'/sign-up'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} backcolor={'#F82F62'} hovercolor={'#FF3D6E'}>회원가입</S.StyledButton>
+        <S.StyledButton to={'/sign-up'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} backcolor={'#F82F62'} hovercolor={'#FF0558'}>회원가입</S.StyledButton>
       </SignBox>
     </StyledNavbar>
   )
@@ -34,7 +36,7 @@ const StyledNavbar = styled.div`
   background-color: #141517;
   padding: 0px 40px 0px 0px;
   box-sizing: border-box;
-  z-index: 3;
+  z-index: 100;
 `
 
 const NavbarLeft = styled.div`
@@ -60,6 +62,7 @@ const IconBox = styled(Link)`
   display: flex;
   gap: 4px;
   align-items: center;
+  min-width: 45px;
   margin: 13px 10px;
   color: white;
   font-family: Pretendard-Regular;
