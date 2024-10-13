@@ -6,13 +6,8 @@
   }
 
   @font-face {
-    font-family: 'Tium';
-    font-weight: normal;
+    font-family: 'Tenada';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/YClover-Bold.woff2') format('woff2');
+    font-weight: 700;
     font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/tmon/Tium.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/tmon/Tium.eot?#iefix') format('embedded-opentype'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/tmon/Tium.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/tmon/Tium.woff') format('woff'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/tmon/Tium.ttf') format("truetype");
-    font-display: swap;
-  } 
+}

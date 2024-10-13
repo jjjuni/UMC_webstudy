@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react"
 import * as S from "./style/page-style";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
 
+import { IoIosMore } from "react-icons/io";
 import { ClipLoader } from 'react-spinners';
 
 import useCustomFetch from "../hooks/useCustomFetch.js";
@@ -11,8 +13,17 @@ function Movies() {
   const { movieId } = useParams();
   const { data: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`);
   const { data: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`)
+
   const movie = movieData.data;
   const credit = creditData.data;
+
+  const [creditHeight, setCreditHeight] = useState('400px');
+  const [moreButtonDisplay, setMoreButtonDisplay] = useState('flex')
+
+  const showMore = () => {
+    setCreditHeight('none');
+    setMoreButtonDisplay('none');
+  }
 
   return (
     <S.ContentContainer>
@@ -53,13 +64,16 @@ function Movies() {
               <Backdrop src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}/>
               <BackdropGradation></BackdropGradation>
             </MovieDetail>
-            <CreditContainer>
+            <CreditContainer $maxHeight={creditHeight}>
               <CreditTitle>감독/출연</CreditTitle>
               <CreditBox>
                 {credit?.cast?.map((info) => (
                   <Credit key={info.id} info={info}/>
                 ))}
               </CreditBox>
+              <MoreCreditBackground $display={moreButtonDisplay}>
+                <MoreCreditButton onClick={showMore}>더보기</MoreCreditButton>
+              </MoreCreditBackground>
             </CreditContainer>
           </>
         )}
@@ -152,8 +166,37 @@ const Info = styled.p`
 `
 
 const CreditContainer = styled.div`
+  position: relative;
   diplay: flex;
   flex-direction: column;
+  max-height: ${props => props.$maxHeight || '400px'};
+  overflow: hidden;
+`
+
+const MoreCreditBackground = styled.div`
+  display: ${props => props.$display || 'flex'};
+  justify-content: center;
+  align-items: flex-end;
+  border: 0px;
+  
+  background: linear-gradient(to top, black 0%, black 40%, rgba(0, 0, 0, 0));
+
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+`
+const MoreCreditButton = styled.button`
+  background: none;
+  border: 0px;
+
+  color: #84869D;
+  font-family: Pretendard-Regular;
+  font-size: 15px;
+
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
 `
 
 const CreditBox = styled.div`
