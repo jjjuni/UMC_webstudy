@@ -21,6 +21,6 @@
 > >   - [[TMDB] The Movie Database](https://developer.themoviedb.org/reference/intro/getting-started)
 > > - ✅ `Custom hook`을 이용하여 `loading`처리를 해주세요!
 > >
-> > https://github.com/user-attachments/assets/cc8841fa-358c-4051-a827-5a485c42530d
+> > https://github.com/user-attachments/assets/2e9ad79c-51d1-4863-aa46-f2477d3ca982
 
 <br>
