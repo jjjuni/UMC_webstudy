@@ -4,7 +4,6 @@ import * as S from "./style/page-style";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
 
-import { IoIosMore } from "react-icons/io";
 import { ClipLoader } from 'react-spinners';
 
 import useCustomFetch from "../hooks/useCustomFetch.js";
