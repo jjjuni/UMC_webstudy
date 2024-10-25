@@ -5,7 +5,7 @@ import Poster from "../components/poster.jsx";
 import styled from "styled-components";
 import { ClipLoader } from "react-spinners";
 
-import * as S from "./style/page-style";
+import * as S from "./style/page-style.js";
 import useCustomFetch from "../hooks/useCustomFetch.js";
 
 function MoviesPage() {

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react"
-import * as S from "./style/page-style";
+import * as S from "./style/page-style.js";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
 
