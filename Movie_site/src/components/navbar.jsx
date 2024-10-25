@@ -10,17 +10,17 @@ function Navbar() {
         <S.WATCHA to={'/'}>
           <S.Logo src={'/src/logo/WATCHA.svg'}/>
         </S.WATCHA>
-        <IconBox to={'/search'}>
+        <IconNav to={'/search'}>
           <BiSearch size="17" color="white"/> 검색
-        </IconBox>
-        <IconBox to={'/movie-category'}>
+        </IconNav>
+        <IconNav to={'/movie-category'}>
           <BiMoviePlay size="17" color="white"/> 영화
-        </IconBox>
+        </IconNav>
       </NavbarLeft>
-      <SignBox>
+      <SignNav>
         <S.StyledButton to={'/login'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} hovercolor={'#2C2D2F'}>로그인</S.StyledButton>
         <S.StyledButton to={'/sign-up'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} backcolor={'#F82F62'} hovercolor={'#FF0558'}>회원가입</S.StyledButton>
-      </SignBox>
+      </SignNav>
     </StyledNavbar>
   )
 }
@@ -58,7 +58,7 @@ const NavbarLeft = styled.div`
   }
 `
 
-const IconBox = styled(Link)`
+const IconNav = styled(Link)`
   display: flex;
   gap: 4px;
   align-items: center;
@@ -71,7 +71,7 @@ const IconBox = styled(Link)`
   text-decoration: none;
 `
 
-const SignBox = styled.div`
+const SignNav = styled.div`
   display: flex;
   justify-content: space-between;
 `
