@@ -29,7 +29,7 @@ function SignUpPage() {
   const signUpSubmit = (data) => {
     console.log('회원가입')
     console.log(data)
-    navigate('/', { replace: true });
+    navigate('/');
   }
   
   const emailValue = watch('email');
