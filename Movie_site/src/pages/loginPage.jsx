@@ -40,7 +40,9 @@ function LoginPage() {
         <S.SignForm onSubmit={handleSubmit(loginSubmit)}>
           <S.SignTitle>로그인</S.SignTitle>
           <S.InputDiv $borderBottom={'1px solid'} $borderRadius={'5px 5px 0 0'}>
-            <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}/>
+            <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}
+            $border={ emailValue && errors.email ? '1px solid #e73e3e' : '1px solid #48484b'}
+            />
             { emailValue && 
               (errors.email? 
                 <S.ValidationIcon src='/src/icon/x_circle.svg'/>
@@ -50,7 +52,8 @@ function LoginPage() {
             }
           </S.InputDiv >
           <S.InputDiv $borderRadius={'0 0 5px 5px'}>
-            <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}/>
+            <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}
+            $border={ passwordValue && errors.password ? '1px solid #e73e3e' : '1px solid #48484b'}/>
             { passwordValue && 
               (errors.password? 
                 <S.ValidationIcon src='/src/icon/x_circle.svg'/>
