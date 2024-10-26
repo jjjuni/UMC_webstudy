@@ -84,6 +84,6 @@ Credit.propTypes = {
   info: PropTypes.shape({
     name: PropTypes.string.isRequired,
     character: PropTypes.string.isRequired,
-    profile_path: PropTypes.string.isRequired,
+    profile_path: PropTypes.string,
   }).isRequired
 }

@@ -29,9 +29,20 @@ export const ContentBox = styled.div`
 export const Title = styled.h1`
   font-family: ${props => props.$font || 'Pretendard-Regular'};
   width: 100%;
+  margin: 0 0 20px 0;
+  padding: 50px 10px 15px;
+  border-bottom: 1px solid #141517;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 28px;
+`
+
+export const SignTitle = styled.h1`
+  font-family: ${props => props.$font || 'Pretendard-Regular'};
+  width: 100%;
   text-align: center;
-  margin: 0 0 10px 0;
-  padding: 50px 0 13px;
+  margin: 0 0 20px 0;
+  padding: 50px 0 10px;
   color: #fff;
   box-sizing: border-box;
   font-size: 28px;
@@ -45,7 +56,7 @@ export const Loading = styled.div`
   align-items: center;
 `
 
-export const SignBox = styled.div`
+export const SignForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,24 +66,48 @@ export const SignBox = styled.div`
   box-sizing: border-box;
 `
 
-export const InputText = styled.input`
-  font-family: Pretendard-Regular;
-  font-size: 15px;
+export const InputDiv = styled.div`
+  position: relative;
 
-  padding: 0 0 0 10px;
-  margin: 0px;
+  background-color: black;
+
+  margin: 2px;
   border: 0px;
   border-bottom: ${props => props.$borderBottom || '0px' };
   border-radius: ${props => props.$borderRadius || '0px'};
-  border-color: #9a97a133;
+  border-color: black;
 
   width: 50%;
   max-width: 330px;
-  height: 40px;
+  height: 48px;
+  outline: 0;
+  overflow: hidden;
+
+  box-sizing: content-box;
+`
+
+export const InputText = styled.input`
+  font-family: Pretendard-Regular;
+  font-size: 15px;
+  color: white;
+  background-color: #191a1c;
+
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: ${props => props.$border || '1px solid #48484b'};
+  border-radius: 5px;
   outline: 0;
 
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 
+  box-sizing: border-box;
+`
+
+export const ValidationIcon = styled.img`
+  position: absolute;
+  top: 14px;
+  right: 14px;
 `
 
 export const SubmitButton = styled.button`
@@ -81,15 +116,19 @@ export const SubmitButton = styled.button`
   max-width: 330px;
   height: 40px;
   padding: 0 5px;
-  margin: 20px;
+  margin: 30px;
 
   background-color: #F82F62;
   color: white;
   outline: 0;
 
+  opacity: ${props => props.$opacity || 1};
+
   border: 0;
   border-radius: 5px;
   box-sizing: border-box;
+
+  cursor: pointer;
 
   &:hover{
     background-color: #FF0558;
