@@ -92,12 +92,12 @@ export const InputText = styled.input`
   color: white;
   background-color: #191a1c;
 
+  outline: 0;
   padding: 0 0 0 10px;
   margin: 0;
   border: ${props => props.$border || '1px solid #48484b'};
   border-radius: 5px;
-  outline: 0;
-
+  
   width: 100%;
   height: 100%;
 
@@ -106,7 +106,8 @@ export const InputText = styled.input`
 
 export const ValidationIcon = styled.img`
   position: absolute;
-  top: 14px;
+  margin-top: -10px;
+  top: 50%;
   right: 14px;
 `
 
