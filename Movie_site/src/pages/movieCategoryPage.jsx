@@ -59,7 +59,6 @@ const MovieCategory = styled(Link)`
   flex: 1 1 calc(25% - 5px);
   max-width: calc(25% - 10px);
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -85,6 +84,7 @@ const MovieCategory = styled(Link)`
 
 const Image = styled.img`
   width: 100%;
+  border-radius: 5px;
 
   transition: all 0.3s ease;
 
