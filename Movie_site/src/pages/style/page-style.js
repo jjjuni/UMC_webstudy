@@ -71,10 +71,10 @@ export const InputDiv = styled.div`
 
   background-color: black;
 
-  margin: 2px;
+  padding: 2px;
   border: 0px;
   border-bottom: ${props => props.$borderBottom || '0px' };
-  border-radius: ${props => props.$borderRadius || '0px'};
+  border-radius: ${props => props.$borderRadius || '5px'};
   border-color: black;
 
   width: 50%;
@@ -89,8 +89,8 @@ export const InputDiv = styled.div`
 export const InputText = styled.input`
   font-family: Pretendard-Regular;
   font-size: 15px;
-  color: white;
-  background-color: #191a1c;
+  color: black;
+  background-color: white;
 
   outline: 0;
   padding: 0 0 0 10px;
