@@ -8,6 +8,12 @@ import { useNavigate } from 'react-router-dom'
 function SignUpPage() {
   const navigate = useNavigate();
 
+  const emailValue = watch('email');
+  const passwordValue = watch('password');
+  const passwordCheckValue = watch('passwordCheck');
+  const nameValue = watch('name');
+  const phoneValue = watch('phone');
+  
   const emailRegExp = 
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const phoneRegExp =
@@ -17,7 +23,7 @@ function SignUpPage() {
     email: yup.string().required('empty').matches(emailRegExp),
     password: yup.string().required('empty').min(8).max(16),
     passwordCheck: yup.string().required('empty').oneOf([yup.ref('password'), null]),
-    name: yup.string().required('empty'),
+    name: yup.string().required('empty').min(2),
     phone: yup.string().required('empty').matches(phoneRegExp),
   })
 
@@ -31,12 +37,6 @@ function SignUpPage() {
     console.log(data)
     navigate('/');
   }
-  
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
-  const passwordCheckValue = watch('passwordCheck');
-  const nameValue = watch('name');
-  const phoneValue = watch('phone');
 
   useEffect(() => {
       document.title = `왓챠 | 회원가입`
@@ -47,63 +47,43 @@ function SignUpPage() {
       <S.ContentBox>
         <S.SignForm onSubmit={handleSubmit(signUpSubmit)}>
           <S.SignTitle>회원가입</S.SignTitle>
-          <S.InputDiv $borderBottom={'1px solid'} $borderRadius={'5px 5px 0 0'}>
+          <S.InputDiv>
             <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}
-            $border={ emailValue && errors.email ? '1px solid #e73e3e' : '1px solid #48484b'}
+            $border={ emailValue && errors.email ? '2px solid #e73e3e' : '2px solid black'}
             />
             { emailValue && 
-              (errors.email? 
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.email? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv >
-          <S.InputDiv $borderBottom={'1px solid'}>
+          <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}
-            $border={ passwordValue && errors.password ? '1px solid #e73e3e' : '1px solid #48484b'}
+            $border={ passwordValue && errors.password ? '2px solid #e73e3e' : '2px solid black'}
             />
             { passwordValue && 
-              (errors.password? 
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.password? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
-          <S.InputDiv $borderRadius={'0 0 5px 5px'}>
+          <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 재입력' maxLength={16} {...register("passwordCheck")}
-            $border={ passwordCheckValue && passwordCheckValue !== passwordValue ? '1px solid #e73e3e' : '1px solid #48484b'}
+            $border={ passwordCheckValue && passwordCheckValue !== passwordValue ? '2px solid #e73e3e' : '2px solid black'}
             />
             { passwordCheckValue && 
-              (passwordCheckValue !== passwordValue?
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={passwordCheckValue !== passwordValue? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv style={{margin: '20px 0 0'}}>
             <S.InputText type='text' placeholder='이름' maxLength={30} {...register("name")}
-            $border={ nameValue && errors.name ? '1px solid #e73e3e' : '1px solid #48484b'}
+            $border={ nameValue && errors.name ? '2px solid #e73e3e' : '2px solid black'}
             />
             { nameValue && 
-              (errors.name?
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.name? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv>
             <S.InputText type='text' placeholder='휴대전화번호' maxLength={11} {...register("phone")}
-            $border={ phoneValue && errors.phone ? '1px solid #e73e3e' : '1px solid #48484b'}/>
+            $border={ phoneValue && errors.phone ? '2px solid #e73e3e' : '2px solid black'}/>
             { phoneValue && 
-              (errors.phone?
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.phone? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>회원가입</S.SubmitButton>

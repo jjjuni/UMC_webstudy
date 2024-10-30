@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const navigate = useNavigate()
   
+  const emailValue = watch('email');
+  const passwordValue = watch('password');
+
   const emailRegExp = 
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -27,9 +30,6 @@ function LoginPage() {
     navigate('/', { replace: true })
   }
   
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
-
   useEffect(() => {
     document.title = `왓챠 | 로그인`
   })
@@ -39,27 +39,19 @@ function LoginPage() {
       <S.ContentBox>
         <S.SignForm onSubmit={handleSubmit(loginSubmit)}>
           <S.SignTitle>로그인</S.SignTitle>
-          <S.InputDiv $borderBottom={'1px solid'} $borderRadius={'5px 5px 0 0'}>
+          <S.InputDiv>
             <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}
-            $border={ emailValue && errors.email ? '1px solid #e73e3e' : '1px solid #48484b'}
+            $border={ emailValue && errors.email ? '2px solid #e73e3e' : '2px solid black'}
             />
             { emailValue && 
-              (errors.email? 
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.email? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv >
-          <S.InputDiv $borderRadius={'0 0 5px 5px'}>
+          <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}
-            $border={ passwordValue && errors.password ? '1px solid #e73e3e' : '1px solid #48484b'}/>
+            $border={ passwordValue && errors.password ? '2px solid #e73e3e' : '2px solid black'}/>
             { passwordValue && 
-              (errors.password? 
-                <S.ValidationIcon src='/src/icon/x_circle.svg'/>
-              :
-                <S.ValidationIcon src='/src/icon/check_circle.svg'/>
-              )
+              <S.ValidationIcon src={errors.password?  '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>로그인</S.SubmitButton>
