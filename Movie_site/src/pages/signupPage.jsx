@@ -21,7 +21,7 @@ function SignUpPage() {
     phone: yup.string().required('empty').matches(phoneRegExp),
   })
 
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({
+  const { register, handleSubmit, watch, formState: { errors, isValid, isSubmitted } } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
@@ -49,40 +49,40 @@ function SignUpPage() {
           <S.SignTitle>회원가입</S.SignTitle>
           <S.InputDiv>
             <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}
-            $border={ emailValue && errors.email ? '2px solid #e73e3e' : '2px solid black'}
+            $border={(emailValue || isSubmitted) && errors.email ? '2px solid #e73e3e' : '2px solid black'}
             />
-            { emailValue && 
+            {(emailValue || isSubmitted) && 
               <S.ValidationIcon src={errors.email? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv >
           <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}
-            $border={ passwordValue && errors.password ? '2px solid #e73e3e' : '2px solid black'}
+            $border={(passwordValue || isSubmitted) && errors.password ? '2px solid #e73e3e' : '2px solid black'}
             />
-            { passwordValue && 
+            {(passwordValue || isSubmitted) && 
               <S.ValidationIcon src={errors.password? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 재입력' maxLength={16} {...register("passwordCheck")}
-            $border={ passwordCheckValue && passwordCheckValue !== passwordValue ? '2px solid #e73e3e' : '2px solid black'}
+            $border={(!passwordCheckValue && isSubmitted) || (passwordCheckValue && (passwordCheckValue !== passwordValue)) ? '2px solid #e73e3e' : '2px solid black'}
             />
-            { passwordCheckValue && 
-              <S.ValidationIcon src={passwordCheckValue !== passwordValue? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
+            {(passwordCheckValue || isSubmitted) && 
+              <S.ValidationIcon src={!passwordCheckValue || (passwordCheckValue !== passwordValue)? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv style={{margin: '20px 0 0'}}>
             <S.InputText type='text' placeholder='이름' maxLength={30} {...register("name")}
-            $border={ nameValue && errors.name ? '2px solid #e73e3e' : '2px solid black'}
+            $border={(nameValue || isSubmitted) && errors.name ? '2px solid #e73e3e' : '2px solid black'}
             />
-            { nameValue && 
+            {(nameValue || isSubmitted) && 
               <S.ValidationIcon src={errors.name? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv>
             <S.InputText type='text' placeholder='휴대전화번호' maxLength={11} {...register("phone")}
-            $border={ phoneValue && errors.phone ? '2px solid #e73e3e' : '2px solid black'}/>
-            { phoneValue && 
+            $border={(phoneValue || isSubmitted) && errors.phone ? '2px solid #e73e3e' : '2px solid black'}/>
+            {(phoneValue || isSubmitted) && 
               <S.ValidationIcon src={errors.phone? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
