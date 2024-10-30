@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ClipLoader } from "react-spinners";
 
 import * as S from "./style/page-style";
-import useCustomFetch from "../hooks/useCustomFetch.js";
+import useCustomFetch from "../hooks/use-custom-fetch.js";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");

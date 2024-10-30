@@ -6,7 +6,7 @@ import Credit from "../components/credit.jsx"
 
 import { ClipLoader } from 'react-spinners';
 
-import useCustomFetch from "../hooks/useCustomFetch.js";
+import useCustomFetch from "../hooks/use-custom-fetch.js";
 
 function Movies() {
   const { movieId } = useParams();
