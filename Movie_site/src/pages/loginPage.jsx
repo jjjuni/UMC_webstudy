@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate()
-  
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
 
   const emailRegExp = 
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -23,6 +20,9 @@ function LoginPage() {
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
+  
+  const emailValue = watch('email');
+  const passwordValue = watch('password');
 
   const loginSubmit = (data) => {
     console.log('로그인')

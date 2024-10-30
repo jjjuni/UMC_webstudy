@@ -7,12 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 function SignUpPage() {
   const navigate = useNavigate();
-
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
-  const passwordCheckValue = watch('passwordCheck');
-  const nameValue = watch('name');
-  const phoneValue = watch('phone');
   
   const emailRegExp = 
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -31,6 +25,12 @@ function SignUpPage() {
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
+
+  const emailValue = watch('email');
+  const passwordValue = watch('password');
+  const passwordCheckValue = watch('passwordCheck');
+  const nameValue = watch('name');
+  const phoneValue = watch('phone');
 
   const signUpSubmit = (data) => {
     console.log('회원가입')
