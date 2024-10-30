@@ -33,5 +33,7 @@
 > >   - ✅ <code>Password input에 들어간 요소</code>와, <code>PasswordCheck input 요소</code>에 들어간 요소의 <code>value가 다를때</code> <code>비밀번호가 일치하지 않습니다. 라는 에러가 발생</code>합니다.
 > >   - ✅ 비밀번호 검증은 필수 입력 요소입니다.
 > >
+> > https://github.com/user-attachments/assets/41274805-83fe-4360-b6e7-b6bd58775322
+
 
 <br>
