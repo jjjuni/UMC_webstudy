@@ -16,7 +16,7 @@ function LoginPage() {
     password: yup.string().required('empty').min(8).max(16),
   })
 
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({
+  const { register, handleSubmit, watch, formState: { errors, isValid, isSubmitted } } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
@@ -41,16 +41,16 @@ function LoginPage() {
           <S.SignTitle>로그인</S.SignTitle>
           <S.InputDiv>
             <S.InputText type='text' placeholder='이메일 | example@gmail.com' {...register("email")}
-            $border={ emailValue && errors.email ? '2px solid #e73e3e' : '2px solid black'}
+            $border={ (emailValue || isSubmitted) && errors.email ? '2px solid #e73e3e' : '2px solid black'}
             />
-            { emailValue && 
+            {(emailValue || isSubmitted) && 
               <S.ValidationIcon src={errors.email? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv >
           <S.InputDiv>
             <S.InputText type='password' placeholder='비밀번호 | 8~16자' maxLength={16} {...register("password")}
-            $border={ passwordValue && errors.password ? '2px solid #e73e3e' : '2px solid black'}/>
-            { passwordValue && 
+            $border={ (passwordValue || isSubmitted) && errors.password ? '2px solid #e73e3e' : '2px solid black'}/>
+            {(passwordValue || isSubmitted) && 
               <S.ValidationIcon src={errors.password?  '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
