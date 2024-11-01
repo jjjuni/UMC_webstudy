@@ -33,7 +33,7 @@ function Movies() {
   return (
     <S.ContentContainer>
       <S.ContentBox $padding={'0 0 60px 0'}>
-        {isLoading ? (
+        {isLoading? (
           <S.Loading>
             <ClipLoader 
               color="#FFFFFF"
@@ -72,7 +72,7 @@ function Movies() {
             <CreditContainer $maxHeight={creditHeight}>
               <CreditTitle>감독/출연</CreditTitle>
               <CreditBox>
-                {credit?.cast?.map((info) => (
+                {credit?.cast.map((info) => (
                   <Credit key={info.id} info={info}/>
                 ))}
               </CreditBox>
