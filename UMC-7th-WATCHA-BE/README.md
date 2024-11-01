@@ -1,4 +1,4 @@
-### UMC-7th-YONGCHA-BE
+### UMC-7th-WATCHA-BE
 
 # 서버 실행 방법
 ```js
