@@ -28,11 +28,11 @@
 > ## 📚 사용 라이브러리
 > | 명령어 | 라이브러리 |
 > | :-----: | :-----: |
-> | yarn add styled-components | 스타일 컴포넌트 라이브러리 설치 |
-> | yarn add react-router-dom | 리액트 라우터 라이브러리 설치 |
-> | yarn add axios | axios 라이브러리 설치 (API 통신) |
-> | yarn add react-icons | 리액트 아이콘 |
-> | yarn add react-hook-form yup | useForm 사용 |
-> | yarn add @hookform/resolvers | 유효성 검사 관련 (schema resolve) |
+> | yarn add styled-components | 스타일 컴포넌트 라이브러리 |
+> | yarn add react-router-dom | 리액트 라우터 라이브러리 |
+> | yarn add axios | axios 라이브러리(API 통신) |
+> | yarn add react-icons | 리액트 아이콘 라이브러리 |
+> | yarn add react-hook-form yup | useForm 라이브러리 |
+> | yarn add @hookform/resolvers | 유효성 검사 관련 라이브러리(schema resolve) |
 
 <br>
