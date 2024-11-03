@@ -4,6 +4,7 @@ import * as S from "./style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -24,9 +25,24 @@ function LoginPage() {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const loginSubmit = (data) => {
+  const loginSubmit = async (data) => {
     console.log('로그인')
     console.log(data)
+
+    try{
+      const response = await axios.post('http://localhost:3000/auth/login', {
+        "email": data.email,
+        "password": data.password
+      })
+      localStorage.setItem("accessToken", response.data.accessToken)
+      console.log(response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken)
+      console.log(response.data.refreshToken);
+    }
+    catch (error){
+      console.log(error);
+    }
+    
     navigate('/', { replace: true })
   }
   

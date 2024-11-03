@@ -4,6 +4,8 @@ import * as S from "./style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -32,15 +34,29 @@ function SignUpPage() {
   const nameValue = watch('name');
   const phoneValue = watch('phone');
 
-  const signUpSubmit = (data) => {
+  const signUpSubmit = async (data) => {
     console.log('회원가입')
     console.log(data)
-    navigate('/');
+    
+    try{
+    const response = await axios.post('http://localhost:3000/auth/register', {
+      "email": data.email,
+      "password": data.password,
+      "passwordCheck": data.passwordCheck
+    })
+    console.log(response);
+    }
+    catch(error){
+      console.log(error);
+    }
+    
+    navigate('/login')
   }
 
   useEffect(() => {
-      document.title = `왓챠 | 회원가입`
+    document.title = `왓챠 | 회원가입`
   })
+  
 
   return (
     <S.ContentContainer>
