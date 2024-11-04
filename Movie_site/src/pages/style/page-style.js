@@ -115,9 +115,9 @@ export const SubmitButton = styled.button`
   font-family: Pretendard-Regular;
   width: 50%;
   max-width: 330px;
-  height: 40px;
+  height: 45px;
   padding: 0 5px;
-  margin: 30px;
+  margin: 20px;
 
   background-color: #F82F62;
   color: white;
@@ -134,4 +134,11 @@ export const SubmitButton = styled.button`
   &:hover{
     background-color: #FF0558;
   }
+`
+
+export const ErrorMessage = styled.p`
+  font-family: Pretendard-Regular;
+  font-size: 12px;
+  color: #f82f62;
+  margin: 20px 0 0 0;
 `

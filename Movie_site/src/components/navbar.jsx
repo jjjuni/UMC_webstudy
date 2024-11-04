@@ -1,9 +1,47 @@
+import { useContext, useEffect } from 'react'
 import styled from "styled-components"
 import {Link} from "react-router-dom";
 import * as S from './style/components-style.js';
 import { BiMoviePlay, BiSearch } from "react-icons/bi"
+import { LogContext } from '../context/logContext.jsx';
+import { axiosUserInstance } from '../apis/axios-instance.js';
 
 function Navbar() {
+
+  const {
+    isLogged,
+    setIsLogged,
+    userInfo,
+    setUserInfo,
+  } = useContext(LogContext);
+
+  useEffect(() => {
+    const getUser = async () =>{
+      try{
+        const response = await axiosUserInstance.get('http://localhost:3000/user/me',{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        })
+        setUserInfo(response.data)
+      }
+      catch (error){
+        ;
+      }
+    };
+    if (isLogged){
+      getUser();
+    }
+  }, [isLogged])
+
+  
+  const logOut = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    setIsLogged(false);
+    window.location.reload();   // 없어도 되긴 하는데 없으면 뭔가... 로그아웃이 심심한...?
+  }
+
   return (
     <StyledNavbar>
       <NavbarLeft>
@@ -18,8 +56,17 @@ function Navbar() {
         </IconNav>
       </NavbarLeft>
       <SignNav>
-        <S.StyledButton to={'/login'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} hovercolor={'#2C2D2F'}>로그인</S.StyledButton>
-        <S.StyledButton to={'/sign-up'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} backcolor={'#F82F62'} hovercolor={'#FF0558'}>회원가입</S.StyledButton>
+        {isLogged? 
+        <>
+          <S.StyledButton $fontSize={'13px'} $padding={'0px 12px'} $margin={'14px 5px'} >{userInfo?.username} 님 반갑습니다</S.StyledButton>
+          <S.StyledButton onClick={logOut} $fontSize={'13px'} $padding={'0px 12px'} $margin={'14px 5px'} $hovercolor={'#2C2D2F'}>로그아웃</S.StyledButton>
+        </>
+        :
+        <>
+          <S.StyledLink to={'/login'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} hovercolor={'#2C2D2F'}>로그인</S.StyledLink>
+          <S.StyledLink to={'/sign-up'} fontSize={'13px'} padding={'0px 12px'} margin={'14px 5px'} backcolor={'#F82F62'} hovercolor={'#FF0558'}>회원가입</S.StyledLink>
+        </>
+        }
       </SignNav>
     </StyledNavbar>
   )

@@ -7,11 +7,12 @@ import Credit from "../components/credit.jsx"
 import { ClipLoader } from 'react-spinners';
 
 import useCustomFetch from "../hooks/use-custom-fetch.js";
+import { axiosTMDBInstance } from "../apis/axios-instance.js";
 
 function Movies() {
   const { movieId } = useParams();
-  const { data: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`);
-  const { data: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`)
+  const { response: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`, axiosTMDBInstance);
+  const { response: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`, axiosTMDBInstance)
 
   const movie = movieData.data;
   const credit = creditData.data;

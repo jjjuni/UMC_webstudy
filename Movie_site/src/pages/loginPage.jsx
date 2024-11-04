@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form'
 import * as S from "./style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { LogContext } from '../context/logContext';
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -25,25 +26,27 @@ function LoginPage() {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const loginSubmit = async (data) => {
-    console.log('로그인')
-    console.log(data)
+  const [errorMessage, setErrorMessage] = useState('');
 
+  const {
+    setIsLogged,
+  } = useContext(LogContext);
+
+  const loginSubmit = async (data) => {
     try{
       const response = await axios.post('http://localhost:3000/auth/login', {
         "email": data.email,
         "password": data.password
       })
       localStorage.setItem("accessToken", response.data.accessToken)
-      console.log(response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken)
-      console.log(response.data.refreshToken);
+      setIsLogged(true)
+
+      navigate('/', { replace: true })
     }
     catch (error){
-      console.log(error);
+      setErrorMessage(error.response.data.message);
     }
-    
-    navigate('/', { replace: true })
   }
   
   useEffect(() => {
@@ -70,6 +73,7 @@ function LoginPage() {
               <S.ValidationIcon src={errors.password?  '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
+          {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>로그인</S.SubmitButton>
         </S.SignForm>
       </S.ContentBox>

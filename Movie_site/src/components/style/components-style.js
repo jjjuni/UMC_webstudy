@@ -24,30 +24,35 @@ export const StyledLink = styled(Link)`
   margin: ${props => props.margin || '0'};
   color: white;
   font-family: Pretendard-Regular;
-
   display: flex;
-
   text-decoration: none;
-`;
-
-export const StyledButton = styled(Link)`
-  font-size: ${props => props.fontSize || '15px'};
-  padding: ${props => props.padding || '0'};
-  margin: ${props => props.margin || '0'};
 
   background-color: ${props => props.backcolor || '#141517'};
-  color: white;
-  font-family: Pretendard-Regular;
-
-  display: flex;
   align-items: center;
-
-  text-decoration: none;
-
   border-radius: 4px;
-
   &:hover{
     background-color: ${props => props.hovercolor || '#141517'};
+  };
+
+`;
+
+export const StyledButton = styled.button`
+  font-size: ${props => props.$fontSize || '15px'};
+  padding: ${props => props.$padding || '0'};
+  margin: ${props => props.$margin || '0'};
+  color: white;
+  font-family: Pretendard-Regular;
+  display: flex;
+  text-decoration: none;
+
+  border: 0;
+  cursor: pointer;
+  
+  background-color: ${props => props.$backcolor || '#141517'};
+  align-items: center;
+  border-radius: 4px;
+  &:hover{
+    background-color: ${props => props.$hovercolor || '#141517'};
   };
 `
 

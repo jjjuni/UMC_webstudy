@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as S from "./style/page-style"
 import * as yup from 'yup'
@@ -34,23 +34,22 @@ function SignUpPage() {
   const nameValue = watch('name');
   const phoneValue = watch('phone');
 
-  const signUpSubmit = async (data) => {
-    console.log('회원가입')
-    console.log(data)
-    
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const signUpSubmit = async (data) => {    
     try{
-    const response = await axios.post('http://localhost:3000/auth/register', {
+      await axios.post('http://localhost:3000/auth/register', {
       "email": data.email,
       "password": data.password,
-      "passwordCheck": data.passwordCheck
+      "passwordCheck": data.passwordCheck,
+      "username": data.name
     })
-    console.log(response);
+    navigate('/login')
     }
     catch(error){
-      console.log(error);
+      setErrorMessage(error.response?.data?.message);
     }
     
-    navigate('/login')
   }
 
   useEffect(() => {
@@ -87,7 +86,7 @@ function SignUpPage() {
               <S.ValidationIcon src={!passwordCheckValue || (passwordCheckValue !== passwordValue)? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
-          <S.InputDiv style={{margin: '20px 0 0'}}>
+          <S.InputDiv style={{margin: '15px 0 0'}}>
             <S.InputText type='text' placeholder='이름' maxLength={30} {...register("name")}
             $border={(nameValue || isSubmitted) && errors.name ? '2px solid #e73e3e' : '2px solid black'}
             />
@@ -102,6 +101,9 @@ function SignUpPage() {
               <S.ValidationIcon src={errors.phone? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
+
+          {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>회원가입</S.SubmitButton>
         </S.SignForm>
       </S.ContentBox>
