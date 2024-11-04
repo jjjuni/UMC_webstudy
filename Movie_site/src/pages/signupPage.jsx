@@ -38,13 +38,13 @@ function SignUpPage() {
 
   const signUpSubmit = async (data) => {    
     try{
-      await axios.post(import.meta.env.VITE_REGISTER_URL, {
-      "email": data.email,
-      "password": data.password,
-      "passwordCheck": data.passwordCheck,
-      "username": data.name
-    })
-    navigate('/login')
+      await axios.post(import.meta.env.VITE_RE, {
+        "email": data.email,
+        "password": data.password,
+        "passwordCheck": data.passwordCheck,
+        "username": data.name
+      })
+      navigate('/login')
     }
     catch(error){
       setErrorMessage(error.response?.data?.message);
