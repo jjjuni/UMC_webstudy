@@ -45,6 +45,7 @@ export const StyledButton = styled.button`
   display: flex;
   text-decoration: none;
 
+  font-weight: ${props => props.$fontWeight || ';'};
   border: 0;
   cursor: pointer;
   

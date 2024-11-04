@@ -18,15 +18,13 @@ function Navbar() {
   useEffect(() => {
     const getUser = async () =>{
       try{
-        const response = await axiosUserInstance.get('http://localhost:3000/user/me',{
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-          }
-        })
+        const response = await axiosUserInstance.get(import.meta.env.VITE_USER_INFO_URL)
         setUserInfo(response.data)
       }
       catch (error){
-        ;
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        setIsLogged(false);
       }
     };
     if (isLogged){
@@ -58,7 +56,7 @@ function Navbar() {
       <SignNav>
         {isLogged? 
         <>
-          <S.StyledButton $fontSize={'13px'} $padding={'0px 12px'} $margin={'14px 5px'} >{userInfo?.username} 님 반갑습니다</S.StyledButton>
+          <S.StyledButton $fontSize={'13px'} $padding={'0px 12px'} $margin={'14px 5px'} $fontWeight={'600'} >{userInfo?.username} 님 반갑습니다</S.StyledButton>
           <S.StyledButton onClick={logOut} $fontSize={'13px'} $padding={'0px 12px'} $margin={'14px 5px'} $hovercolor={'#2C2D2F'}>로그아웃</S.StyledButton>
         </>
         :

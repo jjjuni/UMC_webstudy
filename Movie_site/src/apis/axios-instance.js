@@ -13,13 +13,25 @@ const axiosUserInstance = axios.create({
   }
 });
 
-axiosUserInstance.interceptors.response.use(
+axiosUserInstance.interceptors.request.use(                   // 요청 보내기 전 intercept, 토큰 재설정 후 보냄
+  (config) => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axiosUserInstance.interceptors.response.use(                  // 받은 응답을 intercept, 에러(토큰 만료) 발생 시 refresh 토큰으로 토큰 재발급
   (response) => { return response; },
   async (error) => {
     const { config, response: { status } } = error;
     
     if (status === 401 && error.response.data.error === 'Unauthorized') {
-      
       const originRequest = config;
 
       if (!originRequest._retry){
@@ -27,7 +39,7 @@ axiosUserInstance.interceptors.response.use(
 
         try{
           const refreshToken = localStorage.getItem('refreshToken');
-          const response = await axios.post('http://localhost:3000/auth/token/access', {}, {
+          const response = await axios.post(import.meta.env.VITE_REFRESH_URL, {}, {
             headers: {
               Authorization: `Bearer ${refreshToken}`
             }

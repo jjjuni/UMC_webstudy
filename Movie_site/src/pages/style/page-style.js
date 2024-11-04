@@ -142,3 +142,11 @@ export const ErrorMessage = styled.p`
   color: #f82f62;
   margin: 20px 0 0 0;
 `
+
+export const PosterBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  container-name: poster-box;
+  container-type: inline-size;
+`;

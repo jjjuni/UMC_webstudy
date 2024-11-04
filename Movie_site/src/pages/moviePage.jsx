@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import * as S from "./style/page-style";
+import * as S from "./style/page-style.js";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
 
@@ -9,7 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import useCustomFetch from "../hooks/use-custom-fetch.js";
 import { axiosTMDBInstance } from "../apis/axios-instance.js";
 
-function Movies() {
+function MoviePage() {
   const { movieId } = useParams();
   const { response: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`, axiosTMDBInstance);
   const { response: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`, axiosTMDBInstance)
@@ -88,7 +88,7 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default MoviePage;
 
 const MovieDetail = styled.div`
   display: flex;

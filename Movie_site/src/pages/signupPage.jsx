@@ -38,7 +38,7 @@ function SignUpPage() {
 
   const signUpSubmit = async (data) => {    
     try{
-      await axios.post('http://localhost:3000/auth/register', {
+      await axios.post(import.meta.env.VITE_REGISTER_URL, {
       "email": data.email,
       "password": data.password,
       "passwordCheck": data.passwordCheck,

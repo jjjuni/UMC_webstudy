@@ -34,7 +34,7 @@ function LoginPage() {
 
   const loginSubmit = async (data) => {
     try{
-      const response = await axios.post('http://localhost:3000/auth/login', {
+      const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
         "email": data.email,
         "password": data.password
       })
