@@ -7,6 +7,7 @@ import { ClipLoader } from "react-spinners";
 
 import * as S from "./style/page-style";
 import useCustomFetch from "../hooks/use-custom-fetch.js";
+import { axiosTMDBInstance } from "../apis/axios-instance.js";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -35,7 +36,7 @@ function MoviesPage() {
     };
   }, [category]);
   
-  const { data: movies, isLoading, isError } = useCustomFetch(url);
+  const { response: movies, isLoading, isError } = useCustomFetch(url, axiosTMDBInstance);
 
   return (
     <S.ContentContainer>
@@ -54,11 +55,11 @@ function MoviesPage() {
         ) : isError? (
           <S.Loading>에러!</S.Loading>
         ) : (
-          <PosterBox>
+          <S.PosterBox>
             {movies.data?.results.map((movie) => (
               <Poster key={movie.id} movie={movie} />
             ))}
-          </PosterBox>
+          </S.PosterBox>
         )}
         
       </S.ContentBox>
@@ -68,11 +69,5 @@ function MoviesPage() {
 
 export default MoviesPage;
 
-const PosterBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
 
-  container-name: poster-box;
-  container-type: inline-size;
-`;
 

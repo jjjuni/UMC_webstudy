@@ -1,9 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as S from "./style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -32,15 +34,28 @@ function SignUpPage() {
   const nameValue = watch('name');
   const phoneValue = watch('phone');
 
-  const signUpSubmit = (data) => {
-    console.log('회원가입')
-    console.log(data)
-    navigate('/');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const signUpSubmit = async (data) => {    
+    try{
+      await axios.post(import.meta.env.VITE_RE, {
+        "email": data.email,
+        "password": data.password,
+        "passwordCheck": data.passwordCheck,
+        "username": data.name
+      })
+      navigate('/login')
+    }
+    catch(error){
+      setErrorMessage(error.response?.data?.message);
+    }
+    
   }
 
   useEffect(() => {
-      document.title = `왓챠 | 회원가입`
+    document.title = `왓챠 | 회원가입`
   })
+  
 
   return (
     <S.ContentContainer>
@@ -71,7 +86,7 @@ function SignUpPage() {
               <S.ValidationIcon src={!passwordCheckValue || (passwordCheckValue !== passwordValue)? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
-          <S.InputDiv style={{margin: '20px 0 0'}}>
+          <S.InputDiv style={{margin: '15px 0 0'}}>
             <S.InputText type='text' placeholder='이름' maxLength={30} {...register("name")}
             $border={(nameValue || isSubmitted) && errors.name ? '2px solid #e73e3e' : '2px solid black'}
             />
@@ -86,6 +101,9 @@ function SignUpPage() {
               <S.ValidationIcon src={errors.phone? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
+
+          {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>회원가입</S.SubmitButton>
         </S.SignForm>
       </S.ContentBox>

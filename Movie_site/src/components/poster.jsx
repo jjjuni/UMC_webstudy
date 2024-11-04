@@ -7,7 +7,7 @@ function Poster({movie}) {
   const navigate = useNavigate();
 
   return (
-    <MoviePoster onClick={() => navigate(`/movies/${movie.id}`, {
+    <MoviePoster onClick={() => navigate(`/moviePage/${movie.id}`, {
       replace: false,
       state: {id: 123, name: 'dsa'}
     })}>

@@ -5,7 +5,7 @@ import SignUpPage from "./pages/signupPage.jsx";
 import SearchPage from "./pages/searchPage.jsx";
 import MovieCategoryPage from "./pages/movieCategoryPage.jsx";
 import MoviesPage from "./pages/moviesPage.jsx";
-import Movies from "./pages/movies.jsx";
+import MoviePage from "./pages/moviePage.jsx";
 
 import RootLayout from "./layout/root-layout.jsx"
 import Movieslayout from "./layout/movies-layout.jsx";
@@ -16,7 +16,6 @@ import './font.css';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -54,8 +53,8 @@ function App() {
           ]
         }, 
         {
-          path: 'movies/:movieId',
-          element: <Movies/>
+          path: 'moviePage/:movieId',
+          element: <MoviePage/>
         },
         {
           path: '*',
