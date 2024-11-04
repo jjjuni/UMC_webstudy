@@ -21,6 +21,11 @@ function SearchPage() {
   useEffect(() => {
 
     const searchMovie = async () => {
+
+      setMovies();
+      // query parameter 가 있을 때 조건 추가 예정 (검색하고 엔터쳤을 때)
+      // -> title에 검색 | '검색어' 도 뜨게 수정
+
       if (debouncedSearchText !== ''){
         const { data } = await axiosTMDBInstance.get(`/search/movie?query=${debouncedSearchText}&include_adult=false&language=ko-KR&page=1`);
         setMovies(data);
@@ -56,7 +61,7 @@ function SearchPage() {
               </S.PosterBox>
             </>
           ):(
-            <SearchTitle $fontSize={'20px'}>검색 결과가 없습니다</SearchTitle>
+            <SearchTitle $fontSize={'20px'}>입력하신 검색어 '{debouncedSearchText}'(와)과 일치하는 결과가 없습니다 </SearchTitle>
           )
         )}
         
