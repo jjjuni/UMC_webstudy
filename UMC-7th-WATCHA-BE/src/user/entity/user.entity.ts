@@ -16,4 +16,7 @@ export class User extends BaseEntity {
     toPlainOnly: true,
   })
   password: string;
+
+  @Column()
+  username: string;
 }

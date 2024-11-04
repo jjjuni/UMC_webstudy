@@ -69,7 +69,7 @@ export class AuthService {
 
   async register(createUserDto: CreateUserDto) {
     console.log(createUserDto);
-    const { email, password, passwordCheck } = createUserDto;
+    const { email, password, passwordCheck, username } = createUserDto;
 
     // 1. Check if passwords match
     if (password !== passwordCheck) {
@@ -92,6 +92,7 @@ export class AuthService {
     await this.userRepository.save({
       email,
       password: hash,
+      username,
     });
 
     // 5. Return the newly created user
@@ -110,13 +111,13 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new BadRequestException('잘못된 로그인 정보입니다!');
+      throw new BadRequestException('이메일 주소 또는 비밀번호를 다시 확인해주세요');
     }
 
     const passOk = await bcrypt.compare(password, user.password);
 
     if (!passOk) {
-      throw new BadRequestException('잘못된 로그인 정보입니다!');
+      throw new BadRequestException('이메일 주소 또는 비밀번호를 다시 확인해주세요');
     }
 
     return {

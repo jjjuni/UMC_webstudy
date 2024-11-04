@@ -10,4 +10,7 @@ export class CreateUserDto {
 
   @IsString()
   passwordCheck: string;
+
+  @IsString()
+  username: string;
 }
