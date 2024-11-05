@@ -1,43 +1,42 @@
 import * as S from "./style/page-style";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BiSearch } from "react-icons/bi";
 import styled from "styled-components";
 import useDebounce from "../hooks/useDebounce";
 import { axiosTMDBInstance } from "../apis/axios-instance";
 import Poster from "../components/poster";
+import SearchMovieList from "../components/search-movie-list";
 
 function SearchPage() {
-  
-  const [movies, setMovies] = useState(null);
+    
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
       document.title = `왓챠`
   })
 
-  const [searchText, setSearchText] = useState('');
+  // const [searchText, setSearchText] = useState('');
 
-  const debouncedSearchText = useDebounce(searchText, 200);
+  // const debouncedSearchText = useDebounce(searchText, 200);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const searchMovie = async () => {
+  //   const searchMovie = async () => {
 
-      setMovies();
-      // query parameter 가 있을 때 조건 추가 예정 (검색하고 엔터쳤을 때)
-      // -> title에 검색 | '검색어' 도 뜨게 수정
+  //     setMovies();
 
-      if (debouncedSearchText !== ''){
-        const { data } = await axiosTMDBInstance.get(`/search/movie?query=${debouncedSearchText}&include_adult=false&language=ko-KR&page=1`);
-        setMovies(data);
-      } else {
-        const { data } = await axiosTMDBInstance.get(`/movie/popular?language=ko-KR&page=1`);
-        setMovies(data);
-      }
-    }
+  //     if (debouncedSearchText !== ''){
+  //       const { data } = await axiosTMDBInstance.get(`/search/movie?query=${debouncedSearchText}&include_adult=false&language=ko-KR&page=1`);
+  //       setMovies(data);
+  //     } else {
+  //       const { data } = await axiosTMDBInstance.get(`/movie/popular?language=ko-KR&page=1`);
+  //       setMovies(data);
+  //     }
+  //   }
 
-    searchMovie();
+  //   searchMovie();
 
-  }, [debouncedSearchText])
+  // }, [debouncedSearchText])
 
   return (
     <S.ContentContainer>
@@ -46,25 +45,7 @@ function SearchPage() {
           <BiSearch size="18" color="#84868d"/>
           <SearchInput id={'search-input'} placeholder="검색어를 입력해주세요" value={searchText} onChange={(e) => setSearchText(e.target.value)}/>
         </SearchDiv>
-        {movies &&(
-          movies.results?.length > 0? (
-            <>
-              {debouncedSearchText !== '' ? (
-                <SearchTitle> 검색 </SearchTitle>
-              ) : (
-                <SearchTitle> 이런 영화는 어떠신가요? </SearchTitle>
-              )}
-              <S.PosterBox>
-                {movies.results.map((movie) => (
-                  <Poster key={movie.id} movie={movie} />
-                ))}
-              </S.PosterBox>
-            </>
-          ):(
-            <SearchTitle $fontSize={'20px'}>입력하신 검색어 '{debouncedSearchText}'(와)과 일치하는 결과가 없습니다 </SearchTitle>
-          )
-        )}
-        
+        <SearchMovieList searchText={searchText}/>
       </S.ContentBox>
     </S.ContentContainer>
   );
@@ -112,13 +93,3 @@ const SearchInput = styled.input`
   }
 `
 
-const SearchTitle = styled.h1`
-  font-family: ${props => props.$font || 'Pretendard-Regular'};
-  width: 100%;
-  margin: 0 0 10px;
-  padding: 10px 10px 10px;
-  border-bottom: 1px solid #141517;
-  color: #fff;
-  box-sizing: border-box;
-  font-size: 20px;
-`

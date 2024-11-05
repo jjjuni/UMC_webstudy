@@ -7,6 +7,7 @@ const useCustomFetch = (url, axiosInstance = axios, method = 'GET', body = null)
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     if (url) {
       const fetchData = async () => {
         const options = {
