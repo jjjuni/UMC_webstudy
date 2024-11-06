@@ -15,6 +15,7 @@
 > | 3주차 | [Chapter 3. Styled-Components, React Router, API 통신](https://github.com/jjjuni/UMC_webstudy/tree/main/3%EC%A3%BC%EC%B0%A8_Chapter%203.%20Styled-Components%2C%20React%20Router%2C%20API%20%ED%86%B5%EC%8B%A0) |
 > | 4주차 | [Chapter 4. useNavigate, useParams, useLocation, custom-hook 사용 방법](https://github.com/jjjuni/UMC_webstudy/tree/main/4%EC%A3%BC%EC%B0%A8_Chapter%204.%20useNavigate%2C%20useParams%2C%20useLocation%2C%20custom-hook%20%EC%82%AC%EC%9A%A9%20%EB%B0%A9%EB%B2%95) |
 > | 5주차 | [Chapter 5. FormData 유효성 검사의 다양한 방법 (useForm, react-hook-form, yup)](https://github.com/jjjuni/UMC_webstudy/tree/main/5%EC%A3%BC%EC%B0%A8_Chapter%205.%20FormData%20%EC%9C%A0%ED%9A%A8%EC%84%B1%20%EA%B2%80%EC%82%AC%EC%9D%98%20%EB%8B%A4%EC%96%91%ED%95%9C%20%EB%B0%A9%EB%B2%95%20(useForm%2C%20react-hook-form%2C%20yup)) |
+> | 6주차 | [Chapter 6. 회원 가입 기능, API 호출을 통한 검색 기능 구현, Debounce & Throttling](https://github.com/jjjuni/UMC_webstudy/tree/main/6%EC%A3%BC%EC%B0%A8_Chapter%206.%20%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85%20%EA%B8%B0%EB%8A%A5%2C%20API%20%ED%98%B8%EC%B6%9C%EC%9D%84%20%ED%86%B5%ED%95%9C%20%EA%B2%80%EC%83%89%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%2C%20Debounce%20%26%20Throttling) |
 > <br>
 >
 > ## ‼️리액트 명령어
