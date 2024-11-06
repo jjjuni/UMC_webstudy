@@ -13,6 +13,8 @@ const axiosUserInstance = axios.create({
   }
 });
 
+const axiosLOGInstance = axios.create();
+
 axiosUserInstance.interceptors.request.use(                   // 요청 보내기 전 intercept, 토큰 재설정 후 보냄
   (config) => {
     const accessToken = localStorage.getItem('accessToken');
@@ -62,4 +64,4 @@ axiosUserInstance.interceptors.response.use(                  // 받은 응답�
   }
 });
 
-export { axiosTMDBInstance, axiosUserInstance };
+export { axiosTMDBInstance, axiosUserInstance, axiosLOGInstance };

@@ -14,8 +14,8 @@ function MoviePage() {
   const { response: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`, axiosTMDBInstance);
   const { response: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`, axiosTMDBInstance)
 
-  const movie = movieData.data;
-  const credit = creditData.data;
+  const movie = movieData?.data;
+  const credit = creditData?.data;
 
   const [creditHeight, setCreditHeight] = useState('400px');
   const [moreButtonDisplay, setMoreButtonDisplay] = useState('flex')

@@ -21,7 +21,9 @@ function Poster({movie}) {
 export default Poster;
 
 const MoviePoster = styled.div`
-  max-width: calc(100% - 10px);
+  flex: 1 1 100%;
+  max-width: 100%;
+  
   display: flex;
   flex-direction: column;
 
@@ -124,9 +126,9 @@ const PosterImage = styled.img`
     cursor: pointer;
   }
 
-  @container movie-poster (min-width: 100px){
-    min-height: 140cqw;
-  }
+  // @container movie-poster (min-width: 100px){
+  //   height: 140cqw;
+  // }
 `;
 
 Poster.propTypes = {

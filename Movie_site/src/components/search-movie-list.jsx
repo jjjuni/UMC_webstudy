@@ -22,9 +22,8 @@ const SearchMovieList = ({searchText}) => {
     else{
       setUrl(`/search/movie?query=${debouncedSearchText}&language=ko-KR&page=1`)
     }
-    setMovies(response.data)
+    setMovies(response?.data)
   }, [debouncedSearchText, response])
-
 
   return (
     <>
@@ -39,8 +38,7 @@ const SearchMovieList = ({searchText}) => {
         />
       </Loading>
       ) : (
-      movies &&(
-        movies.results?.length > 0? (
+        movies?.results?.length > 0? (
           <>
             {debouncedSearchText !== '' ? (
               <SearchTitle> 검색 </SearchTitle>
@@ -56,7 +54,7 @@ const SearchMovieList = ({searchText}) => {
         ):(
           <SearchTitle $fontSize={'20px'}>입력하신 검색어 `{debouncedSearchText}`(와)과 일치하는 결과가 없습니다 </SearchTitle>
         )
-      ))}
+      )}
     </>
   )
 }
