@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LogContext } from '../context/logContext';
+import useCustomFetch from '../hooks/useCustomFetch';
+import { axiosLOGInstance } from '../apis/axios-instance';
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -17,11 +19,15 @@ function LoginPage() {
     email: yup.string().required('empty').matches(emailRegExp),
     password: yup.string().required('empty').min(8).max(16),
   })
-
+  
   const { register, handleSubmit, watch, formState: { errors, isValid, isSubmitted } } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange'
   });
+
+  const [url, setUrl] = useState();
+  const [body, setBody] = useState();
+  const {response, error} = useCustomFetch(url, axiosLOGInstance, 'POST', body)
   
   const emailValue = watch('email');
   const passwordValue = watch('password');
@@ -32,22 +38,50 @@ function LoginPage() {
     setIsLogged,
   } = useContext(LogContext);
 
-  const loginSubmit = async (data) => {
-    try{
-      const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
-        "email": data.email,
-        "password": data.password
-      })
-      localStorage.setItem("accessToken", response.data.accessToken)
-      localStorage.setItem("refreshToken", response.data.refreshToken)
-      setIsLogged(true)
+  useEffect(() => {
+    if (response){
+      try{
+        localStorage.setItem("accessToken", response.data.accessToken)
+        localStorage.setItem("refreshToken", response.data.refreshToken)
+        setIsLogged(true)
 
-      navigate('/', { replace: true })
+        navigate('/', { replace: true })
+      }
+      catch (error){
+        setErrorMessage(error.response.data.message);
+      }
     }
-    catch (error){
+    else if (error){
       setErrorMessage(error.response.data.message);
+      setUrl();
+      setBody();
     }
+  }, [response, error])
+
+  const loginSubmit = async (data) => {
+    setUrl(import.meta.env.VITE_LOGIN_URL);
+    setBody({
+      email: data.email,
+      password: data.password
+    })
   }
+
+  // const loginSubmit = async (data) => {                // customHook 사용X
+  //   try{
+  //     const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
+  //       "email": data.email,
+  //       "password": data.password
+  //     })
+  //     localStorage.setItem("accessToken", response.data.accessToken)
+  //     localStorage.setItem("refreshToken", response.data.refreshToken)
+  //     setIsLogged(true)
+
+  //     navigate('/', { replace: true })
+  //   }
+  //   catch (error){
+  //     setErrorMessage(error.response.data.message);
+  //   }
+  // }
   
   useEffect(() => {
     document.title = `왓챠 | 로그인`

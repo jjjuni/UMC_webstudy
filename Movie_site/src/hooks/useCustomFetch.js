@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const useCustomFetch = (url, axiosInstance = axios, method = 'GET', body = null) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
+    setIsLoading(true);
     if (url) {
       const fetchData = async () => {
         const options = {
@@ -22,6 +24,7 @@ const useCustomFetch = (url, axiosInstance = axios, method = 'GET', body = null)
           const response = await axiosInstance(options);    // instance 및 options 사용하여 요청
           setData(response);
         } catch (error) {
+          setError(error);
           setIsError(true);
         } finally {
           setIsLoading(false);
@@ -31,7 +34,7 @@ const useCustomFetch = (url, axiosInstance = axios, method = 'GET', body = null)
     }
   }, [url]);
 
-  return { response: data, isLoading, isError };
+  return { response: data, isLoading, isError, error };
 };
 
 export default useCustomFetch;

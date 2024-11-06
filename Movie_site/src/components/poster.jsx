@@ -21,9 +21,13 @@ function Poster({movie}) {
 export default Poster;
 
 const MoviePoster = styled.div`
-  max-width: calc(100% - 10px);
+  flex: 1 1 100%;
+  max-width: 100%;
+  
   display: flex;
   flex-direction: column;
+
+  flex-grow: 1;
 
   margin: 0 2px 5px 2px;
   gap:2px;
@@ -66,6 +70,9 @@ const MoviePoster = styled.div`
     flex: 1 1 calc(100%/10 - 4px);
     max-width: calc(100%/10 - 4px);
   }
+
+  container-name: movie-poster;
+  container-type: inline-size;
 `
 
 const MovieTitle = styled.h2`
@@ -105,12 +112,12 @@ const PosterImage = styled.img`
 
   flex: 1 1 calc(100% - 10px);
   max-width: calc(100% - 10px);
+
   margin: 5px;
   border-radius: 10px;
   box-sizing: border-box;
 
   min-width: 100px;
-  height: auto;
 
   transition: all 0.3s ease;
 
@@ -118,6 +125,10 @@ const PosterImage = styled.img`
     filter: brightness(50%);
     cursor: pointer;
   }
+
+  // @container movie-poster (min-width: 100px){
+  //   height: 140cqw;
+  // }
 `;
 
 Poster.propTypes = {
