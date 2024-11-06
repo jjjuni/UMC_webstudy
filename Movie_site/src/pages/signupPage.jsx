@@ -5,7 +5,8 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import useCustomFetch from '../hooks/useCustomFetch';
+import { axiosLOGInstance } from '../apis/axios-instance';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -34,23 +35,52 @@ function SignUpPage() {
   const nameValue = watch('name');
   const phoneValue = watch('phone');
 
+  const [url, setUrl] = useState();
+  const [body, setBody] = useState();
+  const {response, error} = useCustomFetch(url, axiosLOGInstance, 'POST', body)
+
   const [errorMessage, setErrorMessage] = useState('');
 
-  const signUpSubmit = async (data) => {    
-    try{
-      await axios.post(import.meta.env.VITE_RE, {
-        "email": data.email,
-        "password": data.password,
-        "passwordCheck": data.passwordCheck,
-        "username": data.name
-      })
-      navigate('/login')
+  useEffect(() => {
+    if (response){
+      try{
+        navigate('/login', { replace: true })
+      }
+      catch (error){
+        setErrorMessage(error.response.data.message);
+      }
     }
-    catch(error){
-      setErrorMessage(error.response?.data?.message);
+    else if (error){
+      setErrorMessage(error.response.data.message);
+      setUrl();
+      setBody();
     }
-    
+  }, [response, error])
+  
+  const signUpSubmit = async (data) => {
+    setUrl(import.meta.env.VITE_REGISTER_URL);
+    setBody({
+      email: data.email,
+      password: data.password,
+      passwordCheck: data.passwordCheck,
+      username: data.name
+    })
   }
+
+  // const signUpSubmit = async (data) => {             // customHook 사용X
+  //   try{
+  //     await axios.post(import.meta.env.VITE_RE, {
+  //       "email": data.email,
+  //       "password": data.password,
+  //       "passwordCheck": data.passwordCheck,
+  //       "username": data.name
+  //     })
+  //     navigate('/login')
+  //   }
+  //   catch(error){
+  //     setErrorMessage(error.response?.data?.message);
+  //   }
+  // }
 
   useEffect(() => {
     document.title = `왓챠 | 회원가입`
