@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Poster from "../components/poster.jsx";
 
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { ClipLoader } from "react-spinners";
 
 import * as S from "./style/page-style";
 import useCustomFetch from "../hooks/useCustomFetch.js";
 import { axiosTMDBInstance } from "../apis/axios-instance.js";
+import useTitle from '../hooks/useTitle';
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const { category } = useParams();
   
+  useTitle('왓챠');
+
   useEffect(() => {
-    document.title = `왓챠`
     switch (category) {
       case "now_playing":
         setTitle("상영 중인 영화");

@@ -8,6 +8,7 @@ import { ClipLoader } from 'react-spinners';
 
 import useCustomFetch from "../hooks/useCustomFetch.js";
 import { axiosTMDBInstance } from "../apis/axios-instance.js";
+import useTitle from "../hooks/useTitle.js";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -25,11 +26,7 @@ function MoviePage() {
     setMoreButtonDisplay('none');
   }
 
-  useEffect(() => {
-    if (movie) {
-      document.title = `${movie.title} | 왓챠`;
-    }
-  })
+  useTitle(movie?.title + ' | 왓챠', isLoading)
 
   return (
     <S.ContentContainer>

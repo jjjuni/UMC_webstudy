@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import useCustomFetch from '../hooks/useCustomFetch';
 import { axiosLOGInstance } from '../apis/axios-instance';
+import useTitle from '../hooks/useTitle';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -82,11 +83,8 @@ function SignUpPage() {
   //   }
   // }
 
-  useEffect(() => {
-    document.title = `왓챠 | 회원가입`
-  })
+  useTitle('왓챠 | 회원가입');
   
-
   return (
     <S.ContentContainer>
       <S.ContentBox>

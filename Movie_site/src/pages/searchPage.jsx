@@ -6,14 +6,13 @@ import useDebounce from "../hooks/useDebounce";
 import { axiosTMDBInstance } from "../apis/axios-instance";
 import Poster from "../components/poster";
 import SearchMovieList from "../components/search-movie-list";
+import useTitle from '../hooks/useTitle';
 
 function SearchPage() {
     
   const [searchText, setSearchText] = useState('');
 
-  useEffect(() => {
-      document.title = `왓챠`
-  })
+  useTitle('왓챠');
 
   // const [searchText, setSearchText] = useState('');
 

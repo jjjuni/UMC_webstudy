@@ -8,6 +8,7 @@ import axios from 'axios';
 import { LogContext } from '../context/logContext';
 import useCustomFetch from '../hooks/useCustomFetch';
 import { axiosLOGInstance } from '../apis/axios-instance';
+import useTitle from '../hooks/useTitle';
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -83,9 +84,7 @@ function LoginPage() {
   //   }
   // }
   
-  useEffect(() => {
-    document.title = `왓챠 | 로그인`
-  })
+  useTitle('왓챠 | 로그인');
 
   return (
     <S.ContentContainer>
