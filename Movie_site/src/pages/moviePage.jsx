@@ -1,19 +1,34 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import * as S from "./style/page-style.js";
 import styled from "styled-components";
 import Credit from "../components/credit.jsx"
 
 import { ClipLoader } from 'react-spinners';
 
-import useCustomFetch from "../hooks/useCustomFetch.js";
 import { axiosTMDBInstance } from "../apis/axios-instance.js";
 import useTitle from "../hooks/useTitle.js";
+import { useQuery } from "@tanstack/react-query";
 
 function MoviePage() {
   const { movieId } = useParams();
-  const { response: movieData, isLoading, isError } = useCustomFetch(`/movie/${movieId}?language=ko-KR`, axiosTMDBInstance);
-  const { response: creditData } = useCustomFetch(`/movie/${movieId}/credits?language=ko-KR`, axiosTMDBInstance)
+
+  const getMovieData = async () => {
+    return await axiosTMDBInstance.get(`/movie/${movieId}?language=ko-KR`);
+  }
+  const getCredit = async () => {
+    return await axiosTMDBInstance.get(`/movie/${movieId}/credits?language=ko-KR`);
+  }
+
+  const { data: movieData, isLoading, isError } = useQuery({
+    queryKey: ["getMovie", movieId],
+    queryFn: getMovieData,
+  })
+
+  const { data: creditData } = useQuery({
+    queryKey: ["getCredit", movieId],
+    queryFn: getCredit,
+  })
 
   const movie = movieData?.data;
   const credit = creditData?.data;
@@ -70,7 +85,7 @@ function MoviePage() {
             <CreditContainer $maxHeight={creditHeight}>
               <CreditTitle>감독/출연</CreditTitle>
               <CreditBox>
-                {credit?.cast.map((info) => (
+                {credit?.cast?.map((info) => (
                   <Credit key={info.id} info={info}/>
                 ))}
               </CreditBox>

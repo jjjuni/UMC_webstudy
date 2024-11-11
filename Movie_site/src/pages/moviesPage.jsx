@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Poster from "../components/poster.jsx";
 
-import styled, { useTheme } from "styled-components";
 import { ClipLoader } from "react-spinners";
 
 import * as S from "./style/page-style";
-import useCustomFetch from "../hooks/useCustomFetch.js";
 import { axiosTMDBInstance } from "../apis/axios-instance.js";
 import useTitle from '../hooks/useTitle';
+import { useQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -37,9 +36,16 @@ function MoviesPage() {
         break;
     };
   }, [category]);
-  
-  const { response: movies, isLoading, isError } = useCustomFetch(url, axiosTMDBInstance);
 
+  const getMovies = async () => {
+    return await axiosTMDBInstance.get(url)
+  }
+  
+  const { data: movies, isLoading, isError } = useQuery({
+    queryKey: ["getMovies", url],
+    queryFn: getMovies,
+  })
+  
   return (
     <S.ContentContainer>
       <S.ContentBox>
@@ -58,7 +64,7 @@ function MoviesPage() {
           <S.Loading>에러!</S.Loading>
         ) : (
           <S.PosterBox>
-            {movies.data?.results.map((movie) => (
+            {movies.data?.results?.map((movie) => (
               <Poster key={movie.id} movie={movie} />
             ))}
           </S.PosterBox>

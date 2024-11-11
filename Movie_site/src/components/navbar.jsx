@@ -32,7 +32,6 @@ function Navbar() {
     }
   }, [isLogged])
 
-  
   const logOut = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
