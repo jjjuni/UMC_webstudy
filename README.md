@@ -33,7 +33,10 @@
 > | yarn add react-router-dom | 리액트 라우터 라이브러리 |
 > | yarn add axios | axios 라이브러리(API 통신) |
 > | yarn add react-icons | 리액트 아이콘 라이브러리 |
+> | yarn add react-spinners | 리액트 스피너 |
 > | yarn add react-hook-form yup | useForm 라이브러리 |
 > | yarn add @hookform/resolvers | 유효성 검사 관련 라이브러리(schema resolve) |
+> | yarn add @tanstack/react-query | tanstackQuery 라이브러리 |
+> | yarn add @tanstack/react-query-devtools | tanstackQuery 개발자 도구 |
 
 <br>
