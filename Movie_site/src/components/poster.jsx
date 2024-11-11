@@ -108,7 +108,7 @@ const MovieDate = styled.p`
   font-size: 10px;
 `
 
-const PosterImage = styled.img`
+const PosterImage = styled.img`       // object-fit, aspect ratio 비율 맞추기
 
   flex: 1 1 calc(100% - 10px);
   max-width: calc(100% - 10px);

@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 
 import styled from "styled-components";
+import useTitle from '../hooks/useTitle';
 
 function MovieCategoryPage() {
 
-  useEffect(() => {
-      document.title = `왓챠`
-  })
+  useTitle('왓챠');
 
   return (
     <> 
