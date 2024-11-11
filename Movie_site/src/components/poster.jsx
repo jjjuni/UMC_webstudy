@@ -121,6 +121,8 @@ const PosterImage = styled.img`       // object-fit, aspect ratio 비율 맞추�
 
   transition: all 0.3s ease;
 
+  aspect-ratio: 1/1.5;
+
   &:hover{
     filter: brightness(50%);
     cursor: pointer;
