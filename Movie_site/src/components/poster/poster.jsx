@@ -79,7 +79,8 @@ const MovieTitle = styled.h2`
 
   font-family: ${props => props.font || 'Pretendard-Regular'};
 
-  margin: 0 0 0 8px;
+  padding: 0 8px 0 8px;
+  margin: 0 0 2px 0;
 
   white-space: nowrap;
   overflow: hidden;
@@ -96,13 +97,17 @@ const MovieDate = styled.p`
 
   font-family: ${props => props.font || 'Pretendard-Regular'};
 
-  margin: 0 0 10px 8px;
+  padding: 0 8px 5px 8px;
+  margin: 0;
+
+  border-radius: 5px;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
   width: 100%;
+  min-height: 15px;
   color: #fff;
   box-sizing: border-box;
   font-size: 10px;
@@ -120,6 +125,8 @@ const PosterImage = styled.img`       // object-fit, aspect ratio 비율 맞추�
   min-width: 100px;
 
   transition: all 0.3s ease;
+
+  aspect-ratio: 1/1.5;
 
   &:hover{
     filter: brightness(50%);

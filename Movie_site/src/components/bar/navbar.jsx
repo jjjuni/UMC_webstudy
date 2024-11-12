@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react'
 import styled from "styled-components"
 import {Link} from "react-router-dom";
-import * as S from './style/components-style.js';
+import * as S from '../_style/components-style.js';
 import { BiMoviePlay, BiSearch } from "react-icons/bi"
-import { LogContext } from '../context/logContext.jsx';
-import { axiosUserInstance } from '../apis/axios-instance.js';
+import { LogContext } from '../../context/logContext.jsx';
+import { axiosUserInstance } from '../../apis/axios-instance.js';
+import { useQuery } from '@tanstack/react-query';
 
 function Navbar() {
 
@@ -15,24 +16,32 @@ function Navbar() {
     setUserInfo,
   } = useContext(LogContext);
 
-  useEffect(() => {
-    const getUser = async () =>{
-      try{
+  const getUser = async () => {
+    if (isLogged) {
+      try {
         const response = await axiosUserInstance.get(import.meta.env.VITE_USER_INFO_URL)
-        setUserInfo(response.data)
+        return response;
       }
       catch (error){
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         setIsLogged(false);
       }
-    };
-    if (isLogged){
-      getUser();
     }
-  }, [isLogged])
+    else {
+      return null;
+    }
+  }
 
-  
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["getUser", isLogged],
+    queryFn: getUser,
+  })
+
+  useEffect(() => {
+    setUserInfo(data?.data)
+  }, [data])
+
   const logOut = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');

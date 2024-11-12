@@ -1,7 +1,7 @@
-import * as S from './style/page-style';
+import * as S from './_style/page-style';
 import styled from 'styled-components';
-import { useEffect } from 'react';
 import useTitle from '../hooks/useTitle';
+import { useEffect } from 'react';
 
 function HomePage() {
 

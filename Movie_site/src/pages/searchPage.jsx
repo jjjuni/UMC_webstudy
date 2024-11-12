@@ -1,11 +1,11 @@
-import * as S from "./style/page-style";
+import * as S from "./_style/page-style";
 import { useContext, useEffect, useState } from 'react';
 import { BiSearch } from "react-icons/bi";
 import styled from "styled-components";
 import useDebounce from "../hooks/useDebounce";
 import { axiosTMDBInstance } from "../apis/axios-instance";
-import Poster from "../components/poster";
-import SearchMovieList from "../components/search-movie-list";
+import Poster from "../components/poster/poster";
+import SearchMovieList from "../components/poster/search-movie-list";
 import useTitle from '../hooks/useTitle';
 
 function SearchPage() {

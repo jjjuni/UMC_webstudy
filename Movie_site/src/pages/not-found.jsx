@@ -1,4 +1,4 @@
-import * as S from "./style/page-style";
+import * as S from "./_style/page-style";
 
 function NotFound() {
   return (

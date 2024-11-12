@@ -1,9 +1,9 @@
-import * as S from "./style/page-style";
+import * as S from "../_style/page-style";
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 
 import styled from "styled-components";
-import useTitle from '../hooks/useTitle';
+import useTitle from '../../hooks/useTitle';
 
 function MovieCategoryPage() {
 
@@ -77,8 +77,6 @@ const MovieCategory = styled(Link)`
     flex: 1 1 100%;
     max-width: 100%;
   }
-
-  
 `;
 
 const Image = styled.img`
@@ -91,6 +89,7 @@ const Image = styled.img`
     filter: brightness(50%);
     cursor: pointer;
   }
+  aspect-ratio: 2/1.069;
 `;
 
 const ImageText = styled.div`
