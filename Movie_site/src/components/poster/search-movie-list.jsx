@@ -1,11 +1,12 @@
 import Poster from "./poster.jsx";
-import { axiosTMDBInstance } from "../apis/axios-instance";
+import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import useDebounce from "../hooks/useDebounce.js";
+import useDebounce from "../../hooks/useDebounce.js";
 import PropTypes from 'prop-types';
-import useCustomFetch from "../hooks/useCustomFetch.js";
+import useCustomFetch from "../../hooks/useCustomFetch.js";
 import { ClipLoader } from "react-spinners";
+import CardSkeletonList from "./card-skeleton-list.jsx";
 
 const SearchMovieList = ({searchText}) => {
   const [url, setUrl] = useState(`/movie/popular?language=ko-KR&page=1`)
@@ -28,15 +29,21 @@ const SearchMovieList = ({searchText}) => {
   return (
     <>
       {isLoading ? (
-        <Loading>
-        <ClipLoader
-          color="#FFFFFF"
-          cssOverride={{}}
-          loading
-          size={35}
-          speedMultiplier={0.7}
-        />
-      </Loading>
+        <>
+          <SearchTitle> 검색 </SearchTitle>
+          <PosterBox>
+            <CardSkeletonList num={20}/>
+          </PosterBox>
+        </>
+      //   <Loading>
+      //   <ClipLoader
+      //     color="#FFFFFF"
+      //     cssOverride={{}}
+      //     loading
+      //     size={35}
+      //     speedMultiplier={0.7}
+      //   />
+      // </Loading>
       ) : (
         movies?.results?.length > 0? (
           <>

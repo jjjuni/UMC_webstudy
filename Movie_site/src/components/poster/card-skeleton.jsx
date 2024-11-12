@@ -81,7 +81,7 @@ export const SkeletonPoster = styled.div`
     max-width: calc(100%/10 - 4px);
   }
     
-  animation: ${skeleton} 4s 1s infinite linear alternate;
+  animation: ${skeleton} 4s 0s infinite linear alternate;
 `
 
 export const SkeletonTitle = styled.h2`
