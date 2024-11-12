@@ -1,4 +1,4 @@
-import * as S from "./style/page-style";
+import * as S from "./_style/page-style";
 import { useContext, useEffect, useState } from 'react';
 import { BiSearch } from "react-icons/bi";
 import styled from "styled-components";

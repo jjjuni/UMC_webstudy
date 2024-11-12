@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form'
-import * as S from "./style/page-style"
+import * as S from "../_style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { LogContext } from '../context/logContext';
-import useCustomFetch from '../hooks/useCustomFetch';
-import { axiosLOGInstance } from '../apis/axios-instance';
-import useTitle from '../hooks/useTitle';
+import { LogContext } from '../../context/logContext';
+import useTitle from '../../hooks/useTitle';
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -26,68 +24,43 @@ function LoginPage() {
     mode: 'onChange'
   });
 
-  const [url, setUrl] = useState();
-  const [body, setBody] = useState();
-  const {response, error} = useCustomFetch(url, axiosLOGInstance, 'POST', body)
-  
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
   const [errorMessage, setErrorMessage] = useState('');
 
   const {
+    isLogged,
     setIsLogged,
   } = useContext(LogContext);
 
-  useEffect(() => {
-    if (response){
-      try{
-        localStorage.setItem("accessToken", response.data.accessToken)
-        localStorage.setItem("refreshToken", response.data.refreshToken)
-        setIsLogged(true)
+  const loginSubmit = async (data) => {                // customHook 사용X
+    try{
+      const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
+        "email": data.email,
+        "password": data.password
+      })
+      localStorage.setItem("accessToken", response.data.accessToken)
+      localStorage.setItem("refreshToken", response.data.refreshToken)
+      setIsLogged(true)
 
-        navigate('/', { replace: true })
-      }
-      catch (error){
-        setErrorMessage(error.response.data.message);
-      }
+      navigate('/', { replace: true })
     }
-    else if (error){
+    catch (error){
       setErrorMessage(error.response.data.message);
-      setUrl();
-      setBody();
     }
-  }, [response, error])
-
-  const loginSubmit = async (data) => {
-    setUrl(import.meta.env.VITE_LOGIN_URL);
-    setBody({
-      email: data.email,
-      password: data.password
-    })
   }
 
-  // const loginSubmit = async (data) => {                // customHook 사용X
-  //   try{
-  //     const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
-  //       "email": data.email,
-  //       "password": data.password
-  //     })
-  //     localStorage.setItem("accessToken", response.data.accessToken)
-  //     localStorage.setItem("refreshToken", response.data.refreshToken)
-  //     setIsLogged(true)
+  useEffect(() => {
+    if (isLogged)
+      window.location.replace('/')
+  })
 
-  //     navigate('/', { replace: true })
-  //   }
-  //   catch (error){
-  //     setErrorMessage(error.response.data.message);
-  //   }
-  // }
-  
-  useTitle('왓챠 | 로그인');
+  useTitle('왓챠 | 로그인', !isLogged)
 
   return (
     <S.ContentContainer>
+      {!isLogged &&
       <S.ContentBox>
         <S.SignForm onSubmit={handleSubmit(loginSubmit)}>
           <S.SignTitle>로그인</S.SignTitle>
@@ -110,6 +83,7 @@ function LoginPage() {
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>로그인</S.SubmitButton>
         </S.SignForm>
       </S.ContentBox>
+      }
     </S.ContentContainer>
   )
 }

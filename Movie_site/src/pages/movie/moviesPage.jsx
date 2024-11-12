@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Poster from "../components/poster.jsx";
+import Poster from "../../components/poster.jsx";
 
 import { ClipLoader } from "react-spinners";
 
-import * as S from "./style/page-style";
-import { axiosTMDBInstance } from "../apis/axios-instance.js";
-import useTitle from '../hooks/useTitle';
+import * as S from "../_style/page-style.js";
+import { axiosTMDBInstance } from "../../apis/axios-instance.js";
+import useTitle from '../../hooks/useTitle.js';
 import { useQuery } from "@tanstack/react-query";
+import CardSkeleton from "../../components/card-skeleton.jsx";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -51,22 +52,26 @@ function MoviesPage() {
       <S.ContentBox>
         <S.Title>{title}</S.Title>
         {isLoading ? (
-          <S.Loading>
-            <ClipLoader 
-              color="#FFFFFF"
-              cssOverride={{}}
-              loading
-              size={35}
-              speedMultiplier={0.7}
-            />
-          </S.Loading>
+          <CardSkeleton></CardSkeleton>
+          // <S.Loading>
+          //   <ClipLoader 
+          //     color="#FFFFFF"
+          //     cssOverride={{}}
+          //     loading
+          //     size={35}
+          //     speedMultiplier={0.7}
+          //   />
+          // </S.Loading>
         ) : isError? (
           <S.Loading>에러!</S.Loading>
         ) : (
+          // <S.PosterBox>
+          //   {movies?.data?.results?.map((movie) => (
+          //     <Poster key={movie.id} movie={movie} isLoading={isLoading}/>
+          //   ))}
+          // </S.PosterBox>
           <S.PosterBox>
-            {movies.data?.results?.map((movie) => (
-              <Poster key={movie.id} movie={movie} />
-            ))}
+            <CardSkeleton></CardSkeleton>
           </S.PosterBox>
         )}
         

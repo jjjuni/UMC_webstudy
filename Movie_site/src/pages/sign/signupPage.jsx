@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import * as S from "./style/page-style"
+import * as S from "../_style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import useCustomFetch from '../hooks/useCustomFetch';
-import { axiosLOGInstance } from '../apis/axios-instance';
-import useTitle from '../hooks/useTitle';
+import { axiosLOGInstance } from '../../apis/axios-instance';
+import useTitle from '../../hooks/useTitle';
+import { LogContext } from '../../context/logContext'
 
 function SignUpPage() {
+  const {
+    isLogged,
+  } = useContext(LogContext);
+
   const navigate = useNavigate();
   
   const emailRegExp = 
@@ -36,57 +39,33 @@ function SignUpPage() {
   const nameValue = watch('name');
   const phoneValue = watch('phone');
 
-  const [url, setUrl] = useState();
-  const [body, setBody] = useState();
-  const {response, error} = useCustomFetch(url, axiosLOGInstance, 'POST', body)
-
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    if (response){
-      try{
-        navigate('/login', { replace: true })
-      }
-      catch (error){
-        setErrorMessage(error.response.data.message);
-      }
+  const signUpSubmit = async (data) => {             
+    try{
+      await axiosLOGInstance.post(import.meta.env.VITE_RE, {
+        "email": data.email,
+        "password": data.password,
+        "passwordCheck": data.passwordCheck,
+        "username": data.name
+      })
+      navigate('/login')
     }
-    else if (error){
-      setErrorMessage(error.response.data.message);
-      setUrl();
-      setBody();
+    catch(error){
+      setErrorMessage(error.response?.data?.message);
     }
-  }, [response, error])
-  
-  const signUpSubmit = async (data) => {
-    setUrl(import.meta.env.VITE_REGISTER_URL);
-    setBody({
-      email: data.email,
-      password: data.password,
-      passwordCheck: data.passwordCheck,
-      username: data.name
-    })
   }
 
-  // const signUpSubmit = async (data) => {             // customHook 사용X
-  //   try{
-  //     await axios.post(import.meta.env.VITE_RE, {
-  //       "email": data.email,
-  //       "password": data.password,
-  //       "passwordCheck": data.passwordCheck,
-  //       "username": data.name
-  //     })
-  //     navigate('/login')
-  //   }
-  //   catch(error){
-  //     setErrorMessage(error.response?.data?.message);
-  //   }
-  // }
-
-  useTitle('왓챠 | 회원가입');
+  useEffect(() => {
+    if (isLogged)
+      window.location.replace('/')
+  })
   
+  useTitle('왓챠 | 회원가입', !isLogged)
+
   return (
     <S.ContentContainer>
+      {!isLogged && 
       <S.ContentBox>
         <S.SignForm onSubmit={handleSubmit(signUpSubmit)}>
           <S.SignTitle>회원가입</S.SignTitle>
@@ -135,6 +114,7 @@ function SignUpPage() {
           <S.SubmitButton $opacity={!isValid ? '0.3' : '1'}>회원가입</S.SubmitButton>
         </S.SignForm>
       </S.ContentBox>
+      }
     </S.ContentContainer>
   );
 }

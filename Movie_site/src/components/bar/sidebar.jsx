@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import * as S from './style/components-style.js';
+import * as S from '../_style/components-style.js';
 import { BiMoviePlay, BiSearch } from "react-icons/bi"
 
 function Sidebar() {

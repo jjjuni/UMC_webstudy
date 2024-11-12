@@ -1,11 +1,11 @@
 import HomePage from "./pages/homePage.jsx";
 import NotFound from "./pages/not-found.jsx";
-import LoginPage from "./pages/loginPage.jsx";
-import SignUpPage from "./pages/signupPage.jsx";
+import LoginPage from "./pages/sign/loginPage.jsx";
+import SignUpPage from "./pages/sign/signupPage.jsx";
 import SearchPage from "./pages/searchPage.jsx";
-import MovieCategoryPage from "./pages/movieCategoryPage.jsx";
-import MoviesPage from "./pages/moviesPage.jsx";
-import MoviePage from "./pages/moviePage.jsx";
+import MovieCategoryPage from "./pages/movie/movieCategoryPage.jsx";
+import MoviesPage from "./pages/movie/moviesPage.jsx";
+import MoviePage from "./pages/movie/moviePage.jsx";
 
 import RootLayout from "./layout/root-layout.jsx"
 import Movieslayout from "./layout/movies-layout.jsx";

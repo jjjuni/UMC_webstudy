@@ -1,9 +1,9 @@
-import * as S from "./style/page-style";
+import * as S from "../_style/page-style";
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 
 import styled from "styled-components";
-import useTitle from '../hooks/useTitle';
+import useTitle from '../../hooks/useTitle';
 
 function MovieCategoryPage() {
 

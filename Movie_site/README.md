@@ -1,8 +1,10 @@
-# React + Vite
+# WATCHA!
+>
+> ## ⁉️ 해결 못 한 문제
+> - 회원가입 페이지 -> 로그인 페이지 -> 로그인 -> 홈
+> - 이 이후 이전 페이지로 돌아갈 시 로그인 페이지, 회원가입 페이지는 막아 둠
+> - 그런데 document.title은 왜 바뀌는거???
+> - 로그인 페이지는 괜찮은데 회원가입 페이지로 돌아가면 title이 '왓챠 | 회원가입으로 바뀜' (근데 페이지는 홈페이지)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

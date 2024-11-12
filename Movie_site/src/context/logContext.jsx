@@ -5,6 +5,7 @@ export const LogContext = createContext();
 export function LogContextProvider({ children }) {
   const [isLogged, setIsLogged] = useState(!!localStorage.getItem('accessToken'));
   const [userInfo, setUserInfo] = useState();
+  
   return (
     <LogContext.Provider
       value={{
