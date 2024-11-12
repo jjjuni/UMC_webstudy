@@ -5,7 +5,7 @@ const useTitle = (title, flag = true) => {
     if (title !== undefined && flag) {
       document.title = title;
     }
-  })
+  }, [title, flag])
 }
 
 export default useTitle;

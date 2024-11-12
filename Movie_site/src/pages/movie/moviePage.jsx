@@ -40,8 +40,7 @@ function MoviePage() {
     setCreditHeight('none');
     setMoreButtonDisplay('none');
   }
-
-  useTitle(movie?.title + ' | 왓챠', isLoading)
+  useTitle(movie?.title + ' | 왓챠', !isLoading)
 
   return (
     <S.ContentContainer>

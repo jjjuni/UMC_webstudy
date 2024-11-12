@@ -77,8 +77,6 @@ const MovieCategory = styled(Link)`
     flex: 1 1 100%;
     max-width: 100%;
   }
-
-  
 `;
 
 const Image = styled.img`
@@ -91,6 +89,7 @@ const Image = styled.img`
     filter: brightness(50%);
     cursor: pointer;
   }
+  aspect-ratio: 2/1.069;
 `;
 
 const ImageText = styled.div`
