@@ -16,7 +16,8 @@ function MoviesPage() {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const { category } = useParams();
-  
+  const [currentPage, setCurrentPage] = useState(1);
+
   useTitle('왓챠');
 
   useEffect(() => {
@@ -46,20 +47,27 @@ function MoviesPage() {
     isError, 
     error, 
     isFetching, 
-    hasNextPage, 
+    hasNextPage,
+    hasPreviousPage,
     fetchNextPage, 
     isFetchingNextPage 
-  } = useGetInfiniteMovies(category)
+  } = useGetInfiniteMovies(category, currentPage)
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-  })
-
-  useEffect(() => {
-    if (inView && !isFetching && hasNextPage){
-      fetchNextPage();
+  const changePage = (option) => {
+    if (!isFetching) {
+      if (option === '+') {
+        if (hasNextPage) {
+          setCurrentPage(currentPage + 1)
+          fetchNextPage();
+        }
+      }
+      if (option === '-') {
+        if (hasPreviousPage) {
+          setCurrentPage(currentPage - 1)
+        }
+      }
     }
-  }, [inView, isFetching, hasNextPage])
+  }
 
   // const getMovies = async () => {
   //   return await axiosTMDBInstance.get(url)
@@ -90,24 +98,16 @@ function MoviesPage() {
           <S.Loading>에러!</S.Loading>
         ) : (
           <S.PosterBox>
-            {movies?.pages?.map((page) => {  
-              return page?.results?.map((movie => {
+            {movies?.pages[currentPage - 1]?.results?.map((movie) => { 
                 return <Poster key={movie.id} movie={movie}/>
-              }))
-            })}
-            {isFetching && <CardSkeletonList num={20}/>}
-            <div ref={ref}/>
-            {isFetching && 
-              <Loading>
-                <ClipLoader 
-                  color="#FFFFFF"
-                  cssOverride={{}}
-                  loading
-                  size={35}
-                  speedMultiplier={0.7}
-                />
-              </Loading>
+              })
             }
+            {isFetching && <CardSkeletonList num={20}/>}
+            <PageWrapper>
+              <PageButton onClick={() => changePage('-')} disabled={!hasPreviousPage || isFetching}>&lt;</PageButton>
+                <Page>{currentPage}</Page>
+              <PageButton onClick={() => changePage('+')} disabled={!hasNextPage || isFetching}>&gt;</PageButton>
+            </PageWrapper>
           </S.PosterBox>
         )}
         
@@ -118,12 +118,35 @@ function MoviesPage() {
 
 export default MoviesPage;
 
-const Loading = styled.div`
+const PageWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 
-  margin: 50px 0;
+  margin: 30px;
 `
 
+const PageButton = styled.button`
+  font-family: Pretendard-Regular;
+  width: 20px;
 
+  border: 0;
+  border-radius: 3px;
+  margin: 0 10px;
+
+  color: white;
+  background-color: #F82F62;
+  text-align: center;
+  cursor: pointer;
+
+  &:disabled{
+    background-color: #f82f627a;
+    color: #ffffff7a;
+  }  
+`
+
+const Page = styled.p`
+  color: white;
+  font-family: Pretendard-Regular;
+  margin: 0;
+`
