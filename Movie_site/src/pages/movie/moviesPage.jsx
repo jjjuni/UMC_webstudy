@@ -54,18 +54,19 @@ function MoviesPage() {
   } = useGetInfiniteMovies(category, currentPage)
 
   const changePage = (option) => {
-    if (option === '+') {
-      if (hasNextPage) {
-        setCurrentPage(currentPage + 1)
-        fetchNextPage();
+    if (!isFetching) {
+      if (option === '+') {
+        if (hasNextPage) {
+          setCurrentPage(currentPage + 1)
+          fetchNextPage();
+        }
+      }
+      if (option === '-') {
+        if (hasPreviousPage) {
+          setCurrentPage(currentPage - 1)
+        }
       }
     }
-    if (option === '-') {
-      if (hasPreviousPage) {
-        setCurrentPage(currentPage - 1)
-      }
-    }
-    console.log(hasPreviousPage, currentPage)
   }
 
   // const getMovies = async () => {
