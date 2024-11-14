@@ -108,9 +108,6 @@ function MoviesPage() {
                 />
               </Loading>
             }
-            {/* {movies?.results?.map((movie) => (
-              <Poster key={movie.id} movie={movie} isLoading={isPending}/>
-            ))} */}
           </S.PosterBox>
         )}
         
