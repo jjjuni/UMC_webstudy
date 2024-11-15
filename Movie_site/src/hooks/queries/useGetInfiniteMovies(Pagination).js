@@ -8,7 +8,6 @@ function useGetInfiniteMovies(category, currentPage){
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const totalPages = lastPage?.total_pages;
-      console.log(currentPage, totalPages)
       return currentPage < totalPages ? currentPage + 1 : undefined;
     },
     getPreviousPageParam: () => {
