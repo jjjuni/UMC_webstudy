@@ -69,6 +69,11 @@ function MoviesPage() {
         {isPending ? (
           <S.PosterBox>
             <CardSkeletonList num={20}/>
+            <PageWrapper>
+              <PageButton onClick={() => changePage('-')} disabled={currentPage < 2 || isFetching}>&lt;</PageButton>
+                <Page>{currentPage}</Page>
+              <PageButton onClick={() => changePage('+')} disabled={currentPage > movies?.data?.total_pages || isFetching}>&gt;</PageButton>
+            </PageWrapper>
           </S.PosterBox>
         ) : isError? (
           <S.Loading>에러!</S.Loading>
