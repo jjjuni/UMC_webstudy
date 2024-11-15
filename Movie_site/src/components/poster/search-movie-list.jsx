@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce.js";
 import PropTypes from "prop-types";
-import useCustomFetch from "../../hooks/useCustomFetch.js";
 import { ClipLoader } from "react-spinners";
 import CardSkeletonList from "./card-skeleton-list.jsx";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -62,18 +61,9 @@ const SearchMovieList = ({ searchText }) => {
             <CardSkeletonList num={20} />
           </PosterBox>
         </>
-      ) : 
-      //   <Loading>
-      //   <ClipLoader
-      //     color="#FFFFFF"
-      //     cssOverride={{}}
-      //     loading
-      //     size={35}
-      //     speedMultiplier={0.7}
-      //   />
-      // </Loading>
-      movies?.pages?.length > 0 ? (
+      ) : movies?.pages[0]?.data?.results?.length > 1 ? (
         <>
+          {console.log(movies)}
           {debouncedSearchText !== "" ? (
             <SearchTitle> 검색 </SearchTitle>
           ) : (
@@ -134,13 +124,11 @@ const Loading = styled.div`
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  
+
   margin: 50px 0;
 `;
 
-const RefDiv = styled.div`
-
-`
+const RefDiv = styled.div``;
 
 SearchMovieList.propTypes = {
   searchText: PropTypes.string.isRequired,
