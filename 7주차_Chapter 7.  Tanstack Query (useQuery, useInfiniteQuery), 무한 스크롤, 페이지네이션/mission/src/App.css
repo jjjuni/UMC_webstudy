@@ -1,0 +1,20 @@
+html{
+    overflow: auto;
+}
+html::-webkit-scrollbar {
+    scrollbar-width: thin;
+}
+html::-webkit-scrollbar-track {
+    background-color: #141517; 
+}
+html::-webkit-scrollbar-thumb {
+    background-color: #1e1f20; 
+    border-radius: 20px;
+}
+html::-webkit-scrollbar-thumb:hover {
+    background-color: #1a1b1b;
+}
+
+body{
+    margin:0;
+}
