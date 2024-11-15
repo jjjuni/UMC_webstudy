@@ -5,11 +5,9 @@ import Poster from "../../components/poster/poster.jsx";
 import { ClipLoader } from "react-spinners";
 
 import * as S from "../_style/page-style.js";
-import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import useTitle from '../../hooks/useTitle.js';
 import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
 import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
-import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 function MoviesPage() {
