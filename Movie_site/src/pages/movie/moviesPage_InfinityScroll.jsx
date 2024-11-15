@@ -8,14 +8,12 @@ import * as S from "../_style/page-style.js";
 import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import useTitle from '../../hooks/useTitle.js';
 import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
-import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
   const { category } = useParams();
   
   useTitle('왓챠');
@@ -24,19 +22,15 @@ function MoviesPage() {
     switch (category) {
       case "now_playing":
         setTitle("상영 중인 영화");
-        setUrl("/movie/now_playing?language=ko-KR&page=1");
         break;
       case "popular":
         setTitle("인기있는 영화");
-        setUrl("/movie/popular?language=ko-KR&page=1");
         break;
       case "top_rated":
         setTitle("높은 평가를 받은 영화");
-        setUrl("/movie/top_rated?language=ko-KR&page=1");
         break;
       case "upcoming":
         setTitle("개봉 예정 중인 영화");
-        setUrl("/movie/upcoming?language=ko-KR&page=1");
         break;
     };
   }, [category]);

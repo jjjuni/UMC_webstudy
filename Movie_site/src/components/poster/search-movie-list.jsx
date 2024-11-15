@@ -3,38 +3,66 @@ import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce.js";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import useCustomFetch from "../../hooks/useCustomFetch.js";
 import { ClipLoader } from "react-spinners";
 import CardSkeletonList from "./card-skeleton-list.jsx";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 
-const SearchMovieList = ({searchText}) => {
-  const [url, setUrl] = useState(`/movie/popular?language=ko-KR&page=1`)
+const SearchMovieList = ({ searchText }) => {
+  const [url, setUrl] = useState(`/movie/popular?language=ko-KR&page=`);
   const debouncedSearchText = useDebounce(searchText, 200);
-  const [movies, setMovies] = useState(null);
 
-  const { response, isLoading, isError } = useCustomFetch(url, axiosTMDBInstance);
+  const {
+    data: movies,
+    isPending,
+    isError,
+    error,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["searchMovies", url],
+    queryFn: async ({ pageParam }) =>
+      await axiosTMDBInstance.get(`${url}${pageParam}`),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const currentPage = lastPage?.data?.page;
+      const totalPages = lastPage?.data?.total_pages;
+      return currentPage < totalPages ? currentPage + 1 : undefined;
+    },
+  });
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   useEffect(() => {
-    setMovies();
-    if(debouncedSearchText === ''){
-      setUrl(`/movie/popular?language=ko-KR&page=1`)
+    if (inView && !isFetching && hasNextPage) {
+      fetchNextPage();
     }
-    else{
-      setUrl(`/search/movie?query=${debouncedSearchText}&language=ko-KR&page=1`)
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
+  useEffect(() => {
+    if (debouncedSearchText === "") {
+      setUrl(`/movie/popular?language=ko-KR&page=`);
+    } else {
+      setUrl(`/search/movie?query=${debouncedSearchText}&language=ko-KR&page=`);
     }
-    setMovies(response?.data)
-  }, [debouncedSearchText, response])
+  }, [debouncedSearchText]);
 
   return (
     <>
-      {isLoading ? (
+      {isPending ? (
         <>
           <SearchTitle> 검색 </SearchTitle>
           <PosterBox>
-            <CardSkeletonList num={20}/>
+            <CardSkeletonList num={20} />
           </PosterBox>
         </>
+      ) : 
       //   <Loading>
       //   <ClipLoader
       //     color="#FFFFFF"
@@ -44,32 +72,47 @@ const SearchMovieList = ({searchText}) => {
       //     speedMultiplier={0.7}
       //   />
       // </Loading>
-      ) : (
-        movies?.results?.length > 0? (
-          <>
-            {debouncedSearchText !== '' ? (
-              <SearchTitle> 검색 </SearchTitle>
-            ) : (
-              <SearchTitle> 이런 영화는 어떠신가요? </SearchTitle>
+      movies?.pages?.length > 0 ? (
+        <>
+          {debouncedSearchText !== "" ? (
+            <SearchTitle> 검색 </SearchTitle>
+          ) : (
+            <SearchTitle> 이런 영화는 어떠신가요? </SearchTitle>
+          )}
+          <PosterBox>
+            {movies?.pages?.map((page) => {
+              return page?.data?.results?.map((movie) => {
+                return <Poster key={movie.id} movie={movie} />;
+              });
+            })}
+            {isFetching && <CardSkeletonList num={20} />}
+            <RefDiv ref={ref} />
+            {isFetching && (
+              <Loading>
+                <ClipLoader
+                  color="#FFFFFF"
+                  cssOverride={{}}
+                  loading
+                  size={35}
+                  speedMultiplier={0.7}
+                />
+              </Loading>
             )}
-            <PosterBox>
-              {movies?.results?.map((movie) => (
-                <Poster key={movie.id} movie={movie} />
-              ))}
-            </PosterBox>
-          </>
-        ):(
-          <SearchTitle $fontSize={'20px'}>입력하신 검색어 `{debouncedSearchText}`(와)과 일치하는 결과가 없습니다 </SearchTitle>
-        )
+          </PosterBox>
+        </>
+      ) : (
+        <SearchTitle $fontSize={"20px"}>
+          입력하신 검색어 `{debouncedSearchText}`(와)과 일치하는 결과가 없습니다{" "}
+        </SearchTitle>
       )}
     </>
-  )
-}
+  );
+};
 
 export default SearchMovieList;
 
 const SearchTitle = styled.h1`
-  font-family: ${props => props.$font || 'Pretendard-Regular'};
+  font-family: ${(props) => props.$font || "Pretendard-Regular"};
   width: 100%;
   margin: 0 0 10px;
   padding: 10px 10px 10px;
@@ -77,7 +120,7 @@ const SearchTitle = styled.h1`
   color: #fff;
   box-sizing: border-box;
   font-size: 20px;
-`
+`;
 
 const PosterBox = styled.div`
   display: flex;
@@ -88,11 +131,15 @@ const PosterBox = styled.div`
 `;
 
 const Loading = styled.div`
-  height: calc(100% - 107px);
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  
+  margin: 50px 0;
+`;
+
+const RefDiv = styled.div`
+
 `
 
 SearchMovieList.propTypes = {

@@ -4,7 +4,7 @@ import LoginPage from "./pages/sign/loginPage.jsx";
 import SignUpPage from "./pages/sign/signupPage.jsx";
 import SearchPage from "./pages/searchPage.jsx";
 import MovieCategoryPage from "./pages/movie/movieCategoryPage.jsx";
-import MoviesPage from "./pages/movie/moviesPage(Infinity scroll).jsx";
+import MoviesPage from "./pages/movie/moviesPage_InfinityScroll.jsx";
 import MoviePage from "./pages/movie/moviePage.jsx";
 
 import RootLayout from "./layout/root-layout.jsx"
