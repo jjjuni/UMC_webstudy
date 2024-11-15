@@ -39,7 +39,7 @@ export const SkeletonPoster = styled.div`
 
   flex-grow: 1;
 
-  margin: 0 2px 5px 2px;
+  margin: 0 2px 9px 2px;
   gap:2px;
 
   transition: all 0.4s ease;
