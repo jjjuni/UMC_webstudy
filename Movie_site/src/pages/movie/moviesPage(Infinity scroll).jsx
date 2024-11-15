@@ -11,6 +11,7 @@ import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
 import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -49,7 +50,16 @@ function MoviesPage() {
     hasNextPage, 
     fetchNextPage, 
     isFetchingNextPage 
-  } = useGetInfiniteMovies(category)
+  } = useInfiniteQuery({
+    queryKey: ['getMovies', category],
+    queryFn: async ({pageParam}) => await axiosTMDBInstance.get(`/movie/${category}?language=ko-KR&page=${pageParam}`),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const currentPage = lastPage?.data?.page;
+      const totalPages = lastPage?.data?.total_pages;
+      return currentPage < totalPages ? currentPage + 1 : undefined;
+    },
+  })
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -60,22 +70,6 @@ function MoviesPage() {
       fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage])
-
-  // const getMovies = async () => {
-  //   return await axiosTMDBInstance.get(url)
-  // }
-
-  // const {data: movies, isLoading, isError} = useInfiniteQuery({
-  //   queryKey: ['getMovies', url],
-  //   queryFn: getMovies,
-  //   initialPageParam: 1,
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     const currentPage = lastPage.data.page;
-  //     const totalPages = lastPage.data.total_pages;
-
-  //     return currentPage < totalPages ? currentPage + 1 : undefined;
-  //   }
-  // })
   
   return (
     
@@ -90,8 +84,8 @@ function MoviesPage() {
           <S.Loading>에러!</S.Loading>
         ) : (
           <S.PosterBox>
-            {movies?.pages?.map((page) => {  
-              return page?.results?.map((movie => {
+            {movies?.pages?.map((page) => {
+              return page?.data?.results?.map((movie => {
                 return <Poster key={movie.id} movie={movie}/>
               }))
             })}
