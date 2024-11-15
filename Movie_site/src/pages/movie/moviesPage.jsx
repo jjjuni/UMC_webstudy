@@ -59,7 +59,7 @@ function MoviesPage() {
     if (inView && !isFetching && hasNextPage){
       fetchNextPage();
     }
-  }, [inView, isFetching, hasNextPage])
+  }, [inView, isFetching, hasNextPage, fetchNextPage])
 
   // const getMovies = async () => {
   //   return await axiosTMDBInstance.get(url)
@@ -96,7 +96,7 @@ function MoviesPage() {
               }))
             })}
             {isFetching && <CardSkeletonList num={20}/>}
-            <div ref={ref}/>
+            <RefDiv ref={ref}/>
             {isFetching && 
               <Loading>
                 <ClipLoader 
@@ -126,4 +126,6 @@ const Loading = styled.div`
   margin: 50px 0;
 `
 
+const RefDiv = styled.div`
 
+`
