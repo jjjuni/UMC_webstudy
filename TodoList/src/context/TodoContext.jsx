@@ -30,7 +30,7 @@ export function TodoContextProvider({ children }) {
   // 수정 버튼을 눌렀을 때 (편집 id, 편집 text 설정)
   const clickUpdate = (todo) => {
     setTodos((prev) => 
-      prev.map((item) => (item.id === todo.id ? {...item, edit: true} : item))
+      prev.map((item) => (item.id === todo.id ? {...item, edit: true} : {...item, edit: false}))
     );
     setEditText(todo.task)
   };
