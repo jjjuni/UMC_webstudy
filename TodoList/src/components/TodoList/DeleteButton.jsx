@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { TodoContext } from '../../context/TodoContext';
+import * as S from '../TodoListStyle';
 
 function DeleteButton({todo}) {
   const {
@@ -9,7 +10,7 @@ function DeleteButton({todo}) {
 
 
   return (
-    <button className='delete-button button' onClick={() => deleteTodo(todo.id)}>삭제</button>
+    <S.TodoButton className='delete-button button' onClick={() => deleteTodo(todo.id)}>삭제</S.TodoButton>
   );
 }
 

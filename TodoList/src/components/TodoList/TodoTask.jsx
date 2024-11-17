@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from 'react';
 import { TodoContext } from '../../context/TodoContext';
+import * as S from '../TodoListStyle'
 
 function TodoTask({todo}) {
   const {
@@ -9,11 +10,10 @@ function TodoTask({todo}) {
 
   return (
     <>
-      {!todo.edit && <p className="todo-task">{todo.task}</p>}
+      {!todo.edit && <S.TodoTask>{todo.task}</S.TodoTask>}
 
       {todo.edit && (
-        <input
-          className="todo-task-input"
+        <S.TodoTaskInput
           defaultValue={todo.task}
           onChange={(e) => setEditText(e.target.value)}
         />

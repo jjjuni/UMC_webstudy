@@ -1,4 +1,6 @@
-.todo-box{
+import { styled } from 'styled-components'
+
+export const TodoBox = styled.div`
     display: flex;
     flex-direction: column;
 
@@ -11,17 +13,18 @@
     box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.15);
 
     box-sizing: border-box;
-}
+`
 
-.todo-task{
+export const TodoTask = styled.p`   
     margin: 5px;
     padding: 0px 5px 0px 5px;
     height: 30px;
     align-content: center;
 
     color: rgb(136, 161, 122);
-}
-.todo-task-input{
+`
+
+export const TodoTaskInput = styled.input`
     padding: 3px 10px 3px 10px;
     margin: 2px;
     height: 30px;
@@ -34,31 +37,22 @@
     border-radius: 10px;
 
     color: rgb(136, 161, 122);
-    
-}
+`
 
-.todo-buttons{
+export const TodoButtonWrapper = styled.div`
     display: flex;
     justify-content: end;
-}
+`
 
-.button{
+export const TodoButton = styled.button`
     background-color: white;
     color: rgb(136, 161, 122);
     height: 30px;
     border: 1px solid rgb(136, 161, 122);
     border-radius: 10px;
     margin: 5px;
-}
-.button:hover{
-    cursor: pointer;
-}
 
-
-.delete-button{
-
-}
-
-.update-button{
-
-}
+    &:hover{
+        cursor: pointer;
+    }
+`

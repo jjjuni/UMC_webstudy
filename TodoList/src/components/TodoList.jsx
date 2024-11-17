@@ -1,4 +1,4 @@
-import './TodoList.css';
+import * as S from './TodoListStyle.jsx'
 import DeleteButton from './TodoList/DeleteButton.jsx'
 import UpdateButton from './TodoList/UpdateButton.jsx'
 import TodoTask from './TodoList/TodoTask.jsx';
@@ -12,15 +12,15 @@ function TodoList() {
   return (
     <>
       {todos.map((todo) => (
-        <div className='todo-box' key={todo.id}>
+        <S.TodoBox key={todo.id}>
 
           <TodoTask todo={todo}/>
 
-          <div className='todo-buttons'>
+          <S.TodoButtonWrapper>
             <DeleteButton todo={todo}/>
             <UpdateButton todo={todo}/>
-          </div>
-        </div>
+          </S.TodoButtonWrapper>
+        </S.TodoBox>
       ))}
     </>
   );

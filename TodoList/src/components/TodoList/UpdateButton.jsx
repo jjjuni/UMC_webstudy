@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { TodoContext } from '../../context/TodoContext';
+import * as S from '../TodoListStyle';
 
 function UpdateButton({todo}) {
   const {
@@ -12,9 +13,9 @@ function UpdateButton({todo}) {
   return (
     <>
       {todo.edit ? (
-        <button className='update-button button' onClick={() => updateTodo(todo.id, editText)}>완료</button>
+        <S.TodoButton className='update-button button' onClick={() => updateTodo(todo.id, editText)}>완료</S.TodoButton>
         ) : (
-        <button className='update-button button' onClick={() => clickUpdate(todo)}>수정</button>
+        <S.TodoButton className='update-button button' onClick={() => clickUpdate(todo)}>수정</S.TodoButton>
       )}
     </>
   );
