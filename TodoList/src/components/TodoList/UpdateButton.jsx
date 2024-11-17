@@ -8,11 +8,12 @@ function UpdateButton({todo}) {
     editTitle,
     updateTodo,
     clickUpdate,
+    editId,
   } = useContext(TodoContext)
 
   return (
     <>
-      {todo.edit ? (
+      {todo.id === editId ? (
         <S.TodoButton className='update-button button' onClick={() => updateTodo(todo.id, editTitle)}>완료</S.TodoButton>
         ) : (
         <S.TodoButton className='update-button button' onClick={() => clickUpdate(todo)}>수정</S.TodoButton>

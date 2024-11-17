@@ -1,10 +1,22 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
-  const [todos, setTodos] = useState([]);
+  const queryClient = useQueryClient();
+
+  const { data } = useQuery ({
+    queryKey: ['getTodos'],
+    queryFn: async () => 
+      {
+        const response = await axios.get(import.meta.env.VITE_TODO);
+        return response.data[0]
+      }
+  })
+  
+  const [editId, setEditId] = useState(0);
   const [inputTitle, setInputTitle] = useState('');
   const [inputContent, setInputContent] = useState('');
   const [editTitle, setEditTitle] = useState('');
@@ -14,41 +26,29 @@ export function TodoContextProvider({ children }) {
     e.preventDefault();
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(import.meta.env.VITE_TODO);
-      setTodos(response.data[0])
-    }
-    fetchData();
-  }, [])
-
   // todo 추가
   const addTodo = async () => {         
     if (inputTitle.trim()){                   // 빈 칸 등록 방지
-      setTodos((prev) => [
-        ...prev, 
-        {id: Math.floor(Math.random() * 100) + 2, title: inputTitle, content: inputContent, edit: false}
-      ]);
       setInputTitle('');
       setInputContent('');
       await axios.post(import.meta.env.VITE_TODO, {
         "title" : inputTitle,
         "content" : inputContent,
-      })
+      });
+      queryClient.invalidateQueries(['getTodos'])
     }
   };
   
   // todo 삭제
-  const deleteTodo = async (id) => { 
-    setTodos((prev) => prev.filter((item) => item.id !== id));
+  const deleteTodo = async (id) => {
     await axios.delete(`${import.meta.env.VITE_TODO}/${id}`)
+    queryClient.invalidateQueries(['getTodos'])
   };
 
   // 수정 버튼을 눌렀을 때 (편집 id, 편집 text 설정)
   const clickUpdate = (todo) => {
-    setTodos((prev) => 
-      prev.map((item) => (item.id === todo.id ? {...item, edit: true} : {...item, edit: false}))
-    );
+    setEditId(todo.id)
+    console.log(todo.id)
     setEditTitle(todo.title)
     setEditContent(todo.content)
   };
@@ -56,20 +56,18 @@ export function TodoContextProvider({ children }) {
   // todo 수정
   const updateTodo = async (id, text) => {
     if (text.trim()){                   // 빈 칸 수정 방지
-      setTodos((prev) => 
-        prev.map((item) => (item.id === id ? {...item, title: editTitle, content: editContent, edit: false} : item))
-      );
       await axios.patch(`${import.meta.env.VITE_TODO}/${id}`, {
         "title": editTitle,
         "content": editContent,
       })
+      setEditId(0);
+      queryClient.invalidateQueries(['getTodos'])
     }
   };
 
   return (
     <TodoContext.Provider value={{
-      todos,
-      setTodos,
+      todos: data,
       inputTitle,
       setInputTitle,
       inputContent,
@@ -83,6 +81,7 @@ export function TodoContextProvider({ children }) {
       deleteTodo,
       updateTodo,
       clickUpdate,
+      editId,
     }}
     >
       {children}

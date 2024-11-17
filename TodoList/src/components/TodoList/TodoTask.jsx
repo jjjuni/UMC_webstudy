@@ -7,7 +7,11 @@ import UpdateButton from "./UpdateButton";
 import axios from "axios";
 
 function TodoTask({ todo }) {
-  const { setEditTitle, setEditContent } = useContext(TodoContext);
+  const { 
+    setEditTitle, 
+    setEditContent,
+    editId,
+  } = useContext(TodoContext);
 
   const [isChecked, setIsChecked] = useState(todo.checked);
 
@@ -29,13 +33,12 @@ function TodoTask({ todo }) {
       />
       
       <S.TodoContainer>
-      {!todo.edit && (
+      {todo.id !== editId ? (
         <>
           <S.TodoTask $fontWeight={"bold"} $borderBottom={'1px solid rgba(136, 161, 122, 0.5);'}>{todo.title}</S.TodoTask>
           <S.TodoTask>{todo.content}</S.TodoTask>
         </>
-      )}
-      {todo.edit && (
+      ) : (
         <>
           <S.TodoTaskInput
             $fontWeight={"bold"}
