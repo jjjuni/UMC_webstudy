@@ -10,13 +10,24 @@ function TodoTask({todo}) {
 
   return (
     <>
-      {!todo.edit && <S.TodoTask>{todo.task}</S.TodoTask>}
+      {!todo.edit && 
+        <>
+          <S.TodoTask>{todo.title}</S.TodoTask>
+          <S.TodoTask>{todo.task}</S.TodoTask>
+        </>
+      }
 
       {todo.edit && (
-        <S.TodoTaskInput
-          defaultValue={todo.task}
-          onChange={(e) => setEditText(e.target.value)}
-        />
+        <>
+          <S.TodoTaskInput
+            defaultValue={todo.title}
+            onChange={(e) => setEditText(e.target.value)}
+          />
+          <S.TodoTaskInput
+            defaultValue={todo.task}
+            onChange={(e) => setEditText(e.target.value)}
+          />
+        </>
       )}
     </>
   );
@@ -25,6 +36,7 @@ function TodoTask({todo}) {
 TodoTask.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
     task: PropTypes.string.isRequired,
     edit: PropTypes.bool.isRequired,
   }).isRequired,

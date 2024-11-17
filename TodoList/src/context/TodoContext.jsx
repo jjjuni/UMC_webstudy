@@ -4,8 +4,10 @@ export const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
   const [todos, setTodos] = useState([]);
-  const [inputText, setInputText] = useState('');
-  const [editText, setEditText] = useState('');
+  const [inputTitle, setInputTitle] = useState('');
+  const [inputContent, setInputContent] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editContent, setEditContent] = useState('');
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,12 +15,13 @@ export function TodoContextProvider({ children }) {
 
   // todo 추가
   const addTodo = () => {         
-    if (inputText.trim()){                   // 빈 칸 등록 방지
+    if (inputTitle.trim()){                   // 빈 칸 등록 방지
       setTodos((prev) => [
         ...prev, 
-        {id: Math.floor(Math.random() * 100) + 2, task: inputText, edit: false}
+        {id: Math.floor(Math.random() * 100) + 2, title: inputTitle, task: inputContent, edit: false}
       ]);
-      setInputText('');
+      setInputTitle('');
+      setInputContent('');
     }
   };
   
@@ -32,7 +35,7 @@ export function TodoContextProvider({ children }) {
     setTodos((prev) => 
       prev.map((item) => (item.id === todo.id ? {...item, edit: true} : {...item, edit: false}))
     );
-    setEditText(todo.task)
+    setEditTitle(todo.task)
   };
 
   // todo 수정
@@ -48,10 +51,14 @@ export function TodoContextProvider({ children }) {
     <TodoContext.Provider value={{
       todos, 
       setTodos,
-      inputText,
-      setInputText,
-      editText,
-      setEditText,
+      inputTitle,
+      setInputTitle,
+      inputContent,
+      setInputContent,
+      editTitle,
+      setEditTitle,
+      editContent, 
+      setEditContent,
       handleSubmit,
       addTodo,
       deleteTodo,

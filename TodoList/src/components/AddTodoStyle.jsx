@@ -13,9 +13,16 @@ export const AddTodoForm = styled.div`
     box-sizing: border-box;
 `
 
+export const InputWrapper = styled.div`
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+`
+
 export const AddTodoInput = styled.input`
     margin: 10px 5px 10px 5px;
-    width: 90%;
+    width: 100%;
     height: 30px;
 
     font-size: 15px;
