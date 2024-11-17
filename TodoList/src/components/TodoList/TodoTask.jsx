@@ -1,45 +1,62 @@
 import PropTypes from "prop-types";
-import { useContext } from 'react';
-import { TodoContext } from '../../context/TodoContext';
-import * as S from '../TodoListStyle'
+import { useState, useContext } from "react";
+import { TodoContext } from "../../context/TodoContext";
+import * as S from "../TodoListStyle";
+import DeleteButton from "./DeleteButton";
+import UpdateButton from "./UpdateButton";
+import axios from "axios";
 
-function TodoTask({todo}) {
-  const {
-    setEditText,
-  } = useContext(TodoContext)
+function TodoTask({ todo }) {
+  const { setEditTitle, setEditContent } = useContext(TodoContext);
+
+  const [isChecked, setIsChecked] = useState(todo.checked);
+
+  const todoCheck = async (id, checked) => {
+    const response = await axios.patch(`${import.meta.env.VITE_TODO}/${id}`,{
+      "checked": !isChecked,
+    })
+    console.log(response)
+  }
 
   return (
     <>
-      {!todo.edit && 
+    <S.TodoBox>
+      <S.CheckBox
+        type="checkbox"
+        checked={isChecked}
+        onClick={() => todoCheck(todo.id, todo.checked)}
+        onChange={(e) => setIsChecked(e.target.checked)}
+      />
+      
+      <S.TodoContainer>
+      {!todo.edit && (
         <>
-          <S.TodoTask>{todo.title}</S.TodoTask>
-          <S.TodoTask>{todo.task}</S.TodoTask>
+          <S.TodoTask $fontWeight={"bold"} $borderBottom={'1px solid rgba(136, 161, 122, 0.5);'}>{todo.title}</S.TodoTask>
+          <S.TodoTask>{todo.content}</S.TodoTask>
         </>
-      }
-
+      )}
       {todo.edit && (
         <>
           <S.TodoTaskInput
+            $fontWeight={"bold"}
             defaultValue={todo.title}
-            onChange={(e) => setEditText(e.target.value)}
+            onChange={(e) => setEditTitle(e.target.value)}
           />
           <S.TodoTaskInput
-            defaultValue={todo.task}
-            onChange={(e) => setEditText(e.target.value)}
+            defaultValue={todo.content}
+            onChange={(e) => setEditContent(e.target.value)}
           />
         </>
       )}
+
+      <S.TodoButtonWrapper>
+        <DeleteButton todo={todo} />
+        <UpdateButton todo={todo} />
+      </S.TodoButtonWrapper>
+      </S.TodoContainer>
+      </S.TodoBox>
     </>
   );
 }
-
-TodoTask.propTypes = {
-  todo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    task: PropTypes.string.isRequired,
-    edit: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 export default TodoTask;

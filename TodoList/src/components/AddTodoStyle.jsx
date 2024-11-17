@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const AddTodoForm = styled.div`
+export const AddTodoForm = styled.form`
     display: flex;
     justify-content: space-between;
     margin: 10px 50px 30px 50px;

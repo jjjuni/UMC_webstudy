@@ -14,12 +14,4 @@ function DeleteButton({todo}) {
   );
 }
 
-DeleteButton.propTypes = {
-  todo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    task: PropTypes.string.isRequired,
-    edit: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
 export default DeleteButton

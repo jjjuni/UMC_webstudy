@@ -18,7 +18,7 @@ function AddTodo() {
         <S.AddTodoInput type='text' placeholder='제목을 입력하세요.' value={inputTitle} onChange={(e) => setInputTitle(e.target.value)} />
         <S.AddTodoInput type='text' placeholder='내용을 입력하세요.' value={inputContent} onChange={(e) => setInputContent(e.target.value)} />
       </S.InputWrapper>
-      <S.AddTodoButton type='submit'  onClick={() => addTodo()}>+</S.AddTodoButton>
+      <S.AddTodoButton type='submit' onClick={() => addTodo()}>+</S.AddTodoButton>
     </S.AddTodoForm>
   )
 }
