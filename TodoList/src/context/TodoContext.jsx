@@ -7,7 +7,7 @@ export const TodoContext = createContext();
 export function TodoContextProvider({ children }) {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery ({
+  const { data, isPending } = useQuery ({
     queryKey: ['getTodos'],
     queryFn: async () => 
       {
@@ -16,11 +16,13 @@ export function TodoContextProvider({ children }) {
       }
   })
   
-  const [editId, setEditId] = useState(0);
   const [inputTitle, setInputTitle] = useState('');
   const [inputContent, setInputContent] = useState('');
+  const [editId, setEditId] = useState(0);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [todo, setTodo] = useState();
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +50,6 @@ export function TodoContextProvider({ children }) {
   // 수정 버튼을 눌렀을 때 (편집 id, 편집 text 설정)
   const clickUpdate = (todo) => {
     setEditId(todo.id)
-    console.log(todo.id)
     setEditTitle(todo.title)
     setEditContent(todo.content)
   };
@@ -68,6 +69,7 @@ export function TodoContextProvider({ children }) {
   return (
     <TodoContext.Provider value={{
       todos: data,
+      isPending,
       inputTitle,
       setInputTitle,
       inputContent,
@@ -82,6 +84,10 @@ export function TodoContextProvider({ children }) {
       updateTodo,
       clickUpdate,
       editId,
+      modalVisible,
+      setModalVisible,
+      todo,
+      setTodo,
     }}
     >
       {children}

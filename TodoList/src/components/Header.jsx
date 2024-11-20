@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 function Header() {
-  return<Title >TODO LIST</Title>
+  return<Title>TODO LIST</Title>
 }
 
 export default Header;

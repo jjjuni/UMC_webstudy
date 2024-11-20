@@ -1,25 +1,26 @@
-import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import { TodoContext } from "../../context/TodoContext";
 import * as S from "../TodoListStyle";
 import DeleteButton from "./DeleteButton";
 import UpdateButton from "./UpdateButton";
 import axios from "axios";
+import styled from "styled-components";
 
 function TodoTask({ todo }) {
   const { 
     setEditTitle, 
     setEditContent,
     editId,
+    setModalVisible,
+    setTodo,
   } = useContext(TodoContext);
 
   const [isChecked, setIsChecked] = useState(todo.checked);
 
   const todoCheck = async (id, checked) => {
-    const response = await axios.patch(`${import.meta.env.VITE_TODO}/${id}`,{
+    await axios.patch(`${import.meta.env.VITE_TODO}/${id}`,{
       "checked": !isChecked,
     })
-    console.log(response)
   }
 
   return (
@@ -34,10 +35,15 @@ function TodoTask({ todo }) {
       
       <S.TodoContainer>
       {todo.id !== editId ? (
-        <>
+        <TextWrapper onClick={() => {
+          {
+            setModalVisible(true);
+            setTodo(todo);
+          }
+        }}>
           <S.TodoTask $fontWeight={"bold"} $borderBottom={'1px solid rgba(136, 161, 122, 0.5);'}>{todo.title}</S.TodoTask>
           <S.TodoTask>{todo.content}</S.TodoTask>
-        </>
+        </TextWrapper>
       ) : (
         <>
           <S.TodoTaskInput
@@ -63,3 +69,7 @@ function TodoTask({ todo }) {
 }
 
 export default TodoTask;
+
+const TextWrapper = styled.div`
+  cursor: pointer;
+`
