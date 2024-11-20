@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
 export const TodoCard = styled.div`
+    font-family: Pretendard-Regular;
     display: flex;
 
     margin: 10px 50px 10px 50px;
@@ -85,6 +86,7 @@ export const TodoButtonWrapper = styled.div`
 `
 
 export const TodoButton = styled.button`
+    font-family: Pretendard-Regular;
     background-color: white;
     color: rgb(136, 161, 122);
     height: 30px;
