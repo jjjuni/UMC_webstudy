@@ -8,13 +8,12 @@ import * as S from "../_style/page-style.js";
 import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import useTitle from '../../hooks/useTitle.js';
 import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
-import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
   const { category } = useParams();
   
   useTitle('왓챠');
@@ -23,19 +22,15 @@ function MoviesPage() {
     switch (category) {
       case "now_playing":
         setTitle("상영 중인 영화");
-        setUrl("/movie/now_playing?language=ko-KR&page=1");
         break;
       case "popular":
         setTitle("인기있는 영화");
-        setUrl("/movie/popular?language=ko-KR&page=1");
         break;
       case "top_rated":
         setTitle("높은 평가를 받은 영화");
-        setUrl("/movie/top_rated?language=ko-KR&page=1");
         break;
       case "upcoming":
         setTitle("개봉 예정 중인 영화");
-        setUrl("/movie/upcoming?language=ko-KR&page=1");
         break;
     };
   }, [category]);
@@ -49,7 +44,16 @@ function MoviesPage() {
     hasNextPage, 
     fetchNextPage, 
     isFetchingNextPage 
-  } = useGetInfiniteMovies(category)
+  } = useInfiniteQuery({
+    queryKey: ['getMovies', category],
+    queryFn: async ({pageParam}) => await axiosTMDBInstance.get(`/movie/${category}?language=ko-KR&page=${pageParam}`),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const currentPage = lastPage?.data?.page;
+      const totalPages = lastPage?.data?.total_pages;
+      return currentPage < totalPages ? currentPage + 1 : undefined;
+    },
+  })
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -60,22 +64,6 @@ function MoviesPage() {
       fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage])
-
-  // const getMovies = async () => {
-  //   return await axiosTMDBInstance.get(url)
-  // }
-
-  // const {data: movies, isLoading, isError} = useInfiniteQuery({
-  //   queryKey: ['getMovies', url],
-  //   queryFn: getMovies,
-  //   initialPageParam: 1,
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     const currentPage = lastPage.data.page;
-  //     const totalPages = lastPage.data.total_pages;
-
-  //     return currentPage < totalPages ? currentPage + 1 : undefined;
-  //   }
-  // })
   
   return (
     
@@ -90,8 +78,8 @@ function MoviesPage() {
           <S.Loading>에러!</S.Loading>
         ) : (
           <S.PosterBox>
-            {movies?.pages?.map((page) => {  
-              return page?.results?.map((movie => {
+            {movies?.pages?.map((page) => {
+              return page?.data?.results?.map((movie => {
                 return <Poster key={movie.id} movie={movie}/>
               }))
             })}

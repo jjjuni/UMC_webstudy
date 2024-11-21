@@ -1,36 +1,26 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const skeleton = keyframes`
-  0% {
-    opacity: 0.8;
-  }
-  30% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.3;
-  } 
-  70% {
-    opacity: 0.5;
-  } 
-  100% {
-    opacity: 0.8;
-  }
-`
+function Poster({movie}) {
 
-const CardSkeleton = () => {
+  const navigate = useNavigate();
+
   return (
-    <SkeletonPoster>
-      <Skeleton/>
-      <SkeletonTitle $backcolor={'white'} />
-      <SkeletonDate $backcolor={'white'} />
-    </SkeletonPoster>
-  )
+    <MoviePoster onClick={() => navigate(`/moviePage/${movie.id}`, {
+      replace: false,
+      state: {id: 123, name: 'dsa'}
+    })}>
+      <PosterImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
+      <MovieTitle>{movie.title}</MovieTitle>
+      <MovieDate>{movie.release_date}</MovieDate>
+    </MoviePoster>
+  );
 }
 
-export default CardSkeleton;
+export default Poster;
 
-export const SkeletonPoster = styled.div`
+const MoviePoster = styled.div`
   flex: 1 1 100%;
   max-width: 100%;
   
@@ -39,7 +29,7 @@ export const SkeletonPoster = styled.div`
 
   flex-grow: 1;
 
-  margin: 0 2px 9px 2px;
+  margin: 0 2px 5px 2px;
   gap:2px;
 
   transition: all 0.4s ease;
@@ -80,38 +70,35 @@ export const SkeletonPoster = styled.div`
     flex: 1 1 calc(100%/10 - 4px);
     max-width: calc(100%/10 - 4px);
   }
-    
-  animation: ${skeleton} 4s 0s infinite linear alternate;
+
+  container-name: movie-poster;
+  container-type: inline-size;
 `
 
-export const SkeletonTitle = styled.h2`
+const MovieTitle = styled.h2`
 
   font-family: ${props => props.font || 'Pretendard-Regular'};
-  background-color: rgb(130, 130, 130);
 
   padding: 0 8px 0 8px;
-  margin: 0 4px 2px 4px;
-
-  border-radius: 5px;
+  margin: 0 0 2px 0;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  width: calc(100% - 8px);
+  width: 100%;
   min-height: 15px;
   color: #fff;
   box-sizing: border-box;
   font-size: 13px;
 `
 
-export const SkeletonDate = styled.p`
+const MovieDate = styled.p`
 
   font-family: ${props => props.font || 'Pretendard-Regular'};
-  background-color: rgb(130, 130, 130);
 
   padding: 0 8px 5px 8px;
-  margin: 0 4px;
+  margin: 0;
 
   border-radius: 5px;
 
@@ -119,17 +106,17 @@ export const SkeletonDate = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  width: calc(100% - 8px);
-  min-height: 12px;
+  width: 100%;
+  min-height: 15px;
   color: #fff;
   box-sizing: border-box;
   font-size: 10px;
 `
 
-export const Skeleton = styled.div`
+const PosterImage = styled.img`       // object-fit, aspect ratio 비율 맞추기
+
   flex: 1 1 calc(100% - 10px);
   max-width: calc(100% - 10px);
-  background-color: rgb(130, 130, 130);
 
   margin: 5px;
   border-radius: 10px;
@@ -140,4 +127,22 @@ export const Skeleton = styled.div`
   transition: all 0.3s ease;
 
   aspect-ratio: 1/1.5;
-`
+
+  &:hover{
+    filter: brightness(50%);
+    cursor: pointer;
+  }
+
+  // @container movie-poster (min-width: 100px){
+  //   height: 140cqw;
+  // }
+`;
+
+Poster.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+
+  }).isRequired
+}

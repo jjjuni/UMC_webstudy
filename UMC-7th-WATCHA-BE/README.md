@@ -6,7 +6,7 @@ yarn
 yarn start:dev
 ```
 
-# API 명세서
+# [API 명세서](http://localhost:3000/doc)
 
 ### `POST` http://localhost:3000/auth/register (회원가입)
 
