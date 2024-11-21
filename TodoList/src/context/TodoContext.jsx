@@ -1,12 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useCustomMutation from "../hooks/useCustomMutation";
 
 export const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
-  const queryClient = useQueryClient();
 
   const mutate = useCustomMutation();
 
