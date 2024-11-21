@@ -1,23 +1,21 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import useCustomMutation from "../hooks/useCustomMutation";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
   const queryClient = useQueryClient();
 
-  const mutate = useCustomMutation();
-
-  const { data, isPending } = useQuery({
+  const { data, isPending } = useQuery ({
     queryKey: ['getTodos'],
-    queryFn: async () => {
-      const response = await axios.get(import.meta.env.VITE_TODO);
-      return response.data[0]
-    }
+    queryFn: async () => 
+      {
+        const response = await axios.get(import.meta.env.VITE_TODO);
+        return response.data[0]
+      }
   })
-
+  
   const [inputTitle, setInputTitle] = useState('');
   const [inputContent, setInputContent] = useState('');
   const [editId, setEditId] = useState(0);
@@ -25,34 +23,28 @@ export function TodoContextProvider({ children }) {
   const [editContent, setEditContent] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [todo, setTodo] = useState();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   // todo 추가
-  const addTodo = async () => {
-    if (inputTitle.trim()) {                   // 빈 칸 등록 방지
+  const addTodo = async () => {         
+    if (inputTitle.trim()){                   // 빈 칸 등록 방지
       setInputTitle('');
       setInputContent('');
-      mutate({
-        method: 'POST',
-        url: import.meta.env.VITE_TODO,
-        data : {
-          title: inputTitle,
-          content: inputContent,
-          checked: false,
-        },
-      })
+      await axios.post(import.meta.env.VITE_TODO, {
+        "title" : inputTitle,
+        "content" : inputContent,
+      });
+      queryClient.invalidateQueries(['getTodos'])
     }
   };
-
+  
   // todo 삭제
   const deleteTodo = async (id) => {
-    mutate({
-      method: 'DELETE',
-      url: `${import.meta.env.VITE_TODO}/${id}`
-    })
+    await axios.delete(`${import.meta.env.VITE_TODO}/${id}`)
+    queryClient.invalidateQueries(['getTodos'])
   };
 
   // 수정 버튼을 눌렀을 때 (편집 id, 편집 text 설정)
@@ -63,19 +55,14 @@ export function TodoContextProvider({ children }) {
   };
 
   // todo 수정
-  const updateTodo = async (todo, text) => {
-    if (text.trim()) {                  // 빈 칸 수정 방지
-      mutate({
-        method: 'PATCH',
-        url: `${import.meta.env.VITE_TODO}/${todo.id}`,
-        data: {
-          "title": editTitle,
-          "content": editContent,
-        },
+  const updateTodo = async (id, text) => {
+    if (text.trim()){                   // 빈 칸 수정 방지
+      await axios.patch(`${import.meta.env.VITE_TODO}/${id}`, {
+        "title": editTitle,
+        "content": editContent,
       })
-      todo.title = editTitle            // 낙관적 업데이트
-      todo.content = editContent
       setEditId(0);
+      queryClient.invalidateQueries(['getTodos'])
     }
   };
 
@@ -89,7 +76,7 @@ export function TodoContextProvider({ children }) {
       setInputContent,
       editTitle,
       setEditTitle,
-      editContent,
+      editContent, 
       setEditContent,
       handleSubmit,
       addTodo,

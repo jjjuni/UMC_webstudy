@@ -5,6 +5,7 @@ import DeleteButton from "./DeleteButton";
 import UpdateButton from "./UpdateButton";
 import axios from "axios";
 import styled from "styled-components";
+import useCustomMutation from "../../hooks/useCustomMutation";
 
 function TodoTask({ todo }) {
   const { 
@@ -15,11 +16,17 @@ function TodoTask({ todo }) {
     setTodo,
   } = useContext(TodoContext);
 
+  const mutate = useCustomMutation();
+
   const [isChecked, setIsChecked] = useState(todo.checked);
 
-  const todoCheck = async (id, checked) => {
-    await axios.patch(`${import.meta.env.VITE_TODO}/${id}`,{
-      "checked": !isChecked,
+  const todoCheck = async (id) => {
+    mutate({
+      method: 'PATCH',
+      url: `${import.meta.env.VITE_TODO}/${todo.id}`,
+      data: {
+        checked: !isChecked,
+      },
     })
   }
 
@@ -29,7 +36,7 @@ function TodoTask({ todo }) {
       <S.CheckBox
         type="checkbox"
         checked={isChecked}
-        onClick={() => todoCheck(todo.id, todo.checked)}
+        onClick={() => todoCheck(todo.id)}
         onChange={(e) => setIsChecked(e.target.checked)}
       />
       

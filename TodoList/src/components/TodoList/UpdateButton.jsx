@@ -14,7 +14,7 @@ function UpdateButton({todo}) {
   return (
     <>
       {todo.id === editId ? (
-        <S.TodoButton className='update-button button' onClick={() => updateTodo(todo.id, editTitle)}>완료</S.TodoButton>
+        <S.TodoButton className='update-button button' onClick={() => updateTodo(todo, editTitle)}>완료</S.TodoButton>
         ) : (
         <S.TodoButton className='update-button button' onClick={() => clickUpdate(todo)}>수정</S.TodoButton>
       )}
