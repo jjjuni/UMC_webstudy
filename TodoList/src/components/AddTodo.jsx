@@ -1,21 +1,27 @@
-import './AddTodo.css';
 import { useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
+import * as S from './AddTodoStyle'
 
 function AddTodo() {
   const {
-    inputText,
-    setInputText,
+    inputTitle,
+    setInputTitle,
+    inputContent,
+    setInputContent,
     handleSubmit,
     addTodo,
   } = useContext(TodoContext)
   
   return (
-    <form className='addTodo-form' onSubmit={handleSubmit}>
-      <input type='text' className='addTodo-input' placeholder='새로운 할 일을 입력하세요.' value={inputText} onChange={(e) => setInputText(e.target.value)} />
-      <button type='submit' className='addTodo-button' onClick={() => addTodo()}>+</button>
-    </form>
+    <S.AddTodoForm onSubmit={handleSubmit}>
+      <S.InputWrapper>
+        <S.AddTodoInput type='text' placeholder='제목을 입력하세요.' value={inputTitle} onChange={(e) => setInputTitle(e.target.value)} />
+        <S.AddTodoInput type='text' placeholder='내용을 입력하세요.' value={inputContent} onChange={(e) => setInputContent(e.target.value)} />
+      </S.InputWrapper>
+      <S.AddTodoButton type='submit' onClick={() => addTodo()}>+</S.AddTodoButton>
+    </S.AddTodoForm>
   )
 }
 
 export default AddTodo;
+
