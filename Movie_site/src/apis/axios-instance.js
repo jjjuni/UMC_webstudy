@@ -32,14 +32,14 @@ axiosUserInstance.interceptors.response.use(                  // 받은 응답�
   (response) => { return response; },
   async (error) => {
     const { config, response: { status } } = error;
-    
+
     if (status === 401 && error.response.data.error === 'Unauthorized') {
       const originRequest = config;
 
-      if (!originRequest._retry){
+      if (!originRequest._retry) {
         originRequest._retry = true;
 
-        try{
+        try {
           const refreshToken = localStorage.getItem('refreshToken');
           const response = await axios.post(import.meta.env.VITE_REFRESH_URL, {}, {
             headers: {
@@ -47,21 +47,21 @@ axiosUserInstance.interceptors.response.use(                  // 받은 응답�
             }
           });
 
-          const {accessToken : newAccessToken, refreshToken: newRefreshToken} = response.data;
+          const { accessToken: newAccessToken, refreshToken: newRefreshToken } = response.data;
           localStorage.setItem('accessToken', newAccessToken);
           localStorage.setItem('refreshToken', newRefreshToken);
 
           originRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return axiosUserInstance(originRequest);
 
-        } catch (error){
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        return Promise.reject(error);
+        } catch (error) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          return Promise.reject(error);
+        }
       }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
-});
+  });
 
 export { axiosTMDBInstance, axiosUserInstance, axiosLOGInstance };

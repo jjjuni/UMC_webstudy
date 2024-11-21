@@ -4,12 +4,14 @@ import * as S from "../_style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { LogContext } from '../../context/logContext';
 import useTitle from '../../hooks/useTitle';
+import useCustomMutation from '../../hooks/useCustomMutation';
 
 function LoginPage() {
   const navigate = useNavigate()
+
+  const mutate = useCustomMutation()
 
   const emailRegExp = 
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -36,12 +38,11 @@ function LoginPage() {
 
   const loginSubmit = async (data) => {                // customHook 사용X
     try{
-      const response = await axios.post(import.meta.env.VITE_LOGIN_URL, {
-        "email": data.email,
-        "password": data.password
+      await mutate({
+        url: import.meta.env.VITE_LOGIN_URL,
+        data,
       })
-      localStorage.setItem("accessToken", response.data.accessToken)
-      localStorage.setItem("refreshToken", response.data.refreshToken)
+
       setIsLogged(true)
 
       navigate('/', { replace: true })
