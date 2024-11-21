@@ -5,9 +5,12 @@ import Poster from "../../components/poster/poster.jsx";
 import { ClipLoader } from "react-spinners";
 
 import * as S from "../_style/page-style.js";
-import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import useTitle from '../../hooks/useTitle.js';
 import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
+<<<<<<< HEAD:Movie_site/src/pages/movie/moviesPage(Pagination).jsx
+import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
+=======
+>>>>>>> 996c1931343df1a0ce9f79234751728b9a9c59e1:Movie_site/src/pages/movie/moviesPage_Pagination.jsx
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 
