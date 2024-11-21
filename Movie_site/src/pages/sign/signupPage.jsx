@@ -7,11 +7,15 @@ import { useNavigate } from 'react-router-dom'
 import { axiosLOGInstance } from '../../apis/axios-instance';
 import useTitle from '../../hooks/useTitle';
 import { LogContext } from '../../context/logContext'
+import { useMutation } from '@tanstack/react-query'
+import useCustionMutation from '../../hooks/useCustomMutation'
 
 function SignUpPage() {
   const {
     isLogged,
   } = useContext(LogContext);
+
+  const mutate = useCustionMutation()
 
   const navigate = useNavigate();
   
@@ -24,7 +28,7 @@ function SignUpPage() {
     email: yup.string().required('empty').matches(emailRegExp),
     password: yup.string().required('empty').min(8).max(16),
     passwordCheck: yup.string().required('empty').oneOf([yup.ref('password'), null]),
-    name: yup.string().required('empty').min(2),
+    username: yup.string().required('empty').min(2),
     phone: yup.string().required('empty').matches(phoneRegExp),
   })
 
@@ -43,15 +47,14 @@ function SignUpPage() {
 
   const signUpSubmit = async (data) => {             
     try{
-      await axiosLOGInstance.post(import.meta.env.VITE_RE, {
-        "email": data.email,
-        "password": data.password,
-        "passwordCheck": data.passwordCheck,
-        "username": data.name
+      mutate({
+        url: import.meta.env.VITE_REGISTER_URL, 
+        data,
       })
       navigate('/login')
     }
     catch(error){
+      console.log(error)
       setErrorMessage(error.response?.data?.message);
     }
   }
@@ -94,11 +97,11 @@ function SignUpPage() {
             }
           </S.InputDiv>
           <S.InputDiv style={{margin: '15px 0 0'}}>
-            <S.InputText type='text' placeholder='이름' maxLength={30} {...register("name")}
-            $border={(nameValue || isSubmitted) && errors.name ? '2px solid #e73e3e' : '2px solid black'}
+            <S.InputText type='text' placeholder='이름' maxLength={30} {...register("username")}
+            $border={(nameValue || isSubmitted) && errors.username ? '2px solid #e73e3e' : '2px solid black'}
             />
             {(nameValue || isSubmitted) && 
-              <S.ValidationIcon src={errors.name? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
+              <S.ValidationIcon src={errors.username? '/src/icon/x_circle.svg' : '/src/icon/check_circle.svg'}/>
             }
           </S.InputDiv>
           <S.InputDiv>
