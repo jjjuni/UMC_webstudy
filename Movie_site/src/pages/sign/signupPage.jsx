@@ -4,10 +4,8 @@ import * as S from "../_style/page-style"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
-import { axiosLOGInstance } from '../../apis/axios-instance';
 import useTitle from '../../hooks/useTitle';
 import { LogContext } from '../../context/logContext'
-import { useMutation } from '@tanstack/react-query'
 import useCustionMutation from '../../hooks/useCustomMutation'
 
 function SignUpPage() {
