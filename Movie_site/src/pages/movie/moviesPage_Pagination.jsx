@@ -9,7 +9,7 @@ import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import useTitle from '../../hooks/useTitle.js';
 import CardSkeletonList from "../../components/poster/card-skeleton-list.jsx";
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -44,6 +44,7 @@ function MoviesPage() {
   } = useQuery ({
     queryKey: ['getMovies', category, currentPage],
     queryFn: async () => await axiosTMDBInstance.get(`/movie/${category}?language=ko-KR&page=${currentPage}`),
+    placeholderData: keepPreviousData,    // 다음 페이지 이동 시 깜빡임 방지 (이전 데이터 유지 -> 새로운 데이터 불러오면 바꿔치기)
   })
 
   const changePage = (option) => {
