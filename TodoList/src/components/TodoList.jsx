@@ -1,5 +1,5 @@
 import * as S from './TodoListStyle.jsx'
-import TodoTask from './TodoList/TodoTask.jsx';
+import TodoCard from './TodoList/TodoCard.jsx';
 import { useContext, useState } from 'react';
 import { TodoContext } from '../context/TodoContext.jsx';
 import axios from 'axios';
@@ -26,11 +26,7 @@ function TodoList() {
         </Loading>
       ) : (
         todos?.map((todo) => (
-          <S.TodoCard key={todo.id}>
-            <S.TodoContainer>
-              <TodoTask todo={todo}/>
-            </S.TodoContainer>
-          </S.TodoCard>
+          <TodoCard key={todo.id} todo={todo}/>
         ))
       )}
     </>

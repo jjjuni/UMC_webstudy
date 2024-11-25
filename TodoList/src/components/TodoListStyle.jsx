@@ -24,6 +24,7 @@ export const TodoContainer = styled.div`
 export const TodoBox = styled.div`
     display: flex;
     align-items: center;
+    width: 100%;
 `
 
 export const CheckBox = styled.input`
