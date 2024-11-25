@@ -1,16 +1,19 @@
 import * as S from './TodoListStyle.jsx'
 import TodoCard from './TodoList/TodoCard.jsx';
-import { useContext, useState } from 'react';
-import { TodoContext } from '../context/TodoContext.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BeatLoader } from "react-spinners";
+import { useQuery } from '@tanstack/react-query';
 
 function TodoList() {
-  const {
-    todos,
-    isPending,
-  } = useContext(TodoContext)
+
+  const { data: todos, isPending } = useQuery({
+    queryKey: ['getTodos'],
+    queryFn: async () => {
+      const response = await axios.get(import.meta.env.VITE_TODO);
+      return response.data[0]
+    }
+  })
 
   return (
     <>

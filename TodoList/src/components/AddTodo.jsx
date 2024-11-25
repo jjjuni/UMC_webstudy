@@ -1,17 +1,34 @@
-import { useContext } from 'react';
-import { TodoContext } from '../context/TodoContext';
+import { useState } from 'react';
 import * as S from './AddTodoStyle'
+import useCustomMutation from '../hooks/useCustomMutation';
 
 function AddTodo() {
-  const {
-    inputTitle,
-    setInputTitle,
-    inputContent,
-    setInputContent,
-    handleSubmit,
-    addTodo,
-  } = useContext(TodoContext)
   
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  
+  const [inputTitle, setInputTitle] = useState('');
+  const [inputContent, setInputContent] = useState('');
+  
+  const mutate = useCustomMutation();
+
+  const addTodo = async () => {
+    if (inputTitle.trim()) {                   // 빈 칸 등록 방지
+      setInputTitle('');
+      setInputContent('');
+      mutate({
+        method: 'POST',
+        url: import.meta.env.VITE_TODO,
+        data : {
+          title: inputTitle,
+          content: inputContent,
+          checked: false,
+        },
+      })
+    }
+  };
+
   return (
     <S.AddTodoForm onSubmit={handleSubmit}>
       <S.InputWrapper>

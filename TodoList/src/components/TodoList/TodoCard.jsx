@@ -1,28 +1,25 @@
 import { useState, useContext } from "react";
 import { TodoContext } from "../../context/TodoContext";
 import * as S from "../TodoListStyle";
-import axios from "axios";
 import styled from "styled-components";
 import useCustomMutation from "../../hooks/useCustomMutation";
 
 function TodoTask({ todo }) {
-  const { 
-    setEditTitle, 
-    setEditContent,
-    editId,
+  const {
     setModalVisible,
     setTodo,
-    deleteTodo,
-    editTitle,
-    updateTodo,
-    clickUpdate,
   } = useContext(TodoContext);
+
+  
+  const [editId, setEditId] = useState(0);
+  const [editTitle, setEditTitle] = useState('');
+  const [editContent, setEditContent] = useState('');
 
   const mutate = useCustomMutation();
 
   const [isChecked, setIsChecked] = useState(todo.checked);
 
-  const todoCheck = async (id) => {
+  const todoCheck = async () => {
     mutate({
       method: 'PATCH',
       url: `${import.meta.env.VITE_TODO}/${todo.id}`,
@@ -31,6 +28,35 @@ function TodoTask({ todo }) {
       },
     })
   }
+
+  const deleteTodo = async (id) => {
+    mutate({
+      method: 'DELETE',
+      url: `${import.meta.env.VITE_TODO}/${id}`
+    })
+  };
+
+  const clickUpdate = (todo) => {
+    setEditId(todo.id)
+    setEditTitle(todo.title)
+    setEditContent(todo.content)
+  };
+
+  const updateTodo = async (todo, text) => {
+    if (text.trim()) {                  // 빈 칸 수정 방지
+      mutate({
+        method: 'PATCH',
+        url: `${import.meta.env.VITE_TODO}/${todo.id}`,
+        data: {
+          "title": editTitle,
+          "content": editContent,
+        },
+      })
+      todo.title = editTitle            // 낙관적 업데이트
+      todo.content = editContent
+      setEditId(0);
+    }
+  };
 
   return (
     <S.TodoCard>
