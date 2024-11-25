@@ -63,7 +63,7 @@ function MoviesPage() {
     if (inView && !isFetching && hasNextPage){
       fetchNextPage();
     }
-  }, [inView, isFetching, hasNextPage, fetchNextPage])
+  }, [inView, isFetching, hasNextPage])
   
   return (
     

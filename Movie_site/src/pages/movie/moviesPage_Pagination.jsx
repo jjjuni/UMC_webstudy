@@ -12,7 +12,7 @@ import useGetInfiniteMovies from "../../hooks/queries/useGetInfiniteMovies.js";
 =======
 >>>>>>> 996c1931343df1a0ce9f79234751728b9a9c59e1:Movie_site/src/pages/movie/moviesPage_Pagination.jsx
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 function MoviesPage() {
   const [title, setTitle] = useState("");
@@ -47,6 +47,7 @@ function MoviesPage() {
   } = useQuery ({
     queryKey: ['getMovies', category, currentPage],
     queryFn: async () => await axiosTMDBInstance.get(`/movie/${category}?language=ko-KR&page=${currentPage}`),
+    placeholderData: keepPreviousData,    // 다음 페이지 이동 시 깜빡임 방지 (이전 데이터 유지 -> 새로운 데이터 불러오면 바꿔치기)
   })
 
   const changePage = (option) => {
