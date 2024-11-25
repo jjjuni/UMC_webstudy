@@ -41,5 +41,6 @@
 > | yarn add @tanstack/react-query | tanstackQuery 라이브러리 |
 > | yarn add @tanstack/react-query-devtools | tanstackQuery 개발자 도구 |
 > | yarn add react-intersection-observer | intersection-observer 라이브러리 |
-
+> | yarn add react-redux | redux 라이브러리 |
+> | yarn add @reduxjs/toolkit | redux-toolkit 라이브러리 |
 <br>
