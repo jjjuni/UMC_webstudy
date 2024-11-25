@@ -3,14 +3,20 @@ import { TodoContext } from "../../context/TodoContext";
 import * as S from "../TodoListStyle";
 import styled from "styled-components";
 import useCustomMutation from "../../hooks/useCustomMutation";
+import { useDispatch } from "react-redux";
+import { setModalTodo, setModalVisible } from "../../redux/modalSlice";
 
 function TodoTask({ todo }) {
-  const {
-    setModalVisible,
-    setTodo,
-  } = useContext(TodoContext);
+  // const {
+  //   setModalVisible,
+  //   setTodo,
+  // } = useContext(TodoContext);
 
+  const modalDispatch = useDispatch()
   
+  const [title, setTitle] = useState(todo.title)
+  const [content, setContent] = useState(todo.content)
+
   const [editId, setEditId] = useState(0);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
@@ -38,8 +44,8 @@ function TodoTask({ todo }) {
 
   const clickUpdate = (todo) => {
     setEditId(todo.id)
-    setEditTitle(todo.title)
-    setEditContent(todo.content)
+    setEditTitle(title)
+    setEditContent(content)
   };
 
   const updateTodo = async (todo, text) => {
@@ -52,8 +58,10 @@ function TodoTask({ todo }) {
           "content": editContent,
         },
       })
-      todo.title = editTitle            // 낙관적 업데이트
-      todo.content = editContent
+      
+      setTitle(editTitle)
+      setContent(editContent)           // 낙관적 업데이트
+      
       setEditId(0);
     }
   };
@@ -72,22 +80,22 @@ function TodoTask({ todo }) {
           {todo.id !== editId ? (
             <TextWrapper onClick={() => {
               {
-                setModalVisible(true);
-                setTodo(todo);
+                modalDispatch(setModalVisible(true))
+                modalDispatch(setModalTodo(todo))
               }
             }}>
-              <S.TodoTask $fontWeight={"bold"} $borderBottom={'1px solid rgba(136, 161, 122, 0.5);'}>{todo.title}</S.TodoTask>
-              <S.TodoTask>{todo.content}</S.TodoTask>
+              <S.TodoTask $fontWeight={"bold"} $borderBottom={'1px solid rgba(136, 161, 122, 0.5);'}>{title}</S.TodoTask>
+              <S.TodoTask>{content}</S.TodoTask>
             </TextWrapper>
           ) : (
             <>
               <S.TodoTaskInput
                 $fontWeight={"bold"}
-                defaultValue={todo.title}
+                defaultValue={title}
                 onChange={(e) => setEditTitle(e.target.value)}
               />
               <S.TodoTaskInput
-                defaultValue={todo.content}
+                defaultValue={content}
                 onChange={(e) => setEditContent(e.target.value)}
               />
             </>

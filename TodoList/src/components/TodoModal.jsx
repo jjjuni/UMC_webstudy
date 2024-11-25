@@ -1,22 +1,27 @@
-import { useContext } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setModalVisible } from "../redux/modalSlice";
 
 
-const TodoDetail = ({ todo }) => {
-  const {
-    modalVisible,
-    setModalVisible,
-  } = useContext(TodoContext);
+const TodoModal = () => {
+  // const {
+  //   modalVisible,
+  //   setModalVisible,
+  // } = useContext(TodoContext);
+
+  const modal = useSelector((state) => state.modal)
+  const modalDispatch = useDispatch()
 
   return (
     <>
-      <ModalOverlay onClick={() => setModalVisible(false)} $isVisible={modalVisible}>
-        <TodoModalContainer $isVisible={modalVisible} onClick={(e) => e.stopPropagation()}>
+      <ModalOverlay onClick={() => modalDispatch(setModalVisible(false))} $isVisible={modal.modalVisible}>
+        <TodoModalContainer $isVisible={modal.modalVisible} onClick={(e) => e.stopPropagation()}>
           <TodoWrapper>
-            <TodoTitle>{todo?.title}</TodoTitle>
-            <TodoContent>{todo?.content}</TodoContent>
-            <TodoDate>{todo?.updatedAt}</TodoDate>
+            <TodoTitle>{modal?.modalTodo?.title}</TodoTitle>
+            <TodoContent>{modal?.modalTodo?.content}</TodoContent>
+            <TodoDate>{modal?.modalTodo?.updatedAt}</TodoDate>
           </TodoWrapper>
         </TodoModalContainer>
       </ModalOverlay>
@@ -24,7 +29,7 @@ const TodoDetail = ({ todo }) => {
   )
 }
 
-export default TodoDetail;
+export default TodoModal;
 
 const ModalOverlay = styled.div`
   display: flex;
