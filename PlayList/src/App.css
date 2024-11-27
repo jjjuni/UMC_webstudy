@@ -7,4 +7,10 @@ html{
     color: white;
 
     font-family: Pretendard-Regular;
+
+    scroll-behavior: smooth;
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
 }

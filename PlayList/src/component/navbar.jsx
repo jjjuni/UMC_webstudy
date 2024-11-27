@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { BsCart3 } from "react-icons/bs";
-import { FaCircle } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart);
@@ -10,12 +10,11 @@ const Navbar = () => {
     <StyledNavbar>
       <NavWrapper>
         <Title>PlayList</Title>
-        <CartIcon>
+        <CartIcon to={'/cart'}>
           <BsCart3 size={'30px'}/>
           {cartItems.cart.length > 0 &&
             <CartNum>{Object.values(cartItems.count).reduce((acc, curr) => acc + curr, 0)}</CartNum>
           }
-          
         </CartIcon>
       </NavWrapper>
     </StyledNavbar>
@@ -40,7 +39,7 @@ const StyledNavbar = styled.div`
 
 const NavWrapper = styled.div`
   display: flex;
-  align-content: center;
+  align-items: center;
 
   width: 100%;
   margin: 0 50px;
@@ -49,7 +48,7 @@ const NavWrapper = styled.div`
   justify-content: space-between;
 `
 
-const Title = styled.p`
+const Title = styled(Link)`
   text-align: center;
   align-content: center;
 
@@ -58,13 +57,14 @@ const Title = styled.p`
 
   color: #00CD3C;
 
-  margin: 20px 0 0;
+  margin: 10px 0 0;
+
 `
 
-const CartIcon = styled.div`
+const CartIcon = styled(Link)`
   position: relative;
   display: flex;
-  align-items: center;
+  height: 30px;
 
   color: #00CD3C;
 `
@@ -80,8 +80,8 @@ const CartNum = styled.p`
 
   width: 20px;
   height: 20px;
-  top: 28px;
-  right: -6px;
+  top: -5px;
+  right: -5px;
 
   color: #00CD3C;
 `

@@ -17,4 +17,6 @@ const StyledFooter = styled.div`
     border-top: 1px solid rgb(34 34 34);
 
     margin: 150px 0 0;
+
+    box-sizing: border-box;
 `

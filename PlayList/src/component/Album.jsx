@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { addItem, removeItem } from "../redux/cartSlice";
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
+import { BsCartPlus } from "react-icons/bs";
 
-
-const Album = ({item}) => {
+const Album = ({item, cart}) => {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -20,9 +20,19 @@ const Album = ({item}) => {
       </TextWrapper>
       <ButtomBox>
         <ButtonWrapper>
-          <Button onClick={() => dispatch(addItem(item))}><GoPlus/></Button>
-          <Count>{cartItems?.count[item.id] || 0}</Count>
-          <Button onClick={() => dispatch(removeItem(item.id))}><FiMinus/></Button>
+          {cart ? (
+            <>
+              <Button onClick={() => dispatch(addItem(item))}><GoPlus/></Button>
+              <Count>{cartItems?.count[item.id] || 0}</Count>
+              <Button onClick={() => dispatch(removeItem(item.id))}><FiMinus/></Button>
+            </>
+          ) : (
+            <AddCart onClick={() => dispatch(addItem(item))}>
+              <BsCartPlus size={'25px'}/>
+            </AddCart>
+          )
+          }
+          
         </ButtonWrapper>
       </ButtomBox>
     </AlbumBox>
@@ -49,6 +59,7 @@ const AlbumCoverWrapper = styled.div`
 const AlbumCover = styled.img`
   height: 100%;
   aspect-ratio: 1/1;
+  user-select: none;
 `
 
 const TextWrapper = styled.div`
@@ -112,4 +123,8 @@ const Count = styled.p`
   font-size: 17px;
   margin: 0;
   color: #a1a1a1;
+`
+
+const AddCart = styled.div`
+  cursor: pointer;
 `
