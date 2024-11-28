@@ -6,7 +6,7 @@ import { useDebounceFn } from "../../hooks/useDebounce";
 
 const MovieList = ({ moviesData }) => {
   const [listX, setListX] = useState(0);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [wrapperWidth, setWrapperWidth] = useState(0);
   const [containerWidth, setcontainerWidth] = useState(0);
 
@@ -26,11 +26,11 @@ const MovieList = ({ moviesData }) => {
 
   useEffect(() => {
     debouncedUpdate();
-    window.addEventListener("resize", debouncedUpdate)
-    return () => {
-      window.addEventListener("resize", debouncedUpdate)
-    }
-  }, [])
+    window.addEventListener("resize", debouncedUpdate) 
+    setTimeout(() => {
+      setIsDisabled(false)
+    }, 500)
+  })
 
   const leftButtonHandler = () => {
     setListX((prev) => {
