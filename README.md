@@ -21,7 +21,10 @@
 > | | |
 > | | **PlayList 제작** |
 > | 9주차 | [Chapter 9. Redux-Toolkit을 활용한 장바구니 만들기](https://github.com/jjjuni/UMC_webstudy/tree/main/9%EC%A3%BC%EC%B0%A8_Chapter%209.%20Redux-Toolkit%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88%20%EB%A7%8C%EB%93%A4%EA%B8%B0) |>
+<<<<<<< HEAD
 > 
+=======
+>>>>>>> origin/week_9
 > <br>
 >
 > ## ‼️리액트 명령어
