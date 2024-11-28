@@ -45,7 +45,7 @@ function MoviesPage() {
     fetchNextPage, 
     isFetchingNextPage 
   } = useInfiniteQuery({
-    queryKey: ['getMovies', category],
+    queryKey: ['getInfinityMovies', category],
     queryFn: async ({pageParam}) => await axiosTMDBInstance.get(`/movie/${category}?language=ko-KR&page=${pageParam}`),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {

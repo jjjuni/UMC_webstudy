@@ -7,10 +7,7 @@ function Poster({movie}) {
   const navigate = useNavigate();
 
   return (
-    <MoviePoster onClick={() => navigate(`/moviePage/${movie.id}`, {
-      replace: false,
-      state: {id: 123, name: 'dsa'}
-    })}>
+    <MoviePoster onClick={() => navigate(`/moviePage/${movie.id}`)}>
       <PosterImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
       <MovieTitle>{movie.title}</MovieTitle>
       <MovieDate>{movie.release_date}</MovieDate>

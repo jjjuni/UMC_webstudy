@@ -13,13 +13,20 @@ import Movieslayout from "./layout/movies-layout.jsx";
 import './App.css';
 import './font.css';
 
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, useLocation} from "react-router-dom";
+import { useEffect } from "react";
+import ScrollToTop from "./scroll-to-top.jsx";
 
 function App() {
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <RootLayout/>,
+      element: 
+      <>
+        <ScrollToTop/>
+        <RootLayout/>
+      </>,
       errorElement: <NotFound/>,
       children: [
         {
