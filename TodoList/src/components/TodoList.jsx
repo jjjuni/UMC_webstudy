@@ -1,5 +1,5 @@
 import * as S from './TodoListStyle.jsx'
-import TodoCard from './TodoList/TodoCard.jsx';
+import TodoCard from './TodoCard.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BeatLoader } from "react-spinners";

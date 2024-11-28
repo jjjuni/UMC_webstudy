@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { TodoContext } from "../../context/TodoContext";
 import { useDispatch, useSelector } from "react-redux";
-import { setModalVisible } from "../redux/modalSlice";
+import { setModalVisible } from "../../redux/modalSlice";
 
 
 const TodoModal = () => {

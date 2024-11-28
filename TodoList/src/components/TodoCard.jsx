@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import { TodoContext } from "../../context/TodoContext";
-import * as S from "../TodoListStyle";
+import { TodoContext } from "../context/TodoContext";
+import * as S from "./TodoListStyle";
 import styled from "styled-components";
-import useCustomMutation from "../../hooks/useCustomMutation";
+import useCustomMutation from "../hooks/useCustomMutation";
 import { useDispatch } from "react-redux";
-import { setModalTodo, setModalVisible } from "../../redux/modalSlice";
+import { setModalTodo, setModalVisible } from "../redux/modalSlice";
 
 function TodoTask({ todo }) {
   // const {
