@@ -18,8 +18,8 @@
 > | 6주차 | [Chapter 6. 회원 가입 기능, API 호출을 통한 검색 기능 구현, Debounce & Throttling](https://github.com/jjjuni/UMC_webstudy/tree/main/6%EC%A3%BC%EC%B0%A8_Chapter%206.%20%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85%20%EA%B8%B0%EB%8A%A5%2C%20API%20%ED%98%B8%EC%B6%9C%EC%9D%84%20%ED%86%B5%ED%95%9C%20%EA%B2%80%EC%83%89%20%EA%B8%B0%EB%8A%A5%20%EA%B5%AC%ED%98%84%2C%20Debounce%20%26%20Throttling) |
 > | 7주차 | [Chapter 7. Tanstack Query (useQuery, useInfiniteQuery), 무한 스크롤, 페이지네이션](https://github.com/jjjuni/UMC_webstudy/tree/main/7%EC%A3%BC%EC%B0%A8_Chapter%207.%20%20Tanstack%20Query%20(useQuery%2C%20useInfiniteQuery)%2C%20%EB%AC%B4%ED%95%9C%20%EC%8A%A4%ED%81%AC%EB%A1%A4%2C%20%ED%8E%98%EC%9D%B4%EC%A7%80%EB%84%A4%EC%9D%B4%EC%85%98) |
 > | 8주차 | [Chapter 8. Tanstack Query (useMutation), 프로젝트 마무리](https://github.com/jjjuni/UMC_webstudy/blob/main/8%EC%A3%BC%EC%B0%A8_Chapter%208.%20Tanstack%20Query%20(useMutation),%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%A7%88%EB%AC%B4%EB%A6%AC) |
-> > | | |
-> > | | **PlayList 제작** |
+> | | |
+> | | **PlayList 제작** |
 > | 9주차 | [Chapter 9. Redux-Toolkit을 활용한 장바구니 만들기](https://github.com/jjjuni/UMC_webstudy/tree/main/9%EC%A3%BC%EC%B0%A8_Chapter%209.%20Redux-Toolkit%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88%20%EB%A7%8C%EB%93%A4%EA%B8%B0) |>
 > 
 > <br>
