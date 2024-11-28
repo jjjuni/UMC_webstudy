@@ -19,7 +19,8 @@
 > >     - ✅ '예' 버튼을 누를 시 장바구니를 초기화하고 `modal`창을 닫아주세요.
 > >     - ✅ '아니요' 버튼을 누를 시 장바구니 초기화 없이 `modal`창을 닫아주세요.
 > > 
-> > https://github.com/user-attachments/assets/79059ad9-6821-4cd0-8d7a-9756992e2e68
+> > https://github.com/user-attachments/assets/0c873d91-3ebb-42cd-aa38-93c682c687ce
 > >
 
 <br>
+
