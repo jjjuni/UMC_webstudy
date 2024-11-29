@@ -23,7 +23,8 @@
     "react-spinners": "^0.14.1",
     "scss": "^0.2.4",
     "styled-components": "^6.1.13",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

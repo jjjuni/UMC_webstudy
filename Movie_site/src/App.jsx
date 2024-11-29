@@ -7,68 +7,89 @@ import MovieCategoryPage from "./pages/movie/movieCategoryPage.jsx";
 import MoviesPage from "./pages/movie/moviesPage_InfinityScroll.jsx";
 import MoviePage from "./pages/movie/moviePage.jsx";
 
-import RootLayout from "./layout/root-layout.jsx"
+import RootLayout from "./layout/root-layout.jsx";
 import Movieslayout from "./layout/movies-layout.jsx";
 
-import './App.css';
-import './font.css';
+import "./App.css";
+import "./font.css";
 
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
+
+import { useEffect } from "react";
+import ScrollToTop from "./scroll-to-top.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { LogContextProvider } from "./context/logContext.jsx";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient()
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <RootLayout/>,
-      errorElement: <NotFound/>,
+      path: "/",
+      element: (
+        <>
+          <ScrollToTop />
+          <RootLayout />
+        </>
+      ),
+      errorElement: <NotFound />,
       children: [
         {
           index: true,
-          element: <HomePage/>
+          element: <HomePage />,
         },
         {
-          path: 'login',
-          element: <LoginPage/>
+          path: "login",
+          element: <LoginPage />,
         },
         {
-          path: 'sign-up',
-          element: <SignUpPage/>
+          path: "sign-up",
+          element: <SignUpPage />,
         },
         {
-          path: 'search',
-          element: <SearchPage/>
+          path: "search",
+          element: <SearchPage />,
         },
         {
-          path: 'movie-category',
-          element: <Movieslayout/>,
+          path: "movie-category",
+          element: <Movieslayout />,
           children: [
             {
               index: true,
-              element: <MovieCategoryPage/>
+              element: <MovieCategoryPage />,
             },
             {
-              path: ':category',
-              element: <MoviesPage/>,
+              path: ":category",
+              element: <MoviesPage />,
             },
-          ]
-        }, 
-        {
-          path: 'moviePage/:movieId',
-          element: <MoviePage/>
+          ],
         },
         {
-          path: '*',
-          element: <NotFound/>
-        }, 
-      ]
-    }
-  ])
+          path: "moviePage/:movieId",
+          element: <MoviePage />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
+    },
+  ]);
 
   return (
-    <>
-      <RouterProvider router={router}/>
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <LogContextProvider>
+        <RouterProvider router={router} />
+      </LogContextProvider>
+
+      <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

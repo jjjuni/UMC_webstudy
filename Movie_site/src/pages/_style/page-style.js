@@ -6,11 +6,11 @@ export const ContentContainer = styled.div`
 
   background-color: black;
 
-  min-height: 100vh;
+  min-height: calc(100vh - 300px);
 
   box-sizing: border-box;
 
-  display: flex;
+  // display: flex;
 
   @media (max-width: 850px){
     padding-left: 0px;

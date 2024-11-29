@@ -2,7 +2,7 @@ import Poster from "./poster.jsx";
 import { axiosTMDBInstance } from "../../apis/axios-instance.js";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import useDebounce from "../../hooks/useDebounce.js";
+import { useDebounce } from "../../hooks/useDebounce.js";
 import PropTypes from "prop-types";
 import { ClipLoader } from "react-spinners";
 import CardSkeletonList from "./card-skeleton-list.jsx";

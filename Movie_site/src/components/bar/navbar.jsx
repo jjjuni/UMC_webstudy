@@ -87,10 +87,10 @@ const StyledNavbar = styled.div`
   width: 100%;
   height: 60px;
   justify-content: end;
-  background-color: #141517;
+  background-color: var(--main-gray);
   padding: 0px 40px 0px 0px;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 1000;
 `
 
 const NavbarLeft = styled.div`
@@ -99,7 +99,7 @@ const NavbarLeft = styled.div`
   left: 0px;
   width: 50%;
   min-width: 290px;
-  background-color: #141517;
+  background-color: var(--main-gray);
 
   transition: all 0.3s ease;
 
