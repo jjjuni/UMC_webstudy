@@ -1,4 +1,5 @@
 html{
+    background-color: black;
     overflow: auto;
     font-family: Pretendard-Regular;
 
@@ -25,4 +26,9 @@ body{
     margin:0;
 }
 
-
+:root{
+    --main-gray: #141517;
+    --main-pink: #f82f62;
+    --main-black: black;
+    --dark-gray: #0e0e0e;
+}

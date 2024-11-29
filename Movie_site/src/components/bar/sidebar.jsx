@@ -38,7 +38,7 @@ const StyledSidebar = styled.div`
   background-color: #141517;
   transition: transform 0.3s ease;
   box-sizing: border-box;
-  z-index: 200;
+  z-index: 2000;
   
   border-right: 1px solid #1B1C1D;
 

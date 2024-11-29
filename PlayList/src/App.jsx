@@ -1,7 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Navbar from './component/navbar'
 import './App.css'
 import './font.css'
 import CartPage from './page/CartPage'
@@ -9,13 +5,10 @@ import CartPage from './page/CartPage'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import RootLayout from './layout/root-layout'
 import PlayListPage from './page/PlayListPage'
-import ModalPortal from './component/ModalPortal'
-import AlertModal from './component/AlertModal'
-import { useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 function App() {
-
-  const modal = useSelector((state) => state.modal);
 
   const router = createBrowserRouter([
     {
@@ -37,9 +30,10 @@ function App() {
     }
   ])
   return (
-    <>
+    
+    <Provider store={store}>
       <RouterProvider router={router}/>
-    </>
+    </Provider>
   )
 }
 
