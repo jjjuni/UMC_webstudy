@@ -46,4 +46,5 @@
 > | yarn add react-intersection-observer | intersection-observer 라이브러리 |
 > | yarn add react-redux | redux 라이브러리 |
 > | yarn add @reduxjs/toolkit | redux-toolkit 라이브러리 |
+> | yarn add zustand | zustand 라이브러리 |
 <br>
