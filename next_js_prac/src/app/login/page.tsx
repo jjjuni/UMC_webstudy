@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export default function Login() {
-console.log('d')
   return (
     <>
       <div className="flex flex-col pt-20 justify-center items-center">

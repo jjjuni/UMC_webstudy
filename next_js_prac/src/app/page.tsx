@@ -9,7 +9,7 @@ export default async function Home() {
       const response = await axiosTMDBInstance.get(`/movie/now_playing?language=ko-KR&page=1`);
       return response.data; // API 응답 데이터 반환
     } catch (error) {
-      console.error("Error fetching movies:", error);
+      console.log("Error fetching movies:", error);
       return { results: [] }; // 기본값 반환
     }
   };
@@ -18,13 +18,13 @@ export default async function Home() {
   
   return (
     <div className="flex flex-col pt-20 justify-center items-center">
-      <div className={style.title}>요즘 뜨는 영화</div>
-
-
-      <div className='p-[20px] w-full flex flex-wrap'>
-        {movies.results.map((movie: { id: number; title: string }) => (
-          <Poster key={movie.id} movie={movie}/>
-        ))}
+      <h1 className={style.title}>요즘 뜨는 영화</h1>
+      <div className={style.container}>
+        <div className={style.posterWrapper}>
+          {movies.results.map((movie: { id: number; title: string }) => (
+            <Poster key={movie.id} movie={movie}/>
+          ))}
+        </div>
       </div>
     </div>
   );

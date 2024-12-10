@@ -1,6 +1,7 @@
 import style from './poster.module.css'
 
 const Poster = ({ movie }) => {
+  console.log(movie.title)
   return (
     <div className={style.posterWrapper}>
       <img className={style.poster} src={`${process.env.VITE_TMDB_POSTER_URL}/${movie.poster_path}`}/>
