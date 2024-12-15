@@ -50,12 +50,11 @@ export default function LoginForm() {
     let redirectFlag: boolean = true
 
     try {
-      const response = await axiosUserInstance.post('http://localhost:3000/v1/auth/login', {
+      await axiosUserInstance.post('http://localhost:3000/v1/auth/login', {
         email: data.email,
         password: data.password,
       });
       getUser();
-      console.log(response)
     } catch (e: unknown) {
       redirectFlag = false
       if (axios.isAxiosError(e)) {

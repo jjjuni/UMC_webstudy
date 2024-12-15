@@ -22,7 +22,7 @@ export const useStore = create<StoreState>((set) => ({
   loading: false,
   getUser: async () => {
     set({ loading: true });
-    const response = await axiosUserInstance.get('http://localhost:3000/v1/users/me');
+    const response = await axiosUserInstance.get(`${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/users/me`);
     set({ user: response.data, loading: false });
   },
 }))
