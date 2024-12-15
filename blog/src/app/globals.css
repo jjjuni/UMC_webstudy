@@ -10,6 +10,8 @@
   --border-color: #03c75a;
 
   --input-background: #ffffff;
+
+  --error-color: #df4646;
 }
 
 @media (prefers-color-scheme: dark) {
