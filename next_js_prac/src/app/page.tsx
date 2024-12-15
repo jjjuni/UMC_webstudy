@@ -22,7 +22,6 @@ export default async function Home() {
     },
   })
   const movies = await data.json()
-
   
   return (
     <div className="flex flex-col pt-20 justify-center items-center">
