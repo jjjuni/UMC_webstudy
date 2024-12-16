@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { axiosLogOutInstance, axiosUserInstance } from "../apis/axios-instance"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import axios from "axios"
 import { useStore } from "../store/useStore"
 
@@ -17,13 +17,12 @@ interface UserInfo {
 }
 
 export const Navbar = () => {
-  const { user, getUser, loading } = useStore() as { user: UserInfo, getUser: () => Promise<void>, loading: boolean };
+  const { user, getUser, loading, userInitialize } = useStore() as { user: UserInfo, getUser: () => Promise<void>, loading: boolean };
 
   const [isLoading, setIsLoading] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-
     const checkLoginStatus = async () => {
       if (!loading) {
         try {
@@ -31,27 +30,27 @@ export const Navbar = () => {
           setIsLogged(true);
         } catch (error) {
           setIsLogged(false);
-          setIsLogged(false);
         } finally {
           setIsLoading(false);
         }
       }
     }
-
+    console.log(user)
     checkLoginStatus();
-
-  });
+  }, [!!user]);
 
   const LogOut = async () => {
     try {
       await axiosUserInstance.post(`${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/auth/logout`)
+      userInitialize();
+      console.log(user)
     } catch(error){
-      
+      console.log(error)
     }
   }
 
   return (
-    <div className={`flex h-[100px] border-b-[1px] rounded-br-[35px]`} style={{ borderColor: 'var(--border-color)' }}>
+    <div className={`flex h-[100px] border-b-[1px]`} style={{ borderColor: 'var(--border-color)' }}>
 
       <Link href={'/'} className={`font-[Yeongdo-Rg] text-center self-center m-[20px] mt-[30px] ml-[60px] text-[40px] text-[--concept-color]`}>Blog</Link>
 

@@ -5,6 +5,10 @@ import './font.css';
 import { Navbar } from "./component/navbar";
 import { Container } from "./component/Container";
 
+import "/node_modules/react-grid-layout/css/styles.css";
+import "/node_modules/react-resizable/css/styles.css";
+import Footer from "./component/footer";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,6 +39,7 @@ export default function RootLayout({
         <Container>
           {children}
         </Container>
+        <Footer/>
       </body>
     </html>
   );

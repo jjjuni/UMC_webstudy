@@ -49,3 +49,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 > | yarn add @tanstack/react-query-devtools | tanstackQuery 개발자 도구 |
 > | yarn add react-intersection-observer | intersection-observer 라이브러리 |
 > | npm install classnames | classnames 라이브러리 |
+> | npm install react-grid-layout | grid-layout 라이브러리 |

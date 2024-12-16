@@ -25,4 +25,7 @@ export const useStore = create<StoreState>((set) => ({
     const response = await axiosUserInstance.get(`${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/users/me`);
     set({ user: response.data, loading: false });
   },
+  userInitialize: () => {
+    set({ user: null })
+  }
 }))

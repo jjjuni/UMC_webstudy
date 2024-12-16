@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { MdAssignmentInd } from "react-icons/md";
+import { MdLogin } from "react-icons/md";
 
 import classNames from 'classnames'
 import { useStore } from "@/app/store/useStore";
@@ -115,7 +115,7 @@ export default function LoginForm() {
               'opacity-100': isValid,
             }
           )}>
-          <MdAssignmentInd />
+          <MdLogin />
         </button>
       </div>
     </form>
