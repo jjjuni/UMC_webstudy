@@ -35,7 +35,6 @@ export const Navbar = () => {
         }
       }
     }
-    console.log(user)
     checkLoginStatus();
   }, [!!user]);
 

@@ -18,6 +18,7 @@
   :root {
     --background: #171717;
     --foreground: #ededed;
+    --text-color: #171717;
     --border-color: #444444;
 
     --input-background: #222222;
@@ -29,4 +30,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Pretendard-Regular;
+
+}
+
+html{
+  scrollbar-width: none;
+  scroll-behavior: smooth
 }

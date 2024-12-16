@@ -50,3 +50,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 > | yarn add react-intersection-observer | intersection-observer 라이브러리 |
 > | npm install classnames | classnames 라이브러리 |
 > | npm install react-grid-layout | grid-layout 라이브러리 |
+> | npm install framer-motion | framer-motion 애니메이션 라이브러리 |

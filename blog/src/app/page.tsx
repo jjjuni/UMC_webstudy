@@ -100,40 +100,40 @@ export default function Home() {
 
   const [layouts, setLayouts] = useState({
     row_3: [
-      { i: "write", x: 0, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<><TbPencilPlus size={'28px'} className='mr-[3px] mb-[2px]'/> 글쓰기</>), link: '/', bg: 'white', color: '--concept-color' },
-      { i: "popular_post", x: 2, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: 'white', color: '--concept-color' },
+      { i: "write", x: 0, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<><TbPencilPlus size={'28px'} className='mr-[3px] mb-[2px]'/> 글쓰기</>), link: '/post/create', bg: '--input-background', color: '--concept-color' },
+      { i: "popular_post", x: 2, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: '--input-background', color: '--concept-color' },
       { i: "login", x: 4, y: 0, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdLogin size={'35px'}/>), link: '/login', bg: 'white', color: '--concept-color' },
       { i: "sign_up", x: 4, y: 1, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdAssignmentInd size={'35px'}/>), link: '/sign_up', bg: '--concept-color', color: 'white' },
-      { i: "gap", x: 0, y: 2, w: 5, h: 0.3, minW: 1, maxW: 2, minH: 1, maxH: 2 },
-      { i: "post1", x: 0, y: 2, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post2", x: 1, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post3", x: 3, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post4", x: 1, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post5", x: 3, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: 'white', color: '--concept-color' },
+      { i: "gap", x: 0, y: 2, w: 5, h: 0.3, minW: 5, maxW: 0.3, minH: 5, maxH: 0.3 },
+      { i: "post1", x: 0, y: 2, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post2", x: 1, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post3", x: 3, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post4", x: 1, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post5", x: 3, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: '--input-background', color: '--concept-color' },
     ],
     row_2: [
-      { i: "write", x: 0, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<><TbPencilPlus size={'28px'} className='mr-[3px] mb-[2px]'/> 글쓰기</>), link: '/', bg: 'white', color: '--concept-color' },
+      { i: "write", x: 0, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<><TbPencilPlus size={'28px'} className='mr-[3px] mb-[2px]'/> 글쓰기</>), link: '/', bg: '--input-background', color: '--concept-color' },
       { i: "login", x: 2, y: 0, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdLogin size={'35px'}/>), link: '/login', bg: 'white', color: '--concept-color' },
       { i: "sign_up", x: 2, y: 1, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdAssignmentInd size={'35px'}/>), bg: '--concept-color', color: 'white' },
-      { i: "gap", x: 0, y: 2, w: 3, h: 0.3, minW: 1, maxW: 2, minH: 1, maxH: 2 },
-      { i: "popular_post", x: 0, y: 3, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post1", x: 1, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post2", x: 1, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post3", x: 0, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post4", x: 0, y: 4, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post5", x: 2, y: 4, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: 'white', color: '--concept-color' },
+      { i: "gap", x: 0, y: 2, w: 3, h: 0.3, minW: 3, maxW: 0.3, minH: 3, maxH: 0.3 },
+      { i: "popular_post", x: 0, y: 3, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post1", x: 1, y: 2, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post2", x: 1, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post3", x: 0, y: 3, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post4", x: 0, y: 4, w: 2, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post5", x: 2, y: 4, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: '--input-background', color: '--concept-color' },
     ],
     row_1: [
       { i: "write", x: 0, y: 0, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<><TbPencilPlus size={'28px'} className='mr-[3px] mb-[2px]'/> 글쓰기</>), link: '/', bg: 'white', color: '--concept-color' },
       { i: "login", x: 2, y: 0, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdLogin size={'35px'}/>), link: '/login', bg: 'white', color: '--concept-color' },
       { i: "sign_up", x: 2, y: 1, w: 1, h: 1, minW: 1, maxW: 2, minH: 1, maxH: 2, content: (<MdAssignmentInd size={'35px'}/>), bg: '--concept-color', color: 'white' },
-      { i: "gap", x: 0, y: 2, w: 3, h: 0.3, minW: 1, maxW: 2, minH: 1, maxH: 2 },
-      { i: "popular_post", x: 0, y: 3, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post1", x: 1, y: 2, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post2", x: 1, y: 3, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post3", x: 0, y: 3, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post4", x: 0, y: 4, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: 'white', color: '--concept-color' },
-      { i: "post5", x: 2, y: 4, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: 'white', color: '--concept-color' },
+      { i: "gap", x: 0, y: 2, w: 3, h: 0.3, minW: 3, maxW: 0.3, minH: 3, maxH: 0.3 },
+      { i: "popular_post", x: 0, y: 3, w: 1, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '인기게시글', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post1", x: 1, y: 2, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글1', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post2", x: 1, y: 3, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글2', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post3", x: 0, y: 3, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글3', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post4", x: 0, y: 4, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글4', link: '/', bg: '--input-background', color: '--concept-color' },
+      { i: "post5", x: 2, y: 4, w: 2, h: 2, minW: 1, maxW: 2, minH: 1, maxH: 2, content: '게시글5', link: '/', bg: '--input-background', color: '--concept-color' },
     ],
   });
 
@@ -170,7 +170,8 @@ export default function Home() {
   }
 
   return (
-    <div className='w-[100%] min-w-[450px]'>
+    <div
+      className='w-[100%] min-w-[450px]'>
       {load ? (
         <div className='w-[screen] flex justify-center items-center p-[20%]'>
           <ClipLoader className='h-[100%] text-center'
