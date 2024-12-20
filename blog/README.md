@@ -6,7 +6,7 @@
 
 ## 🎈 개요
 
-![Blog 사이트](https://github.com/user-attachments/assets/88ad1434-be43-4ae8-b86c-ac7868902ae8)
+![나만의 블로그](https://github.com/user-attachments/assets/dbfacb60-245d-4aa1-9d12-67f8cc589e3e)
 
 - 개인 블로그 사이트 제작
 - Next.js를 익히며 각종 기능 사용
