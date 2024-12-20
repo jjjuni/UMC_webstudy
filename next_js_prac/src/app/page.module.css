@@ -1,0 +1,26 @@
+.title{
+    font-size: 20px;
+    font-weight: bolder;
+    width: 100vw;
+    padding: 20px 40px;
+
+    border-bottom: 1px solid rgb(40, 40, 40);
+}
+
+.container{
+    width: 100vw;
+    padding: 0 20px;
+    overflow: hidden;
+    display: flex;
+}
+
+.posterWrapper{
+    position: relative;
+    scrollbar-width: none;
+    margin: 20px 0;
+
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    box-sizing: border-box;;
+}

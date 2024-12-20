@@ -10,7 +10,8 @@ export const ContentContainer = styled.div`
 
   box-sizing: border-box;
 
-  // display: flex;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 850px){
     padding-left: 0px;
@@ -23,6 +24,7 @@ export const ContentBox = styled.div`
   padding: ${props => props.$padding || '0px 40px 60px 40px'};
   box-sizing: border-box;
   width: 100%;
+  flex-grow: 1;
   overflow: auto;
 `
 
