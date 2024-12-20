@@ -36,7 +36,8 @@
 > - `React-Grid-Layout`을 사용하여 반응형 디자인 및 UX 향상
 >     
 >     https://github.com/user-attachments/assets/6a34237e-b316-4bdd-9ae8-eb4ed07c5cc6
->     
+> 
+>     https://github.com/user-attachments/assets/067a4e9d-a1a1-4fa4-ae08-30dacfeaffa0
 > 
 > ### 📁 파일 첨부
 > 
@@ -45,7 +46,8 @@
 >     - 클릭으로 첨부도 가능
 >   
 >     https://github.com/user-attachments/assets/f8e5fd06-e470-49eb-b705-eba71c828d22
-> 
+>
+
 <br>
 
 ## 🛠️ 미구현 기능
