@@ -6,7 +6,7 @@
 
 ## 🎈 개요
 
-![Blog 사이트.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/ea312d39-1f75-4243-882b-27310f99dfcc/341d7744-8eb6-4e52-b2ab-560c45c6521c/Blog_%EC%82%AC%EC%9D%B4%ED%8A%B8.png)
+![Blog 사이트](https://github.com/user-attachments/assets/88ad1434-be43-4ae8-b86c-ac7868902ae8)
 
 - 개인 블로그 사이트 제작
 - Next.js를 익히며 각종 기능 사용
@@ -26,16 +26,16 @@
 >     - 회원 정보 및 토큰 → 쿠키에 저장
 > - 회원 정보 요청 시 쿠키를 함께 보내 토큰 확인 후 정보 반환
 >     
->     [로그인, 로그아웃.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/ea312d39-1f75-4243-882b-27310f99dfcc/8ad5d872-f50c-43c5-82da-62b5e08b9680/%EB%A1%9C%EA%B7%B8%EC%9D%B8_%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83.mp4)
+>     https://github.com/user-attachments/assets/2971242e-3e89-467a-8658-5809d3506c8c
 >     
->     [회원가입.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/ea312d39-1f75-4243-882b-27310f99dfcc/5caf23ed-6987-4716-87ee-6a757d6d1657/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.mp4)
+>     https://github.com/user-attachments/assets/6239ae96-49ea-4e96-9034-7ff42eed6e8a
 >     
 > 
 > ### 🏠 홈
 > 
 > - `React-Grid-Layout`을 사용하여 반응형 디자인 및 UX 향상
 >     
->     [React-Grid-Layout.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/ea312d39-1f75-4243-882b-27310f99dfcc/d48bbfa5-c541-4050-b2e9-756c1ac7b3f1/React-Grid-Layout.mp4)
+>     https://github.com/user-attachments/assets/6a34237e-b316-4bdd-9ae8-eb4ed07c5cc6
 >     
 > 
 > ### 📁 파일 첨부
@@ -43,12 +43,12 @@
 > - 게시글 작성 시 파일 첨부 기능
 >     - 드래그 앤 드랍 파일 첨부 기능
 >     - 클릭으로 첨부도 가능
->     
->     [파일첨부.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/ea312d39-1f75-4243-882b-27310f99dfcc/6d73b373-5368-47ab-b3a4-8d43d4a717f7/%ED%8C%8C%EC%9D%BC%EC%B2%A8%EB%B6%80.mp4)
+>   
+>     https://github.com/user-attachments/assets/f8e5fd06-e470-49eb-b705-eba71c828d22
 > 
 <br>
 
-### 🛠️ 미구현 기능
+## 🛠️ 미구현 기능
 >
 > - 게시글
 >     - 게시글 등록
