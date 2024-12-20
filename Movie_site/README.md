@@ -15,7 +15,7 @@
 <br>
 
 ## 🛠️ 기능 및 구현
-> ### Routing
+> ### ⛓️‍💥 Routing
 >
 > - `React Router` 사용
 >    - root-layout에서 `navbar, sidebar, outlet, footer`로 나누어 작성
