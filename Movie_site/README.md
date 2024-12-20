@@ -6,7 +6,7 @@
 
 ## 🎈 개요
 
-![WATCHA_FIGMA](https://github.com/user-attachments/assets/a88861de-1df9-4396-8493-8ab840676004)
+![영화 목록 사이트](https://github.com/user-attachments/assets/9a7288d4-5c83-4811-96c9-61839af4d6fd)
 
 - [TMDB 사이트](https://www.themoviedb.org/?language=ko#play=eknj5_0tF2s) API를 사용
 - WATCHA/Netflix를 참고
