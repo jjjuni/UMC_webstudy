@@ -1,0 +1,45 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder", "omitApi"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  password     String
+  username     String
+  role         String         @default("user")
+  refreshToken String?
+  createdPosts Post[]
+  likedPosts   PostUserLike[]
+}
+
+model Post {
+  id           Int            @id @default(autoincrement())
+  authorId     Int
+  title        String
+  likeCount    Int            @default(0)
+  dislikeCount Int            @default(0)
+  content      String
+  imageUrl     String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  version      Int            @default(0)
+  author       User           @relation(fields: [authorId], references: [id])
+  likedUsers   PostUserLike[]
+}
+
+model PostUserLike {
+  postId Int
+  userId Int
+  isLike Boolean
+  user   User    @relation(fields: [userId], references: [id])
+  post   Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([postId, userId])
+}
