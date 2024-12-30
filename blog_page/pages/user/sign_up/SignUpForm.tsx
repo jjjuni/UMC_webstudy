@@ -9,6 +9,7 @@ import { MdAssignmentInd } from "react-icons/md";
 
 import classNames from 'classnames'
 import { axiosUserInstance } from "@/pages/apis/axios-instance";
+import useCustomMutation from "@/pages/hooks/useCustomMutation";
 
 interface SignUpData {
   email: string;
@@ -20,8 +21,8 @@ interface SignUpData {
 export default function SignUpForm() {
 
   const router = useRouter();
-
   const [error, setError] = useState<string>('');
+  const mutate = useCustomMutation();
 
   const emailRegExp =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -51,11 +52,14 @@ export default function SignUpForm() {
     let redirectFlag: boolean = true
 
     try {
-      await axiosUserInstance.post('http://localhost:3000/v1/users', {
-        email: data.email,
-        password: data.password,
-        username: data.username,
-        role: 'user',
+      await mutate({
+        url: `${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/users`,
+        data: {
+          email: data.email,
+          password: data.password,
+          username: data.username,
+          role: 'user',
+        },
       });
 
     } catch (e: unknown) {
@@ -80,7 +84,7 @@ export default function SignUpForm() {
     }
 
     if (redirectFlag) {
-      router.push('/login')
+      router.push('/user/login')
     }
   }
 

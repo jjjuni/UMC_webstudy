@@ -18,22 +18,21 @@ export const Navbar = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      if (!loading) {
+      if (!loading && isLogged) {
         try {
           await getUser();
         } catch (error) {
           console.log(error)
-        } 
-      } 
+        }
+      }
     }
     checkLoginStatus();
-  }, [loading, user]);
+  }, []);
 
   const LogOut = async () => {
     try {
       await axiosUserInstance.post(`${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/auth/logout`)
       userInitialize();
-      console.log(user)
     } catch(error){
       console.log(error)
     }

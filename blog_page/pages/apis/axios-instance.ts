@@ -21,7 +21,6 @@ axiosUserInstance.interceptors.response.use(
 
     if (status === 401 && error.response.data.message === "Unauthorized") {
       const originRequest = config;
-
       if (!originRequest._retry) {
         originRequest._retry = true;
 
