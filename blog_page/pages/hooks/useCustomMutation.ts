@@ -17,7 +17,7 @@ interface APIResponse {
   message?: string;
 }
 
-const useCustionMutation = () => {
+const useUserMutation = () => {
   const { mutateAsync } = useMutation<APIResponse, Error, MutationData>({
     mutationFn: async ({ url, data }) => {
       const response = await axiosUserInstance.post(url, data);
@@ -27,4 +27,4 @@ const useCustionMutation = () => {
   return mutateAsync;
 };
 
-export default useCustionMutation;
+export default useUserMutation;

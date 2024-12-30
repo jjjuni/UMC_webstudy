@@ -10,7 +10,7 @@ import { MdLogin } from "react-icons/md";
 
 import classNames from 'classnames'
 import { useStore } from "@/pages/store/useStore";
-import useCustomMutation from '../../hooks/useCustomMutation';
+import useUserMutation from '../../hooks/useCustomMutation';
 
 interface LoginData {
   email: string;
@@ -22,7 +22,7 @@ export default function LoginForm() {
   const { getUser } = useStore();
   const router = useRouter();
   const [error, setError] = useState<string>('');
-  const mutate = useCustomMutation();
+  const mutate = useUserMutation();
 
   const emailRegExp =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;

@@ -9,7 +9,7 @@ import { MdAssignmentInd } from "react-icons/md";
 
 import classNames from 'classnames'
 import { axiosUserInstance } from "@/pages/apis/axios-instance";
-import useCustomMutation from "@/pages/hooks/useCustomMutation";
+import useUserMutation from "@/pages/hooks/useCustomMutation";
 
 interface SignUpData {
   email: string;
@@ -22,7 +22,7 @@ export default function SignUpForm() {
 
   const router = useRouter();
   const [error, setError] = useState<string>('');
-  const mutate = useCustomMutation();
+  const mutate = useUserMutation();
 
   const emailRegExp =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
