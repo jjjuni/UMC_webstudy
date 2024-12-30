@@ -4,6 +4,10 @@ const axiosUserInstance = axios.create({
   withCredentials: true, // 쿠키를 요청에 자동으로 포함시킴
 });
 
+const axiosPostInstance = axios.create({
+  withCredentials: true, // 쿠키를 요청에 자동으로 포함시킴
+});
+
 const axiosRefreshInstance = axios.create({
   withCredentials: true, // 쿠키를 요청에 자동으로 포함시킴
 });
@@ -21,7 +25,6 @@ axiosUserInstance.interceptors.response.use(
 
     if (status === 401 && error.response.data.message === "Unauthorized") {
       const originRequest = config;
-
       if (!originRequest._retry) {
         originRequest._retry = true;
 
@@ -39,4 +42,4 @@ axiosUserInstance.interceptors.response.use(
   }
 );
 
-export { axiosUserInstance };
+export { axiosUserInstance, axiosPostInstance };

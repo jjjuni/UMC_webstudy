@@ -10,6 +10,7 @@ import { MdLogin } from "react-icons/md";
 
 import classNames from 'classnames'
 import { useStore } from "@/pages/store/useStore";
+import useUserMutation from '../../hooks/useCustomMutation';
 
 interface LoginData {
   email: string;
@@ -19,10 +20,9 @@ interface LoginData {
 export default function LoginForm() {
 
   const { getUser } = useStore();
-
   const router = useRouter();
-
   const [error, setError] = useState<string>('');
+  const mutate = useUserMutation();
 
   const emailRegExp =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -45,26 +45,23 @@ export default function LoginForm() {
 
   async function signUpHandler(data: LoginData) {
 
-    let redirectFlag: boolean = true
-
     try {
-      await axiosUserInstance.post('http://localhost:3000/v1/auth/login', {
-        email: data.email,
-        password: data.password,
-      });
+      await mutate({
+        url: `${process.env.NEXT_PUBLIC_LOCAL_HOST}/v1/auth/login`,
+        data: {
+          email: data.email,
+          password: data.password,
+        },
+      })
       getUser();
+      router.push('/')
     } catch (e: unknown) {
-      redirectFlag = false
       if (axios.isAxiosError(e)) {
         setError('이메일 또는 비밀번호를 확인해주세요')
 
       } else {
         console.error('An error occurred:', e);
       }
-    }
-
-    if (redirectFlag) {
-      router.push('/')
     }
   }
 

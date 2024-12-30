@@ -34,7 +34,7 @@ body {
 
 html{
   scrollbar-width: none;
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
 }
 
 #__next {
