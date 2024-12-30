@@ -18,7 +18,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      if (!loading && isLogged) {
+      if (!loading) {
         try {
           await getUser();
         } catch (error) {
