@@ -1,8 +1,5 @@
 'use client'
-import { BsFileEarmarkPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { MdDeleteForever } from "react-icons/md";
-import { TbPencilPlus } from "react-icons/tb";
 import { axiosPostInstance } from '@/pages/apis/axios-instance'
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -22,7 +19,7 @@ const PostPage = () => {
       setImage(response.data.imageUrl)
       return response;
     },
-    placeholderData: keepPreviousData,    // 다음 페이지 이동 시 깜빡임 방지 (이전 데이터 유지 -> 새로운 데이터 불러오면 바꿔치기)
+    // placeholderData: keepPreviousData,    // 다음 페이지 이동 시 깜빡임 방지 (이전 데이터 유지 -> 새로운 데이터 불러오면 바꿔치기)
   })
 
   return (

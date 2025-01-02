@@ -118,7 +118,7 @@ const Posts = () => {
 
       <button 
         onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage}
-        className=" disabled:text-[#ffffff4d]">
+        className=" disabled:text-[#ffffff4d] mt-[30px]">
       +</button>
     </>
   )
