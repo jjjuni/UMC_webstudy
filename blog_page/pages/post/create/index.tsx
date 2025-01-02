@@ -12,9 +12,6 @@ const CreatePostPage = () => {
   const router = useRouter();
 
   const createPost = async (formData) => {
-    // console.log(formData.get('title'))
-    // console.log(formData.get('file'))
-    // console.log(formData.get('content'))
 
     const imageForm = new FormData();
     const imageFile = formData.get('file')

@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { axiosLogOutInstance, axiosUserInstance } from "../apis/axios-instance"
-import { useEffect, useMemo, useState } from "react"
+import { axiosUserInstance } from "../apis/axios-instance"
+import { useEffect } from "react"
 import { useStore } from "../store/useStore"
 
 

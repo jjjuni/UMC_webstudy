@@ -6,10 +6,8 @@ interface ReactProps {
 
 export const Container: React.FC<ReactProps> = ({ children }) => {
   return (
-    <div className={`w-[100%] flex flex-col p-[150px] pt-[100px] min-h-[calc(100vh-100px-150px)] items-center`}>
-      <div className={`text-[25px] font-bold m-[20px] text-center w-[100%] justify-items-center`}>
-        {children}
-      </div>
+    <div className={`text-[25px] font-bold w-[100%] flex flex-col p-[150px] pt-[100px] min-h-[calc(100vh-100px-150px)] items-center justify-items-center text-center`}>
+      {children}
     </div>
   )
 }
