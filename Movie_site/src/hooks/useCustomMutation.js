@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { axiosLOGInstance } from "../apis/axios-instance";
 
-const useCustionMutation = () => {
+const useCustiomMutation = () => {
   const { mutateAsync } = useMutation({
     mutationFn: async ({url, data}) => {
       const response = await axiosLOGInstance.post(url, data)
@@ -17,4 +17,4 @@ const useCustionMutation = () => {
   return mutateAsync;
 }
 
-export default useCustionMutation;
+export default useCustiomMutation;
